@@ -54,7 +54,7 @@ html {
 
 body {
     font-family: var(--font-body);
-    color: var(blue);
+    color: var(--color-ink-900);
     background: blue;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
