@@ -635,8 +635,8 @@ button:focus-visible,
 /* IKKALA USTUNNI (CHAP VA O'NG) YONMA-YON QILUVCHI ASOSIY GRID */
 .teachers-split-section-equal {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 36px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
   align-items: start;
 }
 
