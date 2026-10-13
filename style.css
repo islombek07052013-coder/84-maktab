@@ -640,10 +640,17 @@ button:focus-visible,
   align-items: start;
 }
 
+/* Ustozlar kartochkalarini 3 ta ustunga joylashtirish */
 .featured-teachers-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Katta idishni to'liq kenglikda ishlatish */
+.teachers-split-section-equal {
+  display: block;
+  width: 100%;
 }
 
 .mini-card {
