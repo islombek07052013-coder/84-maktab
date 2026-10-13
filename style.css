@@ -860,49 +860,128 @@ button:focus-visible,
     }
 }
 
-/* ===== RAHBARIYAT VA USTOZlar QISMI UCHUN QO'SHIMCHA USLUB ===== */
-.sub-section-title {
-  font-size: 1.4rem;
-  color: var(--color-navy-900);
-  margin-bottom: 24px;
-  position: relative;
-  padding-left: 14px;
-  border-left: 4px solid var(--color-gold-400);
+/* ===== RAHBARIYAT VA USTOZLARNING YANGI JOYLASHUVI ===== */
+
+.text-center {
+  text-align: center;
+  border-left: none !important;
+  padding-left: 0 !important;
 }
 
-.leadership-grid {
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+/* Rahbariyatni o'rtaga joylashtirish */
+.leadership-grid-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 70px;
 }
 
-.leadership-card {
-  border-top: 4px solid var(--color-gold-400);
+.director-card {
+  max-width: 320px;
+  width: 100%;
+  border-top: 5px solid var(--color-gold-400);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  padding: 24px;
   background: var(--color-white);
   border-radius: var(--radius-md);
+}
+
+.deputies-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  width: 100%;
+}
+
+.deputies-group .leadership-card {
+  flex: 1 1 260px;
+  max-width: 300px;
+  text-align: center;
+  padding: 20px;
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  border-top: 4px solid var(--color-navy-700);
   box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-med), box-shadow var(--transition-med);
-  overflow: hidden;
 }
 
-.leadership-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
+.teacher-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 14px;
 }
 
-.teachers-note {
-  color: var(--color-ink-600);
-  margin-bottom: 30px;
+/* Ikki ustunli bo'lim (Chapda 5 ta ustoz, O'ngda 58 ta ism) */
+.teachers-split-section {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* Chap taraf: 5 ta mini-kartochka */
+.featured-teachers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.mini-card {
+  background: var(--color-white);
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-gold-400);
+  box-shadow: var(--shadow-sm);
+}
+
+.mini-card h3 {
   font-size: 1.05rem;
+  color: var(--color-navy-900);
 }
 
-@media (max-width: 1024px) {
-  .leadership-grid {
-    grid-template-columns: repeat(2, 1fr);
+.mini-card p {
+  font-size: 0.88rem;
+  margin-bottom: 6px;
+}
+
+/* O'ng taraf: 58 ta ustoz ismlari ro'yxati */
+.section-desc {
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+
+.teachers-names-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 24px;
+  background: var(--color-white);
+  padding: 28px 28px 28px 44px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-gray-200);
+}
+
+.teachers-names-list li {
+  font-size: 0.95rem;
+  color: var(--color-ink-900);
+  font-weight: 500;
+  padding-block: 4px;
+  border-bottom: 1px dashed var(--color-gray-200);
+}
+
+/* Mobil va planshetlar uchun moslashuv */
+@media (max-width: 900px) {
+  .teachers-split-section {
+    grid-template-columns: 1fr;
+    gap: 36px;
   }
-}
 
-@media (max-width: 560px) {
-  .leadership-grid {
+  .teachers-names-list {
     grid-template-columns: 1fr;
   }
 }
