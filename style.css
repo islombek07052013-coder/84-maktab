@@ -633,18 +633,24 @@ button:focus-visible,
 }
 
 /* IKKALA USTUNNI (CHAP VA O'NG) YONMA-YON QILUVCHI ASOSIY GRID */
+/* Ustozlar bo'limini asosiy konteyneri */
 .teachers-split-section-equal {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  align-items: start;
+  display: block;
+  width: 100%;
 }
 
-/* Ustozlar kartochkalarini 3 ta ustunga joylashtirish */
+/* Ustozlar ro'yxatini to'g'ridan-to'g'ri 3 ta ustun qilish */
 .featured-teachers-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+}
+
+/* Telefon va kichik ekranlar uchun 1 ta ustun qilish */
+@media (max-width: 900px) {
+  .featured-teachers-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Katta idishni to'liq kenglikda ishlatish */
