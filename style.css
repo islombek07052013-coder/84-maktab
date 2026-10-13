@@ -980,7 +980,21 @@ button:focus-visible,
     grid-template-columns: 1fr;
     gap: 36px;
   }
+/* Ikkkala ustunni yonma-yon tekislash */
+.teachers-split-section-equal {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 36px;
+  align-items: start;
+}
 
+/* Telefon ekranida bitta ustunga tushishi uchun */
+@media (max-width: 900px) {
+  .teachers-split-section-equal {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
   .teachers-names-list {
     grid-template-columns: 1fr;
   }
