@@ -5,15 +5,11 @@
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const norm = s => s.toLowerCase().replace(/[‘’`ʻʼ']/g, '');
-  const TG_USER = 'MAK_RAHBARI84'; // murojaatlar shu Telegram akkauntiga boradi
+  const TG_USER = 'MAK_RAHBARI84';
 
   /* O'qituvchilarni qidirish va fan bo'yicha saralash */
   function teachers() {
-    const list = $('.featured-teachers-list'), tools = $('.t-tools'), empty = $('.t-empty');
-    if (!list || !tools) return;
-    const CATS = [["Boshlang'ich sinf", 'boshlangich'], ['Ona tili', 'ona tili'], ['Rus tili', 'rus tili'], ['Ingliz tili', 'ingliz'], ['Matematika', 'matematika'], ['Informatika', 'informatika'],
-      ['Fizika', 'fizika'], ['Kimyo', 'kimyo'], ['Biologiya', 'biologiya'], ['Geografiya', 'geografiya'], ['Tarix', 'tarix'], ["San'at va musiqa", 'tasviriy|musiqa|chizmachilik'], ['Jismoniy tarbiya', 'jismoniy']];
-    const data = $$('.mini-card', list).map(c => {
+    const list = $('.featured-teachers-list'), tools =$('.t-tools'), empty = $('.t-empty'); if (!list \vert{}\vert{} !tools) return; const CATS = [["Boshlang'ich sinf", 'boshlangich'], ['Ona tili', 'ona tili'], ['Rus tili', 'rus tili'], ['Ingliz tili', 'ingliz'], ['Matematika', 'matematika'], ['Informatika', 'informatika'], ['Fizika', 'fizika'], ['Kimyo', 'kimyo'], ['Biologiya', 'biologiya'], ['Geografiya', 'geografiya'], ['Tarix', 'tarix'], ["San'at va musiqa", 'tasviriy\vert{}musiqa\vert{}chizmachilik'], ['Jismoniy tarbiya', 'jismoniy']]; const data = $$('.mini-card', list).map(c => {
       const role = norm($('.teacher-role', c).textContent);
       return { c, cat: (CATS.find(([, k]) => new RegExp(k).test(role)) || ['Boshqa'])[0], text: norm($('h3', c).textContent + ' ' + role) };
     });
@@ -35,7 +31,7 @@
     apply();
   }
 
-  /* Qo'ng'iroq jadvali: vaqtlar HTML'dagi data-s va data-e dan olinadi */
+  /* Qo'ng'iroq jadvali */
   function bells() {
     const items = $$('#bellList li'), out = $('#bellNow');
     if (!items.length || !out) return;
@@ -59,7 +55,7 @@
     tick(); setInterval(tick, 20000);
   }
 
-  /* Murojaat: Telegram tayyor xabar bilan ochiladi */
+  /* Murojaat: Telegram */
   function appeal() {
     const f = $('#appealForm');
     if (!f) return;
@@ -71,7 +67,7 @@
     });
   }
 
-  /* Galereya: katta ko'rish. Rasmlar bosilgan paytda sanaladi (yuklanmaganlari hisobga olinmaydi) */
+  /* Galereya: Lightbox */
   function lightbox() {
     const grid = $('.gallery-grid');
     if (!grid) return;
@@ -80,39 +76,10 @@
     lb.innerHTML = '<button class="lb-x" aria-label="Yopish">×</button><button class="lb-p" aria-label="Oldingi">‹</button><figure><img alt=""><figcaption></figcaption></figure><button class="lb-n" aria-label="Keyingi">›</button>';
     document.body.append(lb);
     let imgs = [], i = 0;
-    const show = k => { i = (k + imgs.length) % imgs.length; const im = $('img', lb); im.src = imgs[i].currentSrc || imgs[i].src; im.alt = imgs[i].alt; $('figcaption', lb).textContent = imgs[i].alt; };
-    const open = im => { imgs = $$('.gallery-item img', grid); if (!imgs.includes(im)) return; show(imgs.indexOf(im)); lb.hidden = false; document.body.classList.add('lb-open'); $('.lb-x', lb).focus(); };
-    const close = () => { lb.hidden = true; document.body.classList.remove('lb-open'); if (imgs[i]) imgs[i].focus(); };
-    grid.addEventListener('click', e => { const im = e.target.closest('img'); if (im) open(im); });
-    grid.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.matches('img')) open(e.target); });
-    lb.addEventListener('click', e => {
-      if (e.target === lb || e.target.closest('.lb-x')) close();
-      else if (e.target.closest('.lb-p')) show(i - 1);
-      else if (e.target.closest('.lb-n')) show(i + 1);
-    });
-    addEventListener('keydown', e => {
-      if (lb.hidden) return;
-      if (e.key === 'Escape') close();
-      if (e.key === 'ArrowLeft') show(i - 1);
-      if (e.key === 'ArrowRight') show(i + 1);
-    });
+    const show = k => { i = (k + imgs.length) % imgs.length; const im = $('img', lb); im.src = imgs[i].currentSrc || imgs[i].src; im.alt = imgs[i].alt; $('figcaption', lb).textContent = imgs[i].alt; }; const open = im => { imgs = $$('.gallery-item img', grid); if (!imgs.includes(im)) return; show(imgs.indexOf(im)); lb.hidden = false; document.body.classList.add('lb-open'); $('.lb-x', lb).focus(); }; const close = () => { lb.hidden = true; document.body.classList.remove('lb-open'); if (imgs[i]) imgs[i].focus(); }; grid.addEventListener('click', e => { const im = e.target.closest('img'); if (im) open(im); }); grid.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.matches('img')) open(e.target); }); lb.addEventListener('click', e => { if (e.target === lb \vert{}\vert{} e.target.closest('.lb-x')) close(); else if (e.target.closest('.lb-p')) show(i - 1); else if (e.target.closest('.lb-n')) show(i + 1); }); addEventListener('keydown', e => { if (lb.hidden) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); }); }    /* Raqamlar animatsiyasi */ function counters() { if (reduce \vert{}\vert{} !('IntersectionObserver' in window)) return; const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; io.unobserve(e.target); const txt = e.target.textContent, n = parseInt(txt, 10), suf = txt.replace(/[\d\s]/g, ''), t0 = performance.now(); if (!n) return; const f = now => { const p = Math.min((now - t0) / 1200, 1); e.target.textContent = Math.round(n * (1 - Math.pow(1 - p, 3))) + suf; if (p < 1) requestAnimationFrame(f); }; requestAnimationFrame(f); }), { threshold: 0.6 }); $$('.stat-number').forEach(e => io.observe(e));
   }
 
-  /* Raqamlar 0 dan o'sib chiqadi */
-  function counters() {
-    if (reduce || !('IntersectionObserver' in window)) return;
-    const io = new IntersectionObserver(es => es.forEach(e => {
-      if (!e.isIntersecting) return;
-      io.unobserve(e.target);
-      const txt = e.target.textContent, n = parseInt(txt, 10), suf = txt.replace(/[\d\s]/g, ''), t0 = performance.now();
-      if (!n) return;
-      const f = now => { const p = Math.min((now - t0) / 1200, 1); e.target.textContent = Math.round(n * (1 - Math.pow(1 - p, 3))) + suf; if (p < 1) requestAnimationFrame(f); };
-      requestAnimationFrame(f);
-    }), { threshold: 0.6 });
-    $$('.stat-number').forEach(e => io.observe(e));
-  }
-
-  /* O'qish chizig'i, yuqoriga tugma, aktiv menyu, mobil menyuni yopish */
+  /* Chrome (progress bar, to-top, active menu) */
   function chrome() {
     const bar = document.createElement('div'), top = document.createElement('button');
     bar.className = 'progress'; top.className = 'to-top'; top.type = 'button'; top.textContent = '↑'; top.setAttribute('aria-label', 'Yuqoriga qaytish');
