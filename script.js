@@ -1,4 +1,4 @@
-/* Denov 84-maktab — script.js. Har bir funksiya alohida himoyalangan: biri xato qilsa, qolganlari ishlayveradi. */
+/* Denov 84-maktab — script.js */
 (() => {
   'use strict';
   const $ = (s, r = document) => r.querySelector(s);
@@ -9,7 +9,7 @@
 
   /* O'qituvchilarni qidirish va fan bo'yicha saralash */
   function teachers() {
-    const list = $('.featured-teachers-list'), tools =$('.t-tools'), empty = $('.t-empty'); if (!list \vert{}\vert{} !tools) return; const CATS = [["Boshlang'ich sinf", 'boshlangich'], ['Ona tili', 'ona tili'], ['Rus tili', 'rus tili'], ['Ingliz tili', 'ingliz'], ['Matematika', 'matematika'], ['Informatika', 'informatika'], ['Fizika', 'fizika'], ['Kimyo', 'kimyo'], ['Biologiya', 'biologiya'], ['Geografiya', 'geografiya'], ['Tarix', 'tarix'], ["San'at va musiqa", 'tasviriy\vert{}musiqa\vert{}chizmachilik'], ['Jismoniy tarbiya', 'jismoniy']]; const data = $$('.mini-card', list).map(c => {
+    const list = $('.featured-teachers-list'), tools =$('.t-tools'), empty = $('.t-empty'); if (!list \vert{}\vert{} !tools) return; const CATS = [ ["Boshlang'ich sinf", 'boshlangich'], ['Ona tili', 'ona tili'], ['Rus tili', 'rus tili'], ['Ingliz tili', 'ingliz'], ['Matematika', 'matematika'], ['Informatika', 'informatika'], ['Fizika', 'fizika'], ['Kimyo', 'kimyo'], ['Biologiya', 'biologiya'], ['Geografiya', 'geografiya'], ['Tarix', 'tarix'], ["San'at va musiqa", 'tasviriy\vert{}musiqa\vert{}chizmachilik'], ['Jismoniy tarbiya', 'jismoniy'] ]; const data = $$('.mini-card', list).map(c => {
       const role = norm($('.teacher-role', c).textContent);
       return { c, cat: (CATS.find(([, k]) => new RegExp(k).test(role)) || ['Boshqa'])[0], text: norm($('h3', c).textContent + ' ' + role) };
     });
@@ -63,7 +63,7 @@
       e.preventDefault();
       const phone = $('#aPhone').value.trim();
       const text = `Murojaat (${$('#aType').value})\nIsm: ${$('#aName').value.trim()}${phone ? '\nTelefon: ' + phone : ''}\n\n${$('#aMsg').value.trim()}`;
-      window.open(`https://t.me/${TG_USER}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+      window.location.href = `https://t.me/${TG_USER}?text=${encodeURIComponent(text)}`;
     });
   }
 
