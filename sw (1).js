@@ -1,0 +1,3 @@
+const C = 'maktab84-v1';
+self.addEventListener('install', e => e.waitUntil(caches.open(C).then(c => c.addAll(['./', 'index.html', 'style.css', 'features.css', 'features.js', 'icon.svg']))));
+self.addEventListener('fetch', e => { if (e.request.method !== 'GET') return; e.respondWith(fetch(e.request).catch(() => caches.match(e.request))); });
