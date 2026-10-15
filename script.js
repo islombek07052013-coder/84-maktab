@@ -55,15 +55,23 @@
     tick(); setInterval(tick, 20000);
   }
 
-  /* Murojaat: Telegram orqali yuborish */
+  /* Murojaat: Telegram orqali yuborish (Matnni nusxalab, profilingizni ochadi) */
   function appeal() {
     const f = $('#appealForm');
     if (!f) return;
-    f.addEventListener('submit', e => {
+    f.addEventListener('submit', async e => {
       e.preventDefault();
       const phone = $('#aPhone').value.trim();
       const text = `Murojaat (${$('#aType').value})\nIsm: ${$('#aName').value.trim()}${phone ? '\nTelefon: ' + phone : ''}\n\n${$('#aMsg').value.trim()}`;
-      window.location.href = `https://t.me/${TG_USER}?text=${encodeURIComponent(text)}`;
+      
+      try {
+        await navigator.clipboard.writeText(text);
+        alert("Murojaat matni nusxalandi! Ochilgan Telegram chatiga o'tib, xabarni yopishtirib (vstavit qilib) yuborishingiz mumkin.");
+      } catch (err) {
+        console.error("Nusxalash xatosi:", err);
+      }
+      
+      window.location.href = `https://t.me/${TG_USER}`;
     });
   }
 
