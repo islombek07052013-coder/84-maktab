@@ -120,7 +120,18 @@
     lb.innerHTML = '<button class="lb-x" aria-label="Yopish">×</button><button class="lb-p" aria-label="Oldingi">‹</button><figure><img alt=""><figcaption></figcaption></figure><button class="lb-n" aria-label="Keyingi">›</button>';
     document.body.append(lb);
     let imgs = [], i = 0;
-    const show = k => { i = (k + imgs.length) % imgs.length; const im = $('img', lb); if (im && imgs[i]) { im.src = imgs[i].currentSrc || imgs[i].src; im.alt = imgs[i].alt; const cap = $('figcaption', lb); if (cap) cap.textContent = imgs[i].alt; } }; const open = im => { imgs = $$('.gallery-item img', grid); if (!imgs.includes(im)) return; show(imgs.indexOf(im)); lb.hidden = false; document.body.classList.add('lb-open'); const xBtn = $('.lb-x', lb); if (xBtn) xBtn.focus(); }; const close = () => { lb.hidden = true; document.body.classList.remove('lb-open'); if (imgs[i]) imgs[i].focus(); }; grid.addEventListener('click', e => { const im = e.target.closest('img'); if (im) open(im); }); grid.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.matches('img')) open(e.target); }); lb.addEventListener('click', e => { if (e.target === lb \vert{}\vert{} e.target.closest('.lb-x')) close(); else if (e.target.closest('.lb-p')) show(i - 1); else if (e.target.closest('.lb-n')) show(i + 1); }); addEventListener('keydown', e => { if (lb.hidden) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); }); }    /* Raqamlar animatsiyasi */ function counters() { if (reduce \vert{}\vert{} !('IntersectionObserver' in window)) return; const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; io.unobserve(e.target); const txt = e.target.textContent, n = parseInt(txt, 10), suf = txt.replace(/[\d\s]/g, ''), t0 = performance.now(); if (!n) return; const f = now => { const p = Math.min((now - t0) / 1200, 1); e.target.textContent = Math.round(n * (1 - Math.pow(1 - p, 3))) + suf; if (p < 1) requestAnimationFrame(f); }; requestAnimationFrame(f); }), { threshold: 0.6 }); $$('.stat-number').forEach(e => io.observe(e));
+    const show = k => { 
+      i = (k + imgs.length) % imgs.length; 
+      const im = $('img', lb); 
+      if (im && imgs[i]) { 
+        im.src = imgs[i].currentSrc || imgs[i].src; 
+        im.alt = imgs[i].alt; 
+        const cap = $('figcaption', lb); if (cap) cap.textContent = imgs[i].alt; } }; const open = im => { imgs = $$('.gallery-item img', grid); 
+      if (!imgs.includes(im)) return; 
+      show(imgs.indexOf(im)); 
+      lb.hidden = false; 
+      document.body.classList.add('lb-open'); 
+      const xBtn = $('.lb-x', lb); if (xBtn) xBtn.focus(); }; const close = () => { lb.hidden = true; document.body.classList.remove('lb-open'); if (imgs[i]) imgs[i].focus(); }; grid.addEventListener('click', e => { const im = e.target.closest('img'); if (im) open(im); }); grid.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.matches('img')) open(e.target); }); lb.addEventListener('click', e => { if (e.target === lb \vert{}\vert{} e.target.closest('.lb-x')) close(); else if (e.target.closest('.lb-p')) show(i - 1); else if (e.target.closest('.lb-n')) show(i + 1); }); addEventListener('keydown', e => { if (lb.hidden) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); }); }    /* Raqamlar animatsiyasi */ function counters() { if (reduce \vert{}\vert{} !('IntersectionObserver' in window)) return; const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; io.unobserve(e.target); const txt = e.target.textContent, n = parseInt(txt, 10), suf = txt.replace(/[\d\s]/g, ''), t0 = performance.now(); if (!n) return; const f = now => { const p = Math.min((now - t0) / 1200, 1); e.target.textContent = Math.round(n * (1 - Math.pow(1 - p, 3))) + suf; if (p < 1) requestAnimationFrame(f); }; requestAnimationFrame(f); }), { threshold: 0.6 }); $$('.stat-number').forEach(e => io.observe(e));
   }
 
   /* Chrome (progress bar, to-top, active menu) */
@@ -140,10 +151,18 @@
       const io = new IntersectionObserver(es => es.forEach(e => {
         if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
       }), { rootMargin: '-45% 0px -50% 0px' });
-      links.forEach(a => { const href = a.getAttribute('href'); if (href && href.startsWith('#')) { const s = $(href); if (s) io.observe(s); } });
+      links.forEach(a => { 
+        const href = a.getAttribute('href'); 
+        if (href && href.startsWith('#')) { 
+          const s = $(href); 
+          if (s) io.observe(s); 
+        } 
+      });
     }
     links.forEach(a => a.addEventListener('click', () => { const t = $('#nav-toggle'); if (t) t.checked = false; }));
   }
 
-  [teachers, bells, lightbox, counters, chrome].forEach(fn => { try { fn(); } catch (err) { console.error(fn.name, err); } });
+  [teachers, bells, lightbox, counters, chrome].forEach(fn => { 
+    try { fn(); } catch (err) { console.error(fn.name, err); } 
+  });
 })();
