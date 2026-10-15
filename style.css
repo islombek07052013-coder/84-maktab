@@ -86,6 +86,38 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .bells { padding-block: 90px; }
 .bell-now { max-width: 640px; margin: -20px auto 28px; padding: 18px 24px; border-radius: var(--radius-md); background: var(--color-navy-900); color: var(--color-white); text-align: center; font: 500 1.1rem var(--font-display); }
 .bell-now strong { color: var(--color-gold-400); }
+
+/* Smena tanlash tugmalari stillari */
+.shift-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.shift-btn {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: #334155;
+  transition: all 0.2s ease;
+}
+
+.shift-btn:hover {
+  background: #e2e8f0;
+}
+
+.shift-btn.active {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+}
+
 .bell-list { max-width: 640px; margin: 0 auto; display: grid; gap: 10px; }
 .bell-list li { display: flex; justify-content: space-between; gap: 16px; padding: 14px 22px; border-radius: var(--radius-md); background: var(--color-gray-100); border-left: 4px solid var(--color-gray-200); }
 .bell-list b { font-family: var(--font-display); color: var(--color-navy-900); }
