@@ -217,3 +217,9 @@ body.lb-open { overflow: hidden; }
   html { scroll-behavior: auto; }
   * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+/* Bog'lanish qismi uchun maxsus stillar */
+.contact-list { display: flex; flex-direction: column; gap: 12px; }
+.contact-list li { display: flex; align-items: flex-start; gap: 12px; font-size: .95rem; color: rgba(255, 255, 255, .65); }
+.contact-list svg { flex-shrink: 0; width: 18px; height: 18px; margin-top: 2px; color: var(--color-gold-400); }
+.contact-list a { color: rgba(255, 255, 255, .65); transition: color var(--transition-fast); }
+.contact-list a:hover { color: var(--color-gold-400); text-decoration: underline; }
