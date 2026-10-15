@@ -74,11 +74,19 @@
       </div>
     </section>
 
-    <section class="bells" id="bells">
+   <section class="bells" id="bells">
       <div class="container">
         <h2 class="section-heading">Qo'ng'iroq jadvali</h2>
         <div class="bell-now" id="bellNow" aria-live="polite">Jadval yuklanmoqda...</div>
-        <ol class="bell-list" id="bellList">
+
+        <!-- Smena tanlash tugmalari -->
+        <div class="shift-tabs">
+          <button type="button" class="shift-btn active" data-shift="1">1-smena</button>
+          <button type="button" class="shift-btn" data-shift="2">2-smena</button>
+        </div>
+
+        <!-- 1-smena jadvali -->
+        <ol id="bellList1" class="bell-list">
           <li data-s="08:00" data-e="08:45"><b>1-dars</b><span>08:00 – 08:45</span></li>
           <li data-s="08:55" data-e="09:40"><b>2-dars</b><span>08:55 – 09:40</span></li>
           <li data-s="09:50" data-e="10:35"><b>3-dars</b><span>09:50 – 10:35</span></li>
@@ -86,6 +94,17 @@
           <li data-s="11:40" data-e="12:25"><b>5-dars</b><span>11:40 – 12:25</span></li>
           <li data-s="12:35" data-e="13:20"><b>6-dars</b><span>12:35 – 13:20</span></li>
           <li data-s="13:30" data-e="14:15"><b>7-dars</b><span>13:30 – 14:15</span></li>
+        </ol>
+
+        <!-- 2-smena jadvali -->
+        <ol id="bellList2" class="bell-list" style="display: none;">
+          <li data-s="13:30" data-e="14:15"><b>1-dars</b><span>13:30 – 14:15</span></li>
+          <li data-s="14:25" data-e="15:10"><b>2-dars</b><span>14:25 – 15:10</span></li>
+          <li data-s="15:20" data-e="16:05"><b>3-dars</b><span>15:20 – 16:05</span></li>
+          <li data-s="16:15" data-e="17:00"><b>4-dars</b><span>16:15 – 17:00</span></li>
+          <li data-s="17:10" data-e="17:55"><b>5-dars</b><span>17:10 – 17:55</span></li>
+          <li data-s="18:05" data-e="18:50"><b>6-dars</b><span>18:05 – 18:50</span></li>
+          <li data-s="19:00" data-e="19:45"><b>7-dars</b><span>19:00 – 19:45</span></li>
         </ol>
       </div>
     </section>
