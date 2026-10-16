@@ -86,9 +86,9 @@
     document.addEventListener('click', e => {
       const card = e.target.closest('.teacher-card');
       if (card) {
-        const name = $('h3', card) ? $('h3', card).textContent : '';
-        const role = $('.teacher-role', card) ? $('.teacher-role', card).textContent : '';
-        const badge = $('.teacher-badge', card) ? $('.teacher-badge', card).textContent : '';
+        const name = $('h3', card) ?$('h3', card).textContent : '';
+        const role = $('.teacher-role', card) ?$('.teacher-role', card).textContent : '';
+        const badge = $('.teacher-badge', card) ?$('.teacher-badge', card).textContent : '';
         const bio = card.dataset.bio || "O'qituvchi haqida qo'shimcha ma'lumot mavjud emas.";
 
         modalName.textContent = name;
@@ -105,9 +105,7 @@
 
   /* 5. O'qituvchilarni qidirish va fan bo'yicha saralash */
   function teachers() {
-    const list = $('.featured-teachers-list'), tools = $('.t-tools'), empty = $('.t-empty');
-    if (!list || !tools) return;
-    const cards = $$('.mini-card', list);
+    const list = $('.featured-teachers-list'), tools =$('.t-tools'), empty = $('.t-empty'); if (!list \vert{}\vert{} !tools) return; const cards = $$('.mini-card', list);
     if (!cards.length) return;
 
     const CATS = [
@@ -119,8 +117,8 @@
     ];
 
     const data = cards.map(c => {
-      const nameText = $('h3', c) ? $('h3', c).textContent : '';
-      const roleText = $('.teacher-role', c) ? $('.teacher-role', c).textContent : '';
+      const nameText = $('h3', c) ?$('h3', c).textContent : '';
+      const roleText = $('.teacher-role', c) ?$('.teacher-role', c).textContent : '';
       let matchedCat = 'Boshqa';
       for (const [catName, keyword] of CATS) {
         if (new RegExp(keyword, 'i').test(norm(roleText))) { matchedCat = catName; break; }
@@ -162,27 +160,7 @@
 
   /* 6. Qo'ng'iroq jadvali (1 va 2-smena) */
   function bells() {
-    const shiftBtns = $$('.shift-btn'), list1 = $('#bellList1'), list2 = $('#bellList2'), out = $('#bellNow');
-    if (!list1 || !list2 || !out) return;
-    let currentShift = '1';
-
-    function updateVisibility() {
-      list1.style.display = currentShift === '1' ? 'block' : 'none';
-      list2.style.display = currentShift === '2' ? 'block' : 'none';
-      shiftBtns.forEach(b => b.classList.toggle('active', b.dataset.shift === currentShift));
-      tick();
-    }
-
-    shiftBtns.forEach(btn => btn.addEventListener('click', () => {
-      currentShift = btn.dataset.shift;
-      updateVisibility();
-    }));
-
-    const m = t => { const [h, mi] = t.split(':'); return +h * 60 + +mi; };
-
-    function tick() {
-      const activeList = currentShift === '1' ? list1 : list2;
-      const items = $$('li', activeList);
+    const shiftBtns = $$('.shift-btn'), list1 = $('#bellList1'), list2 = $('#bellList2'), out = $('#bellNow'); if (!list1 \vert{}\vert{} !list2 \vert{}\vert{} !out) return; let currentShift = '1';      function updateVisibility() { list1.style.display = currentShift === '1' ? 'block' : 'none'; list2.style.display = currentShift === '2' ? 'block' : 'none'; shiftBtns.forEach(b => b.classList.toggle('active', b.dataset.shift === currentShift)); tick(); }      shiftBtns.forEach(btn => btn.addEventListener('click', () => { currentShift = btn.dataset.shift; updateVisibility(); }));      const m = t => { const [h, mi] = t.split(':'); return +h * 60 + +mi; };      function tick() { const activeList = currentShift === '1' ? list1 : list2; const items = $$('li', activeList);
       const L = items.map(li => [m(li.dataset.s), m(li.dataset.e), li.dataset.s]);
       const d = new Date(), n = d.getHours() * 60 + d.getMinutes();
       let msg, cur = -1;
