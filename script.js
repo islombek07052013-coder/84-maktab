@@ -3,46 +3,126 @@
   'use strict';
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const norm = s => (s || '').toLowerCase().replace(/[‘’`ʻʼ'ʻ]/g, '').trim();
 
-  /* O'qituvchilarni qidirish va fan bo'yicha saralash */
+  /* 1. Dark / Light Mode Toggle */
+  function themeToggle() {
+    const btn = $('#themeToggle');
+    if (!btn) return;
+    const isDark = localStorage.getItem('theme') === 'dark';
+    if (isDark) {
+      document.body.classList.add('dark-mode');
+      $('.theme-icon', btn).textContent = '☀️';
+    }
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const dark = document.body.classList.contains('dark-mode');
+      $('.theme-icon', btn).textContent = dark ? '☀️' : '🌙';
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+    });
+  }
+
+  /* 2. O'quv yili yakunigacha Countdown Timer */
+  function countdownTimer() {
+    const daysEl = $('#cdDays'), hoursEl = $('#cdHours'), minsEl = $('#cdMins'), secsEl = $('#cdSecs');
+    if (!daysEl || !hoursEl || !minsEl || !secsEl) return;
+
+    const targetDate = new Date('May 25, 2027 08:00:00').getTime();
+
+    function update() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        daysEl.textContent = '00'; hoursEl.textContent = '00'; minsEl.textContent = '00'; secsEl.textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+      daysEl.textContent = String(days).padStart(2, '0');
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minsEl.textContent = String(mins).padStart(2, '0');
+      secsEl.textContent = String(secs).padStart(2, '0');
+    }
+    update();
+    setInterval(update, 1000);
+  }
+
+  /* 3. Choraklik Baho Kalkulyatori */
+  function gradeCalculator() {
+    const input = $('#gradeInput'), btn = $('#calcBtn'), resBox = $('#calcResult');
+    const avgScoreEl = $('#avgScore'), finalGradeEl = $('#finalGrade');
+    if (!input || !btn || !resBox) return;
+
+    btn.addEventListener('click', () => {
+      const val = input.value.trim();
+      if (!val) return;
+      const nums = val.split(/[\s,]+/).map(Number).filter(n => !isNaN(n) && n >= 1 && n <= 5);
+      if (!nums.length) {
+        alert("Iltimos, to'g'ri baholarni kiriting (masalan: 5, 4, 3, 5)!");
+        return;
+      }
+      const sum = nums.reduce((a, b) => a + b, 0);
+      const avg = sum / nums.length;
+      const finalGrade = Math.round(avg);
+
+      avgScoreEl.textContent = avg.toFixed(2);
+      finalGradeEl.textContent = finalGrade;
+      resBox.hidden = false;
+    });
+  }
+
+  /* 4. O'qituvchilar Modal Oynasi */
+  function teacherModal() {
+    const modal = $('#teacherModal'), closeBtn = $('#closeModal');
+    const modalName = $('#modalName'), modalRole = $('#modalRole'), modalBadge = $('#modalBadge'), modalBio = $('#modalBio');
+    if (!modal || !closeBtn) return;
+
+    document.addEventListener('click', e => {
+      const card = e.target.closest('.teacher-card');
+      if (card) {
+        const name = $('h3', card) ?$('h3', card).textContent : '';
+        const role = $('.teacher-role', card) ?$('.teacher-role', card).textContent : '';
+        const badge = $('.teacher-badge', card) ?$('.teacher-badge', card).textContent : '';
+        const bio = card.dataset.bio || "O'qituvchi haqida qo'shimcha ma'lumot mavjud emas.";
+
+        modalName.textContent = name;
+        modalRole.textContent = role;
+        modalBadge.textContent = badge;
+        modalBio.textContent = bio;
+        modal.hidden = false;
+      }
+    });
+
+    closeBtn.addEventListener('click', () => modal.hidden = true);
+    modal.addEventListener('click', e => { if (e.target === modal) modal.hidden = true; });
+  }
+
+  /* 5. O'qituvchilarni qidirish va fan bo'yicha saralash */
   function teachers() {
-    const list = $('.featured-teachers-list'), tools =$('.t-tools'), empty = $('.t-empty'); if (!list \vert{}\vert{} !tools) return;  const cards = $$('.mini-card', list);
+    const list = $('.featured-teachers-list'), tools =$('.t-tools'), empty = $('.t-empty'); if (!list \vert{}\vert{} !tools) return; const cards = $$('.mini-card', list);
     if (!cards.length) return;
 
     const CATS = [
-      ["Boshlang'ich", 'boshlangich'], 
-      ['Ona tili', 'ona tili'], 
-      ['Rus tili', 'rus tili'], 
-      ['Ingliz tili', 'ingliz'], 
-      ['Matematika', 'matematika'], 
-      ['Informatika', 'informatika'],
-      ['Fizika', 'fizika'], 
-      ['Kimyo', 'kimyo'], 
-      ['Biologiya', 'biologiya'], 
-      ['Geografiya', 'geografiya'], 
-      ['Tarix', 'tarix'], 
-      ['Tarbiya', 'tarbiya'],
-      ['Musiqa va San\'at', 'musiqa|tasviriy|chizmachilik'], 
+      ["Boshlang'ich", 'boshlangich'], ['Ona tili', 'ona tili'], ['Rus tili', 'rus tili'],
+      ['Ingliz tili', 'ingliz'], ['Matematika', 'matematika'], ['Informatika', 'informatika'],
+      ['Fizika', 'fizika'], ['Kimyo', 'kimyo'], ['Biologiya', 'biologiya'], ['Geografiya', 'geografiya'],
+      ['Tarix', 'tarix'], ['Tarbiya', 'tarbiya'], ['Musiqa va San\'at', 'musiqa|tasviriy|chizmachilik'],
       ['Jismoniy tarbiya', 'jismoniy']
     ];
 
     const data = cards.map(c => {
-      const nameEl = $('h3', c);
-      const roleEl = $('.teacher-role', c);
-      const nameText = nameEl ? nameEl.textContent : '';
-      const roleText = roleEl ? roleEl.textContent : '';
-      const combined = norm(nameText + ' ' + roleText);
-      
+      const nameText = $('h3', c) ?$('h3', c).textContent : '';
+      const roleText = $('.teacher-role', c) ?$('.teacher-role', c).textContent : '';
       let matchedCat = 'Boshqa';
       for (const [catName, keyword] of CATS) {
-        if (new RegExp(keyword, 'i').test(norm(roleText))) {
-          matchedCat = catName;
-          break;
-        }
+        if (new RegExp(keyword, 'i').test(norm(roleText))) { matchedCat = catName; break; }
       }
-      return { c, cat: matchedCat, text: combined };
+      return { c, cat: matchedCat, text: norm(nameText + ' ' + roleText) };
     });
 
     const activeCategories = ['Hammasi', ...CATS.map(c => c[0]), 'Boshqa'].filter(n => n === 'Hammasi' || data.some(d => d.cat === n));
@@ -59,9 +139,7 @@
       const q = norm(input.value);
       let n = 0;
       data.forEach(d => {
-        const matchesCat = (cur === 'Hammasi' || d.cat === cur);
-        const matchesQuery = !q || d.text.includes(q);
-        const ok = matchesCat && matchesQuery;
+        const ok = (cur === 'Hammasi' || d.cat === cur) && (!q || d.text.includes(q));
         d.c.hidden = !ok;
         if (ok) n++;
       });
@@ -72,31 +150,20 @@
 
     chips.addEventListener('click', e => {
       const b = e.target.closest('button');
-      if (b) {
-        cur = b.dataset.c;
-        apply();
-      }
+      if (b) { cur = b.dataset.c; apply(); }
     });
-
     input.addEventListener('input', apply);
     tools.hidden = false;
     apply();
   }
 
-  /* Qo'ng'iroq jadvali (1-smena va 2-smena) */
+  /* 6. Qo'ng'iroq jadvali (1 va 2-smena) */
   function bells() {
-    const shiftBtns = $$('.shift-btn');
-    const list1 = $('#bellList1');
-    const list2 = $('#bellList2');
-    const out = $('#bellNow'); if (!list1 \vert{}\vert{} !list2 \vert{}\vert{} !out) return;      let currentShift = '1';      function getActiveList() { return currentShift === '1' ? list1 : list2; }      function updateVisibility() { if (currentShift === '1') { list1.style.display = 'block'; list2.style.display = 'none'; } else { list1.style.display = 'none'; list2.style.display = 'block'; } shiftBtns.forEach(b => b.classList.toggle('active', b.dataset.shift === currentShift)); tick(); }      shiftBtns.forEach(btn => { btn.addEventListener('click', () => { currentShift = btn.dataset.shift; updateVisibility(); }); });      const m = t => { const [h, mi] = t.split(':'); return +h * 60 + +mi; };      function tick() { const activeList = getActiveList(); const items = $$('li', activeList);
-      const L = items.map(li => { 
-        const span = $('span', li);
-        if (span) span.textContent = `${li.dataset.s} – ${li.dataset.e}`; 
-        return [m(li.dataset.s), m(li.dataset.e), li.dataset.s]; 
-      });
-
+    const shiftBtns = $$('.shift-btn'), list1 = $('#bellList1'), list2 = $('#bellList2'), out = $('#bellNow'); if (!list1 \vert{}\vert{} !list2 \vert{}\vert{} !out) return; let currentShift = '1';      function updateVisibility() { list1.style.display = currentShift === '1' ? 'block' : 'none'; list2.style.display = currentShift === '2' ? 'block' : 'none'; shiftBtns.forEach(b => b.classList.toggle('active', b.dataset.shift === currentShift)); tick(); }      shiftBtns.forEach(btn => btn.addEventListener('click', () => { currentShift = btn.dataset.shift; updateVisibility(); }));      const m = t => { const [h, mi] = t.split(':'); return +h * 60 + +mi; };      function tick() { const activeList = currentShift === '1' ? list1 : list2; const items = $$('li', activeList);
+      const L = items.map(li => [m(li.dataset.s), m(li.dataset.e), li.dataset.s]);
       const d = new Date(), n = d.getHours() * 60 + d.getMinutes();
       let msg, cur = -1;
+
       if (d.getDay() === 0) msg = 'Bugun dam olish kuni.';
       else {
         cur = L.findIndex(([a, b]) => n >= a && n < b);
@@ -110,63 +177,26 @@
       list1.querySelectorAll('li').forEach((li, i) => li.classList.toggle('on', currentShift === '1' && i === cur));
       list2.querySelectorAll('li').forEach((li, i) => li.classList.toggle('on', currentShift === '2' && i === cur));
     }
-
     tick();
     setInterval(tick, 20000);
   }
 
-  /* Galereya: Lightbox */
-  function lightbox() {
-    const grid = $('.gallery-grid');
-    if (!grid) return;
-    const lb = document.createElement('div');
-    lb.className = 'lb'; lb.hidden = true; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true');
-    lb.innerHTML = '<button class="lb-x" aria-label="Yopish">×</button><button class="lb-p" aria-label="Oldingi">‹</button><figure><img alt=""><figcaption></figcaption></figure><button class="lb-n" aria-label="Keyingi">›</button>';
-    document.body.append(lb);
-    let imgs = [], i = 0;
-    const show = k => { 
-      i = (k + imgs.length) % imgs.length; 
-      const im = $('img', lb); 
-      if (im && imgs[i]) { 
-        im.src = imgs[i].currentSrc || imgs[i].src; 
-        im.alt = imgs[i].alt; 
-        const cap = $('figcaption', lb); if (cap) cap.textContent = imgs[i].alt; } }; const open = im => { imgs = $$('.gallery-item img', grid); 
-      if (!imgs.includes(im)) return; 
-      show(imgs.indexOf(im)); 
-      lb.hidden = false; 
-      document.body.classList.add('lb-open'); 
-      const xBtn = $('.lb-x', lb); if (xBtn) xBtn.focus(); }; const close = () => { lb.hidden = true; document.body.classList.remove('lb-open'); if (imgs[i]) imgs[i].focus(); }; grid.addEventListener('click', e => { const im = e.target.closest('img'); if (im) open(im); }); grid.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.matches('img')) open(e.target); }); lb.addEventListener('click', e => { if (e.target === lb \vert{}\vert{} e.target.closest('.lb-x')) close(); else if (e.target.closest('.lb-p')) show(i - 1); else if (e.target.closest('.lb-n')) show(i + 1); }); addEventListener('keydown', e => { if (lb.hidden) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); }); }    /* Raqamlar animatsiyasi */ function counters() { if (reduce \vert{}\vert{} !('IntersectionObserver' in window)) return; const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; io.unobserve(e.target); const txt = e.target.textContent, n = parseInt(txt, 10), suf = txt.replace(/[\d\s]/g, ''), t0 = performance.now(); if (!n) return; const f = now => { const p = Math.min((now - t0) / 1200, 1); e.target.textContent = Math.round(n * (1 - Math.pow(1 - p, 3))) + suf; if (p < 1) requestAnimationFrame(f); }; requestAnimationFrame(f); }), { threshold: 0.6 }); $$('.stat-number').forEach(e => io.observe(e));
-  }
-
-  /* Chrome (progress bar, to-top, active menu) */
+  /* 7. Chrome va Scroll Effektlari */
   function chrome() {
     const bar = document.createElement('div'), top = document.createElement('button');
-    bar.className = 'progress'; top.className = 'to-top'; top.type = 'button'; top.textContent = '↑'; top.setAttribute('aria-label', 'Yuqoriga qaytish');
+    bar.className = 'progress'; top.className = 'to-top'; top.type = 'button'; top.textContent = '↑';
     document.body.append(bar, top);
+
     const onScroll = () => {
       const h = document.documentElement;
       bar.style.transform = `scaleX(${h.scrollTop / ((h.scrollHeight - h.clientHeight) || 1)})`;
-      top.classList.toggle('show', h.scrollTop > 600);
+      top.classList.toggle('show', h.scrollTop > 500);
     };
-    addEventListener('scroll', onScroll, { passive: true }); onScroll();
-    top.addEventListener('click', () => scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }));
-    const links = $$('.main-nav a');
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver(es => es.forEach(e => {
-        if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
-      }), { rootMargin: '-45% 0px -50% 0px' });
-      links.forEach(a => { 
-        const href = a.getAttribute('href'); 
-        if (href && href.startsWith('#')) { 
-          const s = $(href); 
-          if (s) io.observe(s); 
-        } 
-      });
-    }
-    links.forEach(a => a.addEventListener('click', () => { const t = $('#nav-toggle'); if (t) t.checked = false; }));
+    addEventListener('scroll', onScroll, { passive: true });
+    top.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
   }
 
-  [teachers, bells, lightbox, counters, chrome].forEach(fn => { 
-    try { fn(); } catch (err) { console.error(fn.name, err); } 
+  [themeToggle, countdownTimer, gradeCalculator, teacherModal, teachers, bells, chrome].forEach(fn => {
+    try { fn(); } catch (err) { console.error(fn.name, err); }
   });
 })();
