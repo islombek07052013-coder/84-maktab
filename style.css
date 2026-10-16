@@ -79,7 +79,7 @@ p { color: var(--color-ink-600); }
 .countdown-box { background: var(--color-gray-100); border-radius: 10px; padding: 15px; }
 .cd-num { font-size: 2rem; font-weight: 700; color: var(--color-gold-400); display: block; }
 
-/* Class Schedule Section (Yangi) */
+/* Class Schedule Section */
 .class-schedule-section { padding: 70px 0; }
 .schedule-filter { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; }
 .sched-btn { background: var(--color-gray-100); border: 1px solid var(--color-gray-200); padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; color: var(--color-ink-900); }
@@ -90,7 +90,7 @@ p { color: var(--color-ink-600); }
 .sched-table th, .sched-table td { padding: 12px 15px; border-bottom: 1px solid var(--color-gray-200); }
 .sched-table th { background: var(--color-navy-900); color: #fff; }
 
-/* Honors Section (Yangi) */
+/* Honors Section */
 .honors-section { padding: 60px 0; background: var(--color-navy-900); color: #fff; }
 .honors-section .section-heading { color: #fff; }
 .honors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -123,7 +123,7 @@ p { color: var(--color-ink-600); }
 .t-modal-content { background: var(--color-white); padding: 25px; border-radius: 16px; max-width: 400px; width: 100%; position: relative; text-align: center; }
 .t-modal-close { position: absolute; top: 10px; right: 15px; font-size: 1.6rem; border: none; background: none; cursor: pointer; }
 
-/* FAQ Section (Yangi) */
+/* FAQ Section */
 .faq-section { padding: 60px 0; background: var(--color-gray-100); }
 .faq-accordion { max-width: 700px; margin: 0 auto; display: grid; gap: 12px; }
 .faq-item { background: var(--color-white); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm); }
@@ -131,7 +131,7 @@ p { color: var(--color-ink-600); }
 .faq-answer { padding: 0 20px 15px; display: none; color: var(--color-ink-600); }
 .faq-item.active .faq-answer { display: block; }
 
-/* Online Form Section (Yangi) */
+/* Online Form Section */
 .murojaat-section { padding: 60px 0; }
 .murojaat-card { background: var(--color-gray-100); padding: 30px; border-radius: 16px; max-width: 600px; margin: 0 auto; }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
