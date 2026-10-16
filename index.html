@@ -43,12 +43,12 @@
         <ul>
           <li><a href="#home">Bosh sahifa</a></li>
           <li><a href="#about">Biz haqimizda</a></li>
+          <li><a href="#schedule">Darslar</a></li>
           <li><a href="#bells">Jadval</a></li>
-          <li><a href="#news">Sinfxonalar</a></li>
           <li><a href="#teachers">Ustozlar</a></li>
           <li><a href="#calculator">Kalkulyator</a></li>
-          <li><a href="#murojaat">Platformalar</a></li>
-          <li><a href="#contact">Aloqa</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#murojaat">Murojaat</a></li>
         </ul>
       </nav>
     </div>
@@ -62,12 +62,15 @@
         <div class="hero-content">
           <h1>Zamonaviy ta'lim,<br>ishonchli kelajak</h1>
           <p>Denov tumanidagi 84-maktab har bir o'quvchida bilim, mahorat va yangi g'oyalarni tarbiyalaydi.</p>
-          <a href="#about" class="btn btn-primary">Batafsil ma'lumot</a>
+          <div class="hero-btns">
+            <a href="#about" class="btn btn-primary">Batafsil ma'lumot</a>
+            <a href="#murojaat" class="btn btn-secondary">Qabulga yozilish</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Biz haqimizda bo'limi (Yangi dizayn bilan) -->
+    <!-- Biz haqimizda bo'limi -->
     <section class="about" id="about">
       <div class="container about-inner">
         <div class="about-text">
@@ -77,7 +80,6 @@
           <blockquote class="about-quote">Bilim, halollik va mas'uliyat — har bir bitiruvchimiz olib chiqadigan uch asosiy qadriyat.</blockquote>
         </div>
         
-        <!-- Yangilangan va chiroyli vizual kartochka -->
         <div class="about-visual">
           <div class="modern-about-card">
             <div class="card-glow"></div>
@@ -93,11 +95,10 @@
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- O'quv yili yakunigacha hisoblagich (Countdown) -->
+    <!-- O'quv yili yakunigacha hisoblagich -->
     <section class="countdown-section">
       <div class="container">
         <div class="section-header" style="text-align: center; margin-bottom: 25px;">
@@ -115,19 +116,24 @@
       </div>
     </section>
 
-    <section class="stats" id="stats">
+    <!-- SINF LARR BO'YICHA DARS JADVALI (YANGI FUNKSIYA) -->
+    <section class="class-schedule-section" id="schedule">
       <div class="container">
-        <h2 class="section-heading">Raqamlarda maktabimiz</h2>
-        <div class="stats-grid">
-          <div class="stat-card"><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/><path d="M22 8v6"/></svg></span><span class="stat-number">1200+</span><span class="stat-label">Faol o'quvchilar</span></div>
-          <div class="stat-card"><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H12v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H12v16h6.5a1.5 1.5 0 0 0 1.5-1.5v-13Z"/></svg></span><span class="stat-number">50+</span><span class="stat-label">Tajribali o'qituvchilar</span></div>
-          <div class="stat-card"><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 21V6l8-3 8 3v15"/><path d="M4 21h16"/><path d="M9 21v-5h6v5"/></svg></span><span class="stat-number">40</span><span class="stat-label">Zamonaviy sinfxonalar</span></div>
-          <div class="stat-card"><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 4h8v4a4 4 0 0 1-8 0V4Z"/><path d="M12 12v3"/><path d="M9 20h6"/></svg></span><span class="stat-number">15+</span><span class="stat-label">Olimpiada g'oliblari</span></div>
+        <h2 class="section-heading">Sinflar bo'yicha Dars Jadvali</h2>
+        <div class="schedule-filter">
+          <button type="button" class="sched-btn active" data-group="primary">1 - 4 Sinf (Boshlang'ich)</button>
+          <button type="button" class="sched-btn" data-group="middle">5 - 9 Sinf (O'rta)</button>
+          <button type="button" class="sched-btn" data-group="senior">10 - 11 Sinf (Yuqori)</button>
+          <button type="button" onclick="window.print()" class="print-btn">🖨️ Chop etish / PDF</button>
+        </div>
+
+        <div id="schedContent" class="schedule-content-box">
+          <!-- JS dynamic Injection -->
         </div>
       </div>
     </section>
 
-    <!-- Qo'ng'iroq jadvali (1-smena va 2-smena) -->
+    <!-- Qo'ng'iroq jadvali -->
     <section class="bells" id="bells">
       <div class="container">
         <h2 class="section-heading">Qo'ng'iroq jadvali</h2>
@@ -160,7 +166,31 @@
       </div>
     </section>
 
-    <!-- Interaktiv Baho Kalkulyatori -->
+    <!-- FAXRIIY O'QUVCHILAR VA YUTUQLAR (YANGI FUNKSIYA) -->
+    <section class="honors-section">
+      <div class="container">
+        <h2 class="section-heading">Maktabimiz Faxri va G'oliblarimiz</h2>
+        <div class="honors-grid">
+          <div class="honor-card">
+            <div class="honor-badge">🥇 Oltin Medal</div>
+            <h3>Olimpiada G'oliblari</h3>
+            <p>Matematika va Informatika fanlari bo'yicha tuman va viloyat bosqichi g'oliblari.</p>
+          </div>
+          <div class="honor-card">
+            <div class="honor-badge">⭐ 100% Natija</div>
+            <h3>A'lochi O'quvchilar</h3>
+            <p>Maktabimizning 150 dan ortiq o'quvchisi barcha fanlardan faqat "5" baholarga o'qishadi.</p>
+          </div>
+          <div class="honor-card">
+            <div class="honor-badge">🏆 Sport Zafarida</div>
+            <h3>Sport Musobaqalari</h3>
+            <p>Shaxmat, Futbol va Yengil atletika bo mezonlarida tuman chempionlari.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Baho Kalkulyatori -->
     <section class="calculator-section" id="calculator">
       <div class="container">
         <h2 class="section-heading">Choraklik Baho Kalkulyatori</h2>
@@ -178,19 +208,7 @@
       </div>
     </section>
 
-    <section class="gallery" id="news">
-      <div class="container">
-        <h2 class="section-heading">Maktabimiz va zamonaviy sinfxonalar</h2>
-        <div class="gallery-grid">
-          <div class="gallery-item"><img src="images/informatika.jpg" alt="Informatika va IT xonasi" tabindex="0" loading="lazy" onerror="this.remove()"><div class="gallery-overlay"><span>Informatika va IT xonasi</span></div></div>
-          <div class="gallery-item"><img src="images/texno.jpg" alt="Texnologiya xonasi" tabindex="0" loading="lazy" onerror="this.remove()"><div class="gallery-overlay"><span>Texnologiya xonasi</span></div></div>
-          <div class="gallery-item"><img src="images/tasfiri.jpg" alt="TasviriSanat xonasi" tabindex="0" loading="lazy" onerror="this.remove()"><div class="gallery-overlay"><span>TasviriSanat xonasi</span></div></div>
-          <div class="gallery-item"><img src="images/fan.jpg" alt="Fan to‘garagi" tabindex="0" loading="lazy" onerror="this.remove()"><div class="gallery-overlay"><span>Fan to‘garagi</span></div></div>
-          <div class="gallery-item"><img src="images/salomm.jpg" alt="Tikuvchilik va dizayn xonasi" tabindex="0" loading="lazy" onerror="this.remove()"><div class="gallery-overlay"><span>Tikuvchilik va dizayn xonasi</span></div></div>
-        </div>
-      </div>
-    </section>
-
+    <!-- Ustozlar bo'limi -->
     <section class="teachers" id="teachers">
       <div class="container">
         <h2 class="section-heading">Maktab rahbariyati va ustozlarimiz</h2>
@@ -256,6 +274,53 @@
       </div>
     </section>
 
+    <!-- FAQ - TEZ-TEZ BERILADIGAN SAVOLLAR (YANGI FUNKSIYA) -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <h2 class="section-heading">Keng Beriladigan Savollar (FAQ)</h2>
+        <div class="faq-accordion">
+          <div class="faq-item">
+            <button class="faq-question">1-sinfga qabul hujjatlari qanday topshiriladi? <span>+</span></button>
+            <div class="faq-answer"><p>1-sinfga qabul jarayonlari Maktabgacha va maktab ta'limi vazirligining my.uzedu.uz portali orqali onlayn ravishda amalga oshiriladi.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">Maktabda qanday to'garaklar faoliyat yuritadi? <span>+</span></button>
+            <div class="faq-answer"><p>Maktabimizda Robototexnika, IT va Dasturlash, Ingliz tili (IELTS), Shaxmat va Futbol to'garaklari bepul asosda yo'lga qo'yilgan.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">Ota-onalar kuni qachon o'tkaziladi? <span>+</span></button>
+            <div class="faq-answer"><p>Ota-onalar yig'ilishi har oyning oxirgi juma kuni soat 15:00 da o'tkaziladi.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ONLINE MUROJAAT VA QABUL FORMASI (YANGI FUNKSIYA) -->
+    <section class="murojaat-section" id="murojaat">
+      <div class="container">
+        <h2 class="section-heading">Direktorga Murojaat / Qabulga Yozilish</h2>
+        <div class="murojaat-card">
+          <form id="contactForm">
+            <div class="form-grid">
+              <input type="text" id="mName" placeholder="To'liq ismingiz" required>
+              <input type="tel" id="mPhone" placeholder="Telefon raqamingiz (+998)" required>
+            </div>
+            <select id="mSubject" required>
+              <option value="">Murojaat mavzusini tanlang</option>
+              <option value="qabul">1-sinfga qabul bo'yicha</option>
+              <option value="taklif">Taklif va mulohaza</option>
+              <option value="shikoyat">Shikoyat va muammo</option>
+            </select>
+            <textarea id="mText" rows="4" placeholder="Murojaatingiz matni..." required></textarea>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Murojaatni Yuborish</button>
+          </form>
+          <div id="mSuccess" class="m-success-msg" hidden>
+            ✅ Murojaatingiz muvaffaqiyatli qabul qilindi! Tez orada siz bilan bog'lanamiz.
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Ustozlar uchun Modal Oyna -->
     <div id="teacherModal" class="teacher-modal" hidden>
       <div class="t-modal-content">
@@ -269,40 +334,23 @@
     </div>
 
     <!-- Foydali ta'lim platformalari -->
-    <section id="murojaat" class="section links-section">
+    <section class="section links-section">
       <div class="container">
         <div class="section-header" style="text-align: center; margin-bottom: 30px;">
           <h2>Foydali ta'lim platformalari</h2>
-          <p>O'quvchilar va o'qituvchilar uchun kerakli rasmiy ta'lim resurslari</p>
         </div>
         <div class="links-grid">
           <a href="https://kundalik.com" target="_blank" rel="noopener" class="link-card">
             <div class="link-icon">📊</div>
-            <div class="link-info">
-              <h3>Kundalik (e-Maktab)</h3>
-              <p>Elektron jurnal va baholar platformasi</p>
-            </div>
+            <div class="link-info"><h3>Kundalik (e-Maktab)</h3><p>Elektron jurnal platformasi</p></div>
           </a>
           <a href="https://ziyonet.uz" target="_blank" rel="noopener" class="link-card">
             <div class="link-icon">📚</div>
-            <div class="link-info">
-              <h3>ZiyoNET</h3>
-              <p>Axborot-ta'lim tarmog'i va kutubxona</p>
-            </div>
+            <div class="link-info"><h3>ZiyoNET</h3><p>Ta'lim tarmog'i</p></div>
           </a>
           <a href="https://uzedu.uz" target="_blank" rel="noopener" class="link-card">
             <div class="link-icon">🏛️</div>
-            <div class="link-info">
-              <h3>Maktabgacha va maktab ta'limi vazirligi</h3>
-              <p>Rasmiy yangiliklar va me'yoriy hujjatlar</p>
-            </div>
-          </a>
-          <a href="https://natlib.uz" target="_blank" rel="noopener" class="link-card">
-            <div class="link-icon">📖</div>
-            <div class="link-info">
-              <h3>Milliy Kutubxona</h3>
-              <p>Elektron kitoblar va manbalar bazasi</p>
-            </div>
+            <div class="link-info"><h3>Vazirlik Sayti</h3><p>Maktab ta'limi rasmiy sahifasi</p></div>
           </a>
         </div>
       </div>
@@ -312,7 +360,7 @@
       <div class="container">
         <h2 class="section-heading">Bizning manzil xaritada</h2>
         <div class="map-container">
-          <iframe title="Maktab xaritada" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d414.44905323970227!2d67.88073867888669!3d38.27781104573401!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38b511a315411495%3A0x71ec8d676e87ba67!2sMaktab_No_84!5e1!3m2!1sen!2s!4v1791962036812!5m2!1sen!2s" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          <iframe title="Maktab xaritada" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d414.44905323970227!2d67.88073867888669!3d38.27781104573401!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38b511a315411495%3A0x71ec8d676e87ba67!2sMaktab_No_84!5e1!3m2!1sen!2s!4v1791962036812!5m2!1sen!2s" allowfullscreen loading="lazy"></iframe>
         </div>
       </div>
     </section>
@@ -323,36 +371,22 @@
       <div class="footer-col footer-about">
         <a href="#home" class="logo footer-logo" aria-label="84-maktab"><span class="logo-badge">84</span><span class="logo-text">maktab</span></a>
         <p>Denov 84-umumiy o'rta ta'lim maktabi — bilim va kelajak maskani.</p>
-        <div class="social-links">
-          <a href="https://t.me/MAK_RAHBARI84" target="_blank" rel="noopener" class="social-link" aria-label="Telegram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21.5 2l-19 8.5 7 3 2.5 7.5 3.5-4.5 5 3.5L21.5 2z"/></svg>
-          </a>
-        </div>
       </div>
       <div class="footer-col">
         <h3>Tezkor havolalar</h3>
         <ul>
           <li><a href="#about">Biz haqimizda</a></li>
-          <li><a href="#bells">Qo'ng'iroq jadvali</a></li>
-          <li><a href="#news">Sinfxonalar</a></li>
+          <li><a href="#schedule">Dars jadvali</a></li>
+          <li><a href="#bells">Qo'ng'iroqlar</a></li>
           <li><a href="#teachers">Ustozlar</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h3>Bog'lanish</h3>
         <ul class="contact-list">
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Denov tumani, Surxondaryo viloyati</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <a href="tel:+998975503307">+998 97 550-33-07</a>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21.5 2l-19 8.5 7 3 2.5 7.5 3.5-4.5 5 3.5L21.5 2z"/></svg>
-            <a href="https://t.me/MAK_RAHBARI84" target="_blank" rel="noopener">@MAK_RAHBARI84</a>
-          </li>
+          <li><span>📍 Denov tumani, Surxondaryo viloyati</span></li>
+          <li><a href="tel:+998975503307">📞 +998 97 550-33-07</a></li>
+          <li><a href="https://t.me/MAK_RAHBARI84" target="_blank" rel="noopener">✈️ @MAK_RAHBARI84</a></li>
         </ul>
       </div>
     </div>
