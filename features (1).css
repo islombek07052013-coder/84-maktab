@@ -1,0 +1,77 @@
+/* features.css — 84-maktab: qo'shimcha funksiyalar (style.css dan KEYIN ulang) */
+
+/* 1. Preloader */
+.pre{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;background:#0b1f3a;transition:opacity .5s,visibility .5s}
+.pre.hide{opacity:0;visibility:hidden}
+.pre-badge{width:86px;height:86px;border-radius:50%;background:var(--color-gold-400);color:var(--color-navy-900);display:grid;place-items:center;font:800 2rem var(--font-display);animation:pre-pulse 1.2s ease-in-out infinite}
+.pre-bar{width:160px;height:4px;border-radius:4px;background:rgba(255,255,255,.15);overflow:hidden}
+.pre-bar i{display:block;height:100%;width:40%;background:var(--color-gold-400);border-radius:4px;animation:pre-slide 1s ease-in-out infinite}
+@keyframes pre-pulse{50%{transform:scale(1.1);box-shadow:0 0 0 18px rgba(205,160,89,.15)}}
+@keyframes pre-slide{0%{transform:translateX(-100%)}100%{transform:translateX(400%)}}
+
+/* 2. Scroll reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease var(--d,0s),transform .7s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+
+/* 3. Hero: zarrachalar + yozuv effekti */
+.hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.typed{min-height:1.8em;margin-bottom:18px;font:600 clamp(1.05rem,2.2vw,1.35rem) var(--font-display);color:var(--color-gold-400)}
+.typed i{display:inline-block;width:2px;height:1.1em;margin-left:3px;vertical-align:-.15em;background:var(--color-gold-400);animation:blink .8s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* 4. Ob-havo + sana (e'lon satrida) */
+.wx{flex-shrink:0;margin-left:auto;padding-left:14px;display:flex;gap:12px;align-items:center;background:#071527;position:relative;z-index:2;white-space:nowrap;font-weight:500}
+.wx b{color:var(--color-gold-400)}
+@media(max-width:640px){.wx-d{display:none}}
+
+/* 5. Til tugmalari + qidiruv tugmasi */
+.lang{display:flex;gap:2px;margin-left:auto;margin-right:8px;background:rgba(255,255,255,.1);border-radius:20px;padding:3px}
+.lang button{border:0;background:none;color:#fff;font:700 .72rem var(--font-display);padding:5px 9px;border-radius:16px;cursor:pointer}
+.lang button.on{background:var(--color-gold-400);color:#000}
+.lang+.cmd-btn{margin-left:0}
+.cmd-btn{margin-left:auto;background:rgba(255,255,255,.1);border:0;color:#fff;font-size:1.05rem;padding:6px 12px;border-radius:20px;cursor:pointer;margin-right:8px;transition:.2s}
+.cmd-btn:hover{background:var(--color-gold-400);color:#000}
+.cmd-btn+.theme-toggle-btn{margin-left:0}
+@media(max-width:480px){.logo-text small{display:none}.lang button{padding:5px 6px}.cmd-btn{padding:6px 9px;margin-right:4px}.theme-toggle-btn{margin-right:8px}}
+
+/* 6. Qidiruv oynasi (Ctrl+K) */
+.cmd{position:fixed;inset:0;z-index:700;background:rgba(5,12,24,.6);backdrop-filter:blur(4px);display:flex;justify-content:center;align-items:flex-start;padding:12vh 16px 0}
+.cmd-box{width:100%;max-width:560px;background:var(--color-white);border:1px solid var(--color-gray-200);border-radius:18px;box-shadow:var(--shadow-lg);overflow:hidden;animation:pop .2s}
+.cmd-box input{width:100%;padding:18px 22px;border:0;border-bottom:1px solid var(--color-gray-200);font:500 1.05rem var(--font-body);background:transparent;color:var(--color-ink-900);outline:none}
+.cmd ul{max-height:50vh;overflow:auto;padding:8px}
+.cmd li{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;cursor:pointer;color:var(--color-ink-900)}
+.cmd li b{font-weight:600;font-size:.95rem}
+.cmd li small{margin-left:auto;color:var(--color-ink-600);font-size:.78rem;text-align:right}
+.cmd li.on{background:var(--color-gold-400);color:#000}
+.cmd li.on small{color:#000}
+.cmd li.none{justify-content:center;cursor:default}
+.cmd-hint{padding:10px 18px;font-size:.75rem;color:var(--color-ink-600);border-top:1px solid var(--color-gray-200)}
+@keyframes pop{from{opacity:0;transform:translateY(-10px) scale(.97)}}
+
+/* 7. Galereya lightbox */
+.lb{position:fixed;inset:0;z-index:600;background:rgba(5,12,24,.92);display:flex;align-items:center;justify-content:center;gap:12px;padding:20px;backdrop-filter:blur(6px);animation:fade .25s}
+.lb figure{max-width:min(1000px,80vw);text-align:center}
+.lb img{max-height:78vh;margin:auto;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.lb figcaption{color:#fff;margin-top:12px;font-weight:600}
+.lb button{border:0;background:rgba(255,255,255,.12);color:#fff;width:46px;height:46px;border-radius:50%;font-size:1.8rem;line-height:1;cursor:pointer;transition:.2s}
+.lb button:hover{background:var(--color-gold-400);color:#000}
+.lb-x{position:absolute;top:18px;right:18px}
+@keyframes fade{from{opacity:0}}
+@media(max-width:600px){.lb-p,.lb-n{position:absolute;bottom:20px}.lb-p{left:20px}.lb-n{right:20px}}
+
+/* 8. Tezkor aloqa tugmasi */
+.fab{position:fixed;left:18px;bottom:18px;z-index:150;display:flex;flex-direction:column-reverse;gap:10px;align-items:flex-start}
+.fab-main{width:54px;height:54px;border:0;border-radius:50%;background:var(--color-gold-400);color:var(--color-navy-900);font:600 1.9rem/1 var(--font-display);cursor:pointer;box-shadow:var(--shadow-lg);transition:transform .3s}
+.fab.open .fab-main{transform:rotate(45deg)}
+.fab a{padding:10px 16px;border-radius:999px;background:var(--color-navy-900);color:#fff;font:600 .85rem var(--font-display);box-shadow:var(--shadow-md);opacity:0;transform:translateY(14px) scale(.9);pointer-events:none;transition:.25s}
+.fab.open a{opacity:1;transform:none;pointer-events:auto}
+
+/* 9. Kalkulyator: xabar + konfetti */
+.calc-msg{margin-top:12px;font-weight:600;color:var(--color-ink-900)}
+.confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:800}
+
+/* 10. Qo'ng'iroq jadvali: tab almashganda oraliq buzilmasligi uchun */
+.bell-list{gap:0}
+.bell-list li+li{margin-top:10px}
+
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.pre-badge,.pre-bar i{animation:none}}
