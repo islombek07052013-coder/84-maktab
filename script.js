@@ -1,5 +1,5 @@
 /* Denov 84-maktab — script.js */
-(() => {
+document.addEventListener('DOMContentLoaded', () => {
   'use strict';
   const $ = (s, r = document) => r.querySelector(s); const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
@@ -17,23 +17,19 @@
     });
   }
 
-  /* 2. O'quv yili yakunigacha Hisoblagich (Tuzatilgan va aniq ishlaydigan format) */
+  /* 2. O'quv yili Countdown Timer */
   function countdownTimer() {
     const daysEl = $('#cdDays'), hoursEl = $('#cdHours'), minsEl = $('#cdMins'), secsEl = $('#cdSecs');
     if (!daysEl) return;
     
-    // ISO format - barcha brauzerlar uchun xatosiz va aniq sana
-    const targetDate = new Date('2027-05-25T08:00:00').getTime();
+    const targetDate = new Date(2027, 4, 25, 8, 0, 0).getTime();
 
     function update() {
       const now = new Date().getTime();
       const diff = targetDate - now;
 
       if (diff <= 0) {
-        daysEl.textContent = '00';
-        hoursEl.textContent = '00';
-        minsEl.textContent = '00';
-        secsEl.textContent = '00';
+        daysEl.textContent = '00'; hoursEl.textContent = '00'; minsEl.textContent = '00'; secsEl.textContent = '00';
         return;
       }
 
@@ -51,7 +47,7 @@
     setInterval(update, 1000);
   }
 
-  /* 3. Dynamic Class Schedule */
+  /* 3. Class Schedule */
   function classSchedule() {
     const box = $('#schedContent'), btns = $$('.sched-btn');
     if (!box) return;
@@ -105,7 +101,7 @@
     render('primary');
   }
 
-  /* 4. FAQ Accordion */
+  /* 4. FAQ Accordion (Ochilib yopiluvchi savollar) */
   function faqAccordion() {
     $$('.faq-question').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -115,69 +111,92 @@
     });
   }
 
-  /* 5. Online Form Submission */
+  /* 5. Direct Telegram Murojaat Formasi */
   function contactForm() {
-    const form = $('#contactForm'), success = $('#mSuccess');
+    const form = $('#contactForm');
     if (!form) return;
 
     form.addEventListener('submit', e => {
       e.preventDefault();
-      form.hidden = true;
-      success.hidden = false;
+      const name = $('#mName').value;
+      const phone = $('#mPhone').value;
+      const subject = $('#mSubject').value;
+      const text = $('#mText').value;
+
+      const message = `Assalomu alaykum!\nMurojaat qiluvchi: ${name}\nTelefon: ${phone}\nMavzu: ${subject}\n\nMurojaat matni:\n${text}`;
+      
+      // Telegramga xabarni yo'naltirish
+      const tgUrl = `https://t.me/MAK_RAHBARI84?text=${encodeURIComponent(message)}`;
+      window.open(tgUrl, '_blank');
     });
   }
 
-  /* 6. Grade Calculator */
-  function gradeCalculator() {
-    const input = $('#gradeInput'), btn = $('#calcBtn'), resBox = $('#calcResult');
-    if (!btn) return;
+  /* 6. Bells Schedule */
+  function bells() {
+    const shiftBtns = $$('.shift-btn');
+    const list1 = $('#bellList1');
+    const list2 = $('#bellList2');
+    const out = $('#bellNow'); if (!list1 \vert{}\vert{} !list2 \vert{}\vert{} !out) return;      let currentShift = '1';      function tick() { const activeList = currentShift === '1' ? list1 : list2; const items = $$('.bell-card-item', activeList);
+      const m = t => { const [h, mi] = t.split(':'); return +h * 60 + +mi; };
+      const L = items.map(li => [m(li.dataset.s), m(li.dataset.e), li.dataset.s]);
+      const d = new Date(), n = d.getHours() * 60 + d.getMinutes();
+      let msg, cur = -1;
 
-    btn.addEventListener('click', () => {
-      const nums = input.value.split(/[\s,]+/).map(Number).filter(n => !isNaN(n) && n >= 1 && n <= 5);
-      if (!nums.length) return alert("To'g'ri baho kiriting!");
-      const avg = nums.reduce((a, b) => a + b, 0) / nums.length;
-      $('#avgScore').textContent = avg.toFixed(2);
-      $('#finalGrade').textContent = Math.round(avg);
-      resBox.hidden = false;
+      if (d.getDay() === 0) msg = 'Bugun dam olish kuni.';
+      else {
+        cur = L.findIndex(([a, b]) => n >= a && n < b);
+        if (cur >= 0) msg = `Hozir (${currentShift}-smena) <strong>${cur + 1}-soat dars</strong> ketmoqda, tugashiga <strong>${L[cur][1] - n} daqiqa</strong> qoldi.`;
+        else {
+          const nx = L.findIndex(([a]) => n < a);
+          msg = nx < 0 ? `Bugungi (${currentShift}-smena) darslar yakunlandi.` : nx === 0 ? `${currentShift}-smena darslari soat <strong>${L[0][2]}</strong> da boshlanadi.` : `Hozir tanaffus. Keyingi dars <strong>${L[nx][2]}</strong> da boshlanadi.`;
+        }
+      }
+      out.innerHTML = msg;
+      
+      list1.querySelectorAll('.bell-card-item').forEach((li, i) => li.classList.toggle('on', currentShift === '1' && i === cur));
+      list2.querySelectorAll('.bell-card-item').forEach((li, i) => li.classList.toggle('on', currentShift === '2' && i === cur));
+    }
+
+    shiftBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentShift = btn.dataset.shift;
+        shiftBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        if (currentShift === '1') {
+          list1.style.display = 'grid';
+          list2.style.display = 'none';
+        } else {
+          list1.style.display = 'none';
+          list2.style.display = 'grid';
+        }
+        tick();
+      });
     });
+
+    tick(); 
+    setInterval(tick, 10000);
   }
 
-  /* 7. Teacher Modal */
+  /* Teacher Modal */
   function teacherModal() {
     const modal = $('#teacherModal'), closeBtn = $('#closeModal');
     if (!modal) return;
 
     document.addEventListener('click', e => {
-      const card = e.target.closest('.teacher-card');
+      const card = e.target.closest('.teacher-card') || e.target.closest('.leader-premium-card');
       if (card) {
-        $('#modalName').textContent = $('h3', card) ?$('h3', card).textContent : '';
-        $('#modalRole').textContent = $('.teacher-role', card) ? $('.teacher-role', card).textContent : '';$('#modalBadge').textContent = $('.teacher-badge', card) ?$('.teacher-badge', card).textContent : '';
-        $('#modalBio').textContent = card.dataset.bio \vert{}\vert{} "Qo'shimcha ma'lumot yo'q."; modal.hidden = false; } });      closeBtn.addEventListener('click', () => modal.hidden = true); modal.addEventListener('click', e => { if (e.target === modal) modal.hidden = true; }); }    /* 8. Bells Schedule */ function bells() { const shiftBtns = $$('.shift-btn'), list1 = $('#bellList1'), list2 = $('#bellList2'), out = $('#bellNow'); if (!list1) return; let currentShift = '1';      function tick() { const activeList = currentShift === '1' ? list1 : list2; const items = $$('li', activeList);
-      const m = t => { const [h, mi] = t.split(':'); return +h * 60 + +mi; };
-      const L = items.map(li => [m(li.dataset.s), m(li.dataset.e), li.dataset.s]);
-      const d = new Date(), n = d.getHours() * 60 + d.getMinutes();
-      let msg;
-
-      if (d.getDay() === 0) msg = 'Bugun dam olish kuni.';
-      else {
-        const cur = L.findIndex(([a, b]) => n >= a && n < b);
-        if (cur >= 0) msg = `Hozir (${currentShift}-smena) <strong>${cur + 1}-dars</strong>, tugashiga <strong>${L[cur][1] - n} daqiqa</strong> qoldi.`;
-        else msg = `Dars vaqti emas yoki tanaffus.`;
+        $('#modalName').textContent = $('h3', card) ? $('h3', card).textContent : '';$('#modalRole').textContent = $('.teacher-role', card) ?$('.teacher-role', card).textContent : ($('.l-role', card) ?$('.l-role', card).textContent : '');
+        $('#modalBadge').textContent = $('.teacher-badge', card) ? $('.teacher-badge', card).textContent : 'Rahbariyat';$('#modalBio').textContent = card.dataset.bio || "Qo'shimcha ma'lumot yo'q.";
+        modal.hidden = false;
       }
-      out.innerHTML = msg;
-    }
+    });
 
-    shiftBtns.forEach(btn => btn.addEventListener('click', () => {
-      currentShift = btn.dataset.shift;
-      list1.style.display = currentShift === '1' ? 'grid' : 'none';
-      list2.style.display = currentShift === '2' ? 'grid' : 'none';
-      shiftBtns.forEach(b => b.classList.toggle('active', b.dataset.shift === currentShift));
-      tick();
-    }));
-    tick(); setInterval(tick, 20000);
+    closeBtn.addEventListener('click', () => modal.hidden = true);
+    modal.addEventListener('click', e => { if (e.target === modal) modal.hidden = true; });
   }
 
-  [themeToggle, countdownTimer, classSchedule, faqAccordion, contactForm, gradeCalculator, teacherModal, bells].forEach(fn => {
+  [themeToggle, countdownTimer, classSchedule, faqAccordion, contactForm, bells, teacherModal].forEach(fn => {
     try { fn(); } catch (err) { console.error(err); }
   });
-})();
+});
