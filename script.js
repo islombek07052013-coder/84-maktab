@@ -4,9 +4,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* 1. O'quv yili yakunigacha Hisoblagich (Countdown) */
   function updateCountdown() {
-    const targetDate = new Date('2026-05-25T08:00:00').getTime();
-    const now = new Date().getTime();
-    const timeLeft = targetDate - now;
+    const now = new Date();
+    let currentYear = now.getFullYear();
+    
+    // Yillik 25-may sanasini belgilaymiz (4 = May oyi)
+    let targetDate = new Date(currentYear, 4, 25, 8, 0, 0).getTime();
+    
+    // Agar joriy yilgi 25-may o'tib ketgan bo'lsa, keyingi yilgi 25-mayni hisoblaydi
+    if (now.getTime() > targetDate) {
+      targetDate = new Date(currentYear + 1, 4, 25, 8, 0, 0).getTime();
+    }
+
+    const timeLeft = targetDate - now.getTime();
 
     if (timeLeft > 0) {
       const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
