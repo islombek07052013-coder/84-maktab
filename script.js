@@ -17,12 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* 2. O'quv yili Countdown Timer */
+  /* 2. O'quv yili yakunlanishiga / Yozgi ta'tilgacha hisoblagich */
   function countdownTimer() {
     const daysEl = $('#cdDays'), hoursEl = $('#cdHours'), minsEl = $('#cdMins'), secsEl = $('#cdSecs');
     if (!daysEl) return;
     
-    const targetDate = new Date(2027, 4, 25, 8, 0, 0).getTime();
+    // Yozgi ta'til va So'nggi Qo'ng'iroq sanasi (2027-yil 25-may)
+    const targetDate = new Date('2027-05-25T08:00:00+05:00').getTime();
 
     function update() {
       const now = new Date().getTime();
@@ -101,17 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     render('primary');
   }
 
-  /* 4. FAQ Accordion (Ochilib yopiluvchi savollar) */
-  function faqAccordion() {
-    $$('.faq-question').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.parentElement;
-        item.classList.toggle('active');
-      });
-    });
-  }
-
-  /* 5. Direct Telegram Murojaat Formasi */
+  /* 4. Direct Telegram Murojaat Formasi */
   function contactForm() {
     const form = $('#contactForm');
     if (!form) return;
@@ -125,60 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const message = `Assalomu alaykum!\nMurojaat qiluvchi: ${name}\nTelefon: ${phone}\nMavzu: ${subject}\n\nMurojaat matni:\n${text}`;
       
-      // Telegramga xabarni yo'naltirish
       const tgUrl = `https://t.me/MAK_RAHBARI84?text=${encodeURIComponent(message)}`;
       window.open(tgUrl, '_blank');
     });
   }
 
-  /* 6. Bells Schedule */
-  function bells() {
-    const shiftBtns = $$('.shift-btn');
-    const list1 = $('#bellList1');
-    const list2 = $('#bellList2');
-    const out = $('#bellNow'); if (!list1 \vert{}\vert{} !list2 \vert{}\vert{} !out) return;      let currentShift = '1';      function tick() { const activeList = currentShift === '1' ? list1 : list2; const items = $$('.bell-card-item', activeList);
-      const m = t => { const [h, mi] = t.split(':'); return +h * 60 + +mi; };
-      const L = items.map(li => [m(li.dataset.s), m(li.dataset.e), li.dataset.s]);
-      const d = new Date(), n = d.getHours() * 60 + d.getMinutes();
-      let msg, cur = -1;
-
-      if (d.getDay() === 0) msg = 'Bugun dam olish kuni.';
-      else {
-        cur = L.findIndex(([a, b]) => n >= a && n < b);
-        if (cur >= 0) msg = `Hozir (${currentShift}-smena) <strong>${cur + 1}-soat dars</strong> ketmoqda, tugashiga <strong>${L[cur][1] - n} daqiqa</strong> qoldi.`;
-        else {
-          const nx = L.findIndex(([a]) => n < a);
-          msg = nx < 0 ? `Bugungi (${currentShift}-smena) darslar yakunlandi.` : nx === 0 ? `${currentShift}-smena darslari soat <strong>${L[0][2]}</strong> da boshlanadi.` : `Hozir tanaffus. Keyingi dars <strong>${L[nx][2]}</strong> da boshlanadi.`;
-        }
-      }
-      out.innerHTML = msg;
-      
-      list1.querySelectorAll('.bell-card-item').forEach((li, i) => li.classList.toggle('on', currentShift === '1' && i === cur));
-      list2.querySelectorAll('.bell-card-item').forEach((li, i) => li.classList.toggle('on', currentShift === '2' && i === cur));
-    }
-
-    shiftBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        currentShift = btn.dataset.shift;
-        shiftBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        if (currentShift === '1') {
-          list1.style.display = 'grid';
-          list2.style.display = 'none';
-        } else {
-          list1.style.display = 'none';
-          list2.style.display = 'grid';
-        }
-        tick();
-      });
-    });
-
-    tick(); 
-    setInterval(tick, 10000);
-  }
-
-  /* Teacher Modal */
+  /* 5. Teacher Modal */
   function teacherModal() {
     const modal = $('#teacherModal'), closeBtn = $('#closeModal');
     if (!modal) return;
@@ -196,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.addEventListener('click', e => { if (e.target === modal) modal.hidden = true; });
   }
 
-  [themeToggle, countdownTimer, classSchedule, faqAccordion, contactForm, bells, teacherModal].forEach(fn => {
+  [themeToggle, countdownTimer, classSchedule, contactForm, teacherModal].forEach(fn => {
     try { fn(); } catch (err) { console.error(err); }
   });
 });
