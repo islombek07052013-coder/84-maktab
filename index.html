@@ -98,12 +98,12 @@
       </div>
     </section>
 
-    <!-- O'quv yili yakunigacha hisoblagich -->
+    <!-- O'quv yili yakunigacha / Maktab tugashiga Hisoblagich -->
     <section class="countdown-section">
       <div class="container">
         <div class="section-header" style="text-align: center; margin-bottom: 25px;">
-          <h2>O'quv yili yakunigacha</h2>
-          <p>So'nggi Qo'ng'iroq va yozgi ta'tilga qolgan vaqt:</p>
+          <h2>O'quv yili yakunigacha (Yozgi ta'til)</h2>
+          <p>So'nggi Qo'ng'iroq va maktab yakunlanishiga qolgan vaqt:</p>
         </div>
         <div class="countdown-card">
           <div class="countdown-grid">
@@ -131,86 +131,84 @@
       </div>
     </section>
 
-    <!-- Qo'ng'iroq jadvali -->
+    <!-- Qo'ng'iroq jadvali (1 va 2-smena birga ochiq holatda) -->
     <section class="bells" id="bells">
       <div class="container">
         <h2 class="section-heading">Qo'ng'iroq jadvali</h2>
-        
-        <div class="bell-status-card">
-          <div class="bell-icon-pulse">🔔</div>
-          <div id="bellNow" class="bell-now-text">Jadval yuklanmoqda...</div>
-        </div>
 
-        <div class="shift-tabs">
-          <button type="button" class="shift-btn active" data-shift="1">☀️ 1-smena (Boshlang'ich va O'rta)</button>
-          <button type="button" class="shift-btn" data-shift="2">🌙 2-smena (Yuqori sinflar)</button>
-        </div>
+        <div class="shifts-wrapper">
+          <!-- 1-smena -->
+          <div class="shift-block">
+            <h3 class="shift-title">☀️ 1-smena (Boshlang'ich va O'rta sinflar)</h3>
+            <div class="bell-grid-container">
+              <div class="bell-card-item">
+                <div class="b-badge">1-soat dars</div>
+                <div class="b-time">⏰ 08:00 – 08:45</div>
+                <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+              </div>
+              <div class="bell-card-item">
+                <div class="b-badge">2-soat dars</div>
+                <div class="b-time">⏰ 08:55 – 09:40</div>
+                <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+              </div>
+              <div class="bell-card-item">
+                <div class="b-badge">3-soat dars</div>
+                <div class="b-time">⏰ 09:50 – 10:35</div>
+                <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+              </div>
+              <div class="bell-card-item">
+                <div class="b-badge">4-soat dars</div>
+                <div class="b-time">⏰ 10:45 – 11:30</div>
+                <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+              </div>
+              <div class="bell-card-item">
+                <div class="b-badge">5-soat dars</div>
+                <div class="b-time">⏰ 11:40 – 12:25</div>
+                <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+              </div>
+              <div class="bell-card-item">
+                <div class="b-badge">6-soat dars</div>
+                <div class="b-time">⏰ 12:35 – 13:20</div>
+                <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+              </div>
+            </div>
+          </div>
 
-        <!-- 1-smena ro'yxati -->
-        <div id="bellList1" class="bell-grid-container">
-          <div class="bell-card-item" data-s="08:00" data-e="08:45">
-            <div class="b-badge">1-soat mashg'ulot</div>
-            <div class="b-time">⏰ 08:00 – 08:45</div>
-            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
-          </div>
-          <div class="bell-card-item" data-s="08:55" data-e="09:40">
-            <div class="b-badge">2-soat mashg'ulot</div>
-            <div class="b-time">⏰ 08:55 – 09:40</div>
-            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
-          </div>
-          <div class="bell-card-item" data-s="09:50" data-e="10:35">
-            <div class="b-badge">3-soat mashg'ulot</div>
-            <div class="b-time">⏰ 09:50 – 10:35</div>
-            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
-          </div>
-          <div class="bell-card-item" data-s="10:45" data-e="11:30">
-            <div class="b-badge">4-soat mashg'ulot</div>
-            <div class="b-time">⏰ 10:45 – 11:30</div>
-            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
-          </div>
-          <div class="bell-card-item" data-s="11:40" data-e="12:25">
-            <div class="b-badge">5-soat mashg'ulot</div>
-            <div class="b-time">⏰ 11:40 – 12:25</div>
-            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
-          </div>
-          <div class="bell-card-item" data-s="12:35" data-e="13:20">
-            <div class="b-badge">6-soat mashg'ulot</div>
-            <div class="b-time">⏰ 12:35 – 13:20</div>
-            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
-          </div>
-        </div>
-
-        <!-- 2-smena ro'yxati -->
-        <div id="bellList2" class="bell-grid-container" style="display: none;">
-          <div class="bell-card-item" data-s="13:30" data-e="14:15">
-            <div class="b-badge">1-soat mashg'ulot</div>
-            <div class="b-time">⏰ 13:30 – 14:15</div>
-            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
-          </div>
-          <div class="bell-card-item" data-s="14:25" data-e="15:10">
-            <div class="b-badge">2-soat mashg'ulot</div>
-            <div class="b-time">⏰ 14:25 – 15:10</div>
-            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
-          </div>
-          <div class="bell-card-item" data-s="15:20" data-e="16:05">
-            <div class="b-badge">3-soat mashg'ulot</div>
-            <div class="b-time">⏰ 15:20 – 16:05</div>
-            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
-          </div>
-          <div class="bell-card-item" data-s="16:15" data-e="17:00">
-            <div class="b-badge">4-soat mashg'ulot</div>
-            <div class="b-time">⏰ 16:15 – 17:00</div>
-            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
-          </div>
-          <div class="bell-card-item" data-s="17:10" data-e="17:55">
-            <div class="b-badge">5-soat mashg'ulot</div>
-            <div class="b-time">⏰ 17:10 – 17:55</div>
-            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
-          </div>
-          <div class="bell-card-item" data-s="18:05" data-e="18:50">
-            <div class="b-badge">6-soat mashg'ulot</div>
-            <div class="b-time">⏰ 18:05 – 18:50</div>
-            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+          <!-- 2-smena -->
+          <div class="shift-block" style="margin-top: 40px;">
+            <h3 class="shift-title">🌙 2-smena (Yuqori sinflar)</h3>
+            <div class="bell-grid-container">
+              <div class="bell-card-item">
+                <div class="b-badge">1-soat dars</div>
+                <div class="b-time">⏰ 13:30 – 14:15</div>
+                <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+              </div>
+              <div class="bell-card-item">
+                <div class="b-badge">2-soat dars</div>
+                <div class="b-time">⏰ 14:25 – 15:10</div>
+                <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+              </div>
+              <div class="bell-card-item">
+                <div class="b-badge">3-soat dars</div>
+                <div class="b-time">⏰ 15:20 – 16:05</div>
+                <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+              </div>
+              <div class="bell-card-item">
+                <div class="b-badge">4-soat dars</div>
+                <div class="b-time">⏰ 16:15 – 17:00</div>
+                <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+              </div>
+              <div class="bell-card-item">
+                <div class="b-badge">5-soat dars</div>
+                <div class="b-time">⏰ 17:10 – 17:55</div>
+                <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+              </div>
+              <div class="bell-card-item">
+                <div class="b-badge">6-soat dars</div>
+                <div class="b-time">⏰ 18:05 – 18:50</div>
+                <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -241,7 +239,7 @@
       </div>
     </section>
 
-    <!-- Ustozlar bo'limi (Chiroyli Rahbariyat kartochkalari bilan) -->
+    <!-- Ustozlar bo'limi -->
     <section class="teachers" id="teachers">
       <div class="container">
         <h2 class="section-heading">Maktab rahbariyati va ustozlarimiz</h2>
@@ -321,28 +319,28 @@
       </div>
     </section>
 
-    <!-- FAQ (Savollar) -->
+    <!-- FAQ (Savollar va javoblar doimiy ochiq) -->
     <section class="faq-section" id="faq">
       <div class="container">
         <h2 class="section-heading">Keng Beriladigan Savollar (FAQ)</h2>
-        <div class="faq-accordion">
-          <div class="faq-item">
-            <button class="faq-question">1-sinfga qabul hujjatlari qanday topshiriladi? <span class="faq-icon">+</span></button>
-            <div class="faq-answer"><p>1-sinfga qabul jarayonlari Maktabgacha va maktab ta'limi vazirligining my.uzedu.uz portali orqali onlayn ravishda amalga oshiriladi.</p></div>
+        <div class="faq-list">
+          <div class="faq-box">
+            <h3>❓ 1-sinfga qabul hujjatlari qanday topshiriladi?</h3>
+            <p><strong>Javob:</strong> 1-sinfga qabul jarayonlari Maktabgacha va maktab ta'limi vazirligining my.uzedu.uz portali orqali onlayn ravishda amalga oshiriladi.</p>
           </div>
-          <div class="faq-item">
-            <button class="faq-question">Maktabda qanday to'garaklar faoliyat yuritadi? <span class="faq-icon">+</span></button>
-            <div class="faq-answer"><p>Maktabimizda IT va Dasturlash, Ingliz tili (IELTS), Shaxmat va Futbol to'garaklari bepul asosda yo'lga qo'yilgan.</p></div>
+          <div class="faq-box">
+            <h3>❓ Maktabda qanday to'garaklar faoliyat yuritadi?</h3>
+            <p><strong>Javob:</strong> Maktabimizda IT va Dasturlash, Ingliz tili (IELTS), Shaxmat hamda Futbol to'garaklari bepul asosda yo'lga qo'yilgan.</p>
           </div>
-          <div class="faq-item">
-            <button class="faq-question">Ota-onalar kuni qachon o'tkaziladi? <span class="faq-icon">+</span></button>
-            <div class="faq-answer"><p>Ota-onalar yig'ilishi har oyning oxirgi juma kuni soat 15:00 da o'tkaziladi.</p></div>
+          <div class="faq-box">
+            <h3>❓ Ota-onalar kuni qachon o'tkaziladi?</h3>
+            <p><strong>Javob:</strong> Ota-onalar yig'ilishi har oyning oxirgi juma kuni soat 15:00 da maktab majlislar zalida o'tkaziladi.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Murojaat Joyi (Telegram bilan bog'langan) -->
+    <!-- Murojaat Joyi -->
     <section class="murojaat-section" id="murojaat">
       <div class="container">
         <h2 class="section-heading">Direktorga Murojaat / Qabulga Yozilish</h2>
@@ -400,7 +398,7 @@
       </div>
     </section>
 
-    <!-- Manzil va Xarita (Qaytarildi) -->
+    <!-- Manzil va Xarita -->
     <section class="map-section" id="location">
       <div class="container">
         <h2 class="section-heading">Bizning manzil xaritada</h2>
@@ -438,7 +436,7 @@
     <div class="footer-bottom">
       <div class="container">
         <p>&copy; 2026 Denov 84-umumiy o'rta ta'lim maktabi. Barcha huquqlar himoyalangan.</p>
-        <p style="margin-top: 8px; font-size: 0.9rem; color: #cda059; font-weight: 700;">Sayt yaratuvchisi: Islom Xikmatullayev</p>
+        <p style="margin-top: 8px; font-size: 0.95rem; color: #cda059; font-weight: 700;">Sayt yaratuvchisi: Islom Xikmatullayev</p>
       </div>
     </div>
   </footer>
