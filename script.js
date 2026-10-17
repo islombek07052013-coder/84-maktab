@@ -167,34 +167,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('nextImgBtn');
 
     // Har bir xonaning 4 tadan rasmlari
-    const ROOM_DATA = {
+   const ROOM_DATA = {
       it: {
         title: "IT va Kompyuter Xonasi Rasmlari",
-        images: ["images/it_1.jpg", "images/it_2.jpg", "images/it_3.jpg", "images/it_4.jpg"],
+        images: ["images/it_1.jpg.jpg", "images/it_2.jpg.jpg", "images/it_3.jpg.jpg", "images/it_4.jpg.jpg"],
         fallback: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800"
       },
       sewing: {
-        title: "Tikuvchilik va Mehnat Xonasi Rasmlari",
-        images: ["images/sewing_1.jpg", "images/sewing_2.jpg", "images/sewing_3.jpg", "images/sewing_4.jpg"],
+        title: "Tikuvchilik va Dizayn Xonasi Rasmlari",
+        images: ["images/sewing_1.jpg.jpg", "images/sewing_2.jpg.jpg", "images/sewing_3.jpg.jpg"],
         fallback: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800"
       },
-      robotics: {
-        title: "Robototexnika Laboratoriyasi Rasmlari",
-        images: ["images/robot_1.jpg", "images/robot_2.jpg", "images/robot_3.jpg", "images/robot_4.jpg"],
-        fallback: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800"
+      music: {
+        title: "Musiqa Xonasi Rasmlari",
+        images: ["images/music_1.jpg.jpg", "images/music_2.jpg.jpg", "images/music_3.jpg.jpg"],
+        fallback: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800"
       },
-      science: {
-        title: "Kimyo va Biologiya Laboratoriyasi Rasmlari",
-        images: ["images/science_1.jpg", "images/science_2.jpg", "images/science_3.jpg", "images/science_4.jpg"],
-        fallback: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800"
+      art: {
+        title: "Tasviriy San'at Xonasi Rasmlari",
+        images: ["images/art_1.jpg.jpg", "images/art_2.jpg.jpg", "images/art_3.jpg.jpg", "images/art_4.jpg.jpg"],
+        fallback: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800"
       },
-      library: {
-        title: "Zamonaviy Kutubxona Rasmlari",
-        images: ["images/lib_1.jpg", "images/lib_2.jpg", "images/lib_3.jpg", "images/lib_4.jpg"],
-        fallback: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800"
+      tech: {
+        title: "Texnologiya Xonasi Rasmlari",
+        images: ["images/tech_1.jpg.jpg.jpg", "images/tech_2.jpg.jpg.jpg", "images/tech_3.jpg.jpg.jpg"],
+        fallback: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=800"
       }
     };
-
     let currentImages = [];
     let currentIndex = 0;
 
