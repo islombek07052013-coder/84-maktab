@@ -46,9 +46,9 @@
           <li><a href="#schedule">Darslar</a></li>
           <li><a href="#bells">Jadval</a></li>
           <li><a href="#teachers">Ustozlar</a></li>
-          <li><a href="#calculator">Kalkulyator</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#murojaat">Murojaat</a></li>
+          <li><a href="#location">Manzil</a></li>
         </ul>
       </nav>
     </div>
@@ -135,32 +135,85 @@
     <section class="bells" id="bells">
       <div class="container">
         <h2 class="section-heading">Qo'ng'iroq jadvali</h2>
-        <div class="bell-now" id="bellNow" aria-live="polite">Jadval yuklanmoqda...</div>
-
-        <div class="shift-tabs">
-          <button type="button" class="shift-btn active" data-shift="1">1-smena</button>
-          <button type="button" class="shift-btn" data-shift="2">2-smena</button>
+        
+        <div class="bell-status-card">
+          <div class="bell-icon-pulse">🔔</div>
+          <div id="bellNow" class="bell-now-text">Jadval yuklanmoqda...</div>
         </div>
 
-        <ol id="bellList1" class="bell-list">
-          <li data-s="08:00" data-e="08:45"><b>1-dars</b><span>08:00 – 08:45</span></li>
-          <li data-s="08:55" data-e="09:40"><b>2-dars</b><span>08:55 – 09:40</span></li>
-          <li data-s="09:50" data-e="10:35"><b>3-dars</b><span>09:50 – 10:35</span></li>
-          <li data-s="10:45" data-e="11:30"><b>4-dars</b><span>10:45 – 11:30</span></li>
-          <li data-s="11:40" data-e="12:25"><b>5-dars</b><span>11:40 – 12:25</span></li>
-          <li data-s="12:35" data-e="13:20"><b>6-dars</b><span>12:35 – 13:20</span></li>
-          <li data-s="13:30" data-e="14:15"><b>7-dars</b><span>13:30 – 14:15</span></li>
-        </ol>
+        <div class="shift-tabs">
+          <button type="button" class="shift-btn active" data-shift="1">☀️ 1-smena (Boshlang'ich va O'rta)</button>
+          <button type="button" class="shift-btn" data-shift="2">🌙 2-smena (Yuqori sinflar)</button>
+        </div>
 
-        <ol id="bellList2" class="bell-list" style="display: none;">
-          <li data-s="13:30" data-e="14:15"><b>1-dars</b><span>13:30 – 14:15</span></li>
-          <li data-s="14:25" data-e="15:10"><b>2-dars</b><span>14:25 – 15:10</span></li>
-          <li data-s="15:20" data-e="16:05"><b>3-dars</b><span>15:20 – 16:05</span></li>
-          <li data-s="16:15" data-e="17:00"><b>4-dars</b><span>16:15 – 17:00</span></li>
-          <li data-s="17:10" data-e="17:55"><b>5-dars</b><span>17:10 – 17:55</span></li>
-          <li data-s="18:05" data-e="18:50"><b>6-dars</b><span>18:05 – 18:50</span></li>
-          <li data-s="19:00" data-e="19:45"><b>7-dars</b><span>19:00 – 19:45</span></li>
-        </ol>
+        <!-- 1-smena ro'yxati -->
+        <div id="bellList1" class="bell-grid-container">
+          <div class="bell-card-item" data-s="08:00" data-e="08:45">
+            <div class="b-badge">1-soat mashg'ulot</div>
+            <div class="b-time">⏰ 08:00 – 08:45</div>
+            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+          </div>
+          <div class="bell-card-item" data-s="08:55" data-e="09:40">
+            <div class="b-badge">2-soat mashg'ulot</div>
+            <div class="b-time">⏰ 08:55 – 09:40</div>
+            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+          </div>
+          <div class="bell-card-item" data-s="09:50" data-e="10:35">
+            <div class="b-badge">3-soat mashg'ulot</div>
+            <div class="b-time">⏰ 09:50 – 10:35</div>
+            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+          </div>
+          <div class="bell-card-item" data-s="10:45" data-e="11:30">
+            <div class="b-badge">4-soat mashg'ulot</div>
+            <div class="b-time">⏰ 10:45 – 11:30</div>
+            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+          </div>
+          <div class="bell-card-item" data-s="11:40" data-e="12:25">
+            <div class="b-badge">5-soat mashg'ulot</div>
+            <div class="b-time">⏰ 11:40 – 12:25</div>
+            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+          </div>
+          <div class="bell-card-item" data-s="12:35" data-e="13:20">
+            <div class="b-badge">6-soat mashg'ulot</div>
+            <div class="b-time">⏰ 12:35 – 13:20</div>
+            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+          </div>
+        </div>
+
+        <!-- 2-smena ro'yxati -->
+        <div id="bellList2" class="bell-grid-container" style="display: none;">
+          <div class="bell-card-item" data-s="13:30" data-e="14:15">
+            <div class="b-badge">1-soat mashg'ulot</div>
+            <div class="b-time">⏰ 13:30 – 14:15</div>
+            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+          </div>
+          <div class="bell-card-item" data-s="14:25" data-e="15:10">
+            <div class="b-badge">2-soat mashg'ulot</div>
+            <div class="b-time">⏰ 14:25 – 15:10</div>
+            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+          </div>
+          <div class="bell-card-item" data-s="15:20" data-e="16:05">
+            <div class="b-badge">3-soat mashg'ulot</div>
+            <div class="b-time">⏰ 15:20 – 16:05</div>
+            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+          </div>
+          <div class="bell-card-item" data-s="16:15" data-e="17:00">
+            <div class="b-badge">4-soat mashg'ulot</div>
+            <div class="b-time">⏰ 16:15 – 17:00</div>
+            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+          </div>
+          <div class="bell-card-item" data-s="17:10" data-e="17:55">
+            <div class="b-badge">5-soat mashg'ulot</div>
+            <div class="b-time">⏰ 17:10 – 17:55</div>
+            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+          </div>
+          <div class="bell-card-item" data-s="18:05" data-e="18:50">
+            <div class="b-badge">6-soat mashg'ulot</div>
+            <div class="b-time">⏰ 18:05 – 18:50</div>
+            <div class="b-dur">Davomiyligi: 45 daqiqa</div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -188,50 +241,47 @@
       </div>
     </section>
 
-    <!-- Baho Kalkulyatori -->
-    <section class="calculator-section" id="calculator">
-      <div class="container">
-        <h2 class="section-heading">Choraklik Baho Kalkulyatori</h2>
-        <div class="calc-card">
-          <p>O'z baholaringizni vergul bilan kiriting (masalan: 5, 4, 5, 3, 5):</p>
-          <div class="calc-input-group">
-            <input type="text" id="gradeInput" placeholder="5, 4, 5, 5, 4" autocomplete="off">
-            <button type="button" id="calcBtn" class="btn btn-primary">Hisoblash</button>
-          </div>
-          <div id="calcResult" class="calc-result" hidden>
-            <p>O'rtacha ball: <strong id="avgScore">0.0</strong></p>
-            <p>Kutilayotgan chorak bahosi: <span id="finalGrade" class="grade-badge">5</span></p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Ustozlar bo'limi -->
+    <!-- Ustozlar bo'limi (Chiroyli Rahbariyat kartochkalari bilan) -->
     <section class="teachers" id="teachers">
       <div class="container">
         <h2 class="section-heading">Maktab rahbariyati va ustozlarimiz</h2>
 
         <div class="leadership-section">
           <h3 class="sub-section-title text-center">Maktab rahbariyati</h3>
-          <div class="leadership-grid-centered">
-            <div class="teacher-card leadership-card director-card" data-bio="Maktab direktori sifatida ta'lim sifatini oshirish va maktab infratuzilmasini rivojlantirishga mas'ul.">
-              <div class="teacher-info"><h3>Ismayilov Sherzod Chorievich</h3><p class="teacher-role">Maktab direktori</p><span class="teacher-badge">Oliy toifa</span></div>
+          <div class="leadership-modern-grid">
+            
+            <div class="leader-premium-card director-glow" data-bio="Maktab direktori sifatida ta'lim sifatini oshirish va maktab infratuzilmasini rivojlantirishga mas'ul.">
+              <div class="l-badge">🏛️ Maktab Direktori</div>
+              <h3>Ismayilov Sherzod Chorievich</h3>
+              <p class="l-role">Oliy toifali pedagog</p>
             </div>
-            <div class="deputies-group">
-              <div class="teacher-card leadership-card" data-bio="O'quv ishlar bo'yicha direktor o'rinbosari. Dars jadvali va ta'lim sifatini nazorat qiladi."><div class="teacher-info"><h3>Soatov Faxriddin Abdurayimovich</h3><p class="teacher-role">O‘IBDO‘</p><span class="teacher-badge">Oliy toifa</span></div></div>
-              <div class="teacher-card leadership-card" data-bio="Ma'naviyat va ma'rifat ishlari bo'yicha direktor o'rinbosari."><div class="teacher-info"><h3>Mitanov Sherzod Erkinovich</h3><p class="teacher-role">MMIBDO‘</p><span class="teacher-badge">Oliy toifa</span></div></div>
-              <div class="teacher-card leadership-card" data-bio="O'quv ishlar bo'yicha direktor o'rinbosari va Matematika fani o'qituvchisi."><div class="teacher-info"><h3>Alimardonova Muyassar Yaxshibaevna</h3><p class="teacher-role">O‘IBDO‘ / Matematika</p><span class="teacher-badge">Oliy toifa</span></div></div>
+
+            <div class="deputies-modern-row">
+              <div class="leader-premium-card" data-bio="O'quv ishlar bo'yicha direktor o'rinbosari. Dars jadvali va ta'lim sifatini nazorat qiladi.">
+                <div class="l-badge-sub">O‘IBDO‘</div>
+                <h3>Soatov Faxriddin Abdurayimovich</h3>
+                <p class="l-role">Oliy toifa</p>
+              </div>
+              
+              <div class="leader-premium-card" data-bio="Ma'naviyat va ma'rifat ishlari bo'yicha direktor o'rinbosari.">
+                <div class="l-badge-sub">MMIBDO‘</div>
+                <h3>Mitanov Sherzod Erkinovich</h3>
+                <p class="l-role">Oliy toifa</p>
+              </div>
+
+              <div class="leader-premium-card" data-bio="O'quv ishlar bo'yicha direktor o'rinbosari va Matematika fani o'qituvchisi.">
+                <div class="l-badge-sub">O‘IBDO‘ / Matematika</div>
+                <h3>Alimardonova Muyassar Yaxshibaevna</h3>
+                <p class="l-role">Oliy toifa</p>
+              </div>
             </div>
+
           </div>
         </div>
 
-        <div class="teachers-column">
+        <div class="teachers-column" style="margin-top: 50px;">
           <h3 class="sub-section-title">Bizning o'qituvchilarimiz (Batafsil ma'lumot uchun ustiga bosing)</h3>
-          <div class="t-tools">
-            <input type="search" id="tSearch" placeholder="Ism yoki fan bo'yicha qidirish" aria-label="O'qituvchini qidirish" autocomplete="off">
-            <div class="t-chips" role="group" aria-label="Fan bo'yicha saralash"></div>
-            <p class="t-count" aria-live="polite"></p>
-          </div>
+          
           <div class="featured-teachers-list">
             <div class="teacher-card mini-card" data-bio="Maktab psixologi, o'quvchilar bilan individual ishlash tajribasiga ega."><div class="teacher-info"><h3>Yo‘ldosheva Madina Hasanovna</h3><p class="teacher-role">Psixolog</p><span class="teacher-badge">Mutaxassis</span></div></div>
             <div class="teacher-card mini-card" data-bio="Kadrlar bo'yicha menejer va tashkiliy masalalar mas'uli."><div class="teacher-info"><h3>Jumaeva Dildora Baxtiyorovna</h3><p class="teacher-role">Kadrlar bo‘yicha menejer</p><span class="teacher-badge">Mutaxassis</span></div></div>
@@ -267,33 +317,32 @@
             <div class="teacher-card mini-card" data-bio="Boshlang'ich sinf o'qituvchisi."><div class="teacher-info"><h3>Irismatova Dilbar Chorievna</h3><p class="teacher-role">Boshlang‘ich sinf o‘qituvchisi</p><span class="teacher-badge">1-toifa</span></div></div>
             <div class="teacher-card mini-card" data-bio="Boshlang'ich sinf o'qituvchisi."><div class="teacher-info"><h3>Jumaeva Sharifa Umarali qizi</h3><p class="teacher-role">Boshlang‘ich sinf o‘qituvchisi</p><span class="teacher-badge">2-toifa</span></div></div>
           </div>
-          <p class="t-empty" hidden>Hech narsa topilmadi. Boshqa so'z bilan urinib ko'ring.</p>
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- FAQ (Savollar) -->
     <section class="faq-section" id="faq">
       <div class="container">
         <h2 class="section-heading">Keng Beriladigan Savollar (FAQ)</h2>
         <div class="faq-accordion">
           <div class="faq-item">
-            <button class="faq-question">1-sinfga qabul hujjatlari qanday topshiriladi? <span>+</span></button>
-            <div class="faq-answer"><p>1-sinfga qabul jarayonlari my.uzedu.uz portali orqali onlayn ravishda amalga oshiriladi.</p></div>
+            <button class="faq-question">1-sinfga qabul hujjatlari qanday topshiriladi? <span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>1-sinfga qabul jarayonlari Maktabgacha va maktab ta'limi vazirligining my.uzedu.uz portali orqali onlayn ravishda amalga oshiriladi.</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-question">Maktabda qanday to'garaklar faoliyat yuritadi? <span>+</span></button>
+            <button class="faq-question">Maktabda qanday to'garaklar faoliyat yuritadi? <span class="faq-icon">+</span></button>
             <div class="faq-answer"><p>Maktabimizda IT va Dasturlash, Ingliz tili (IELTS), Shaxmat va Futbol to'garaklari bepul asosda yo'lga qo'yilgan.</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-question">Ota-onalar kuni qachon o'tkaziladi? <span>+</span></button>
+            <button class="faq-question">Ota-onalar kuni qachon o'tkaziladi? <span class="faq-icon">+</span></button>
             <div class="faq-answer"><p>Ota-onalar yig'ilishi har oyning oxirgi juma kuni soat 15:00 da o'tkaziladi.</p></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Murojaat -->
+    <!-- Murojaat Joyi (Telegram bilan bog'langan) -->
     <section class="murojaat-section" id="murojaat">
       <div class="container">
         <h2 class="section-heading">Direktorga Murojaat / Qabulga Yozilish</h2>
@@ -305,16 +354,13 @@
             </div>
             <select id="mSubject" required>
               <option value="">Murojaat mavzusini tanlang</option>
-              <option value="qabul">1-sinfga qabul bo'yicha</option>
-              <option value="taklif">Taklif va mulohaza</option>
-              <option value="shikoyat">Shikoyat va muammo</option>
+              <option value="1-sinfga qabul bo'yicha">1-sinfga qabul bo'yicha</option>
+              <option value="Taklif va mulohaza">Taklif va mulohaza</option>
+              <option value="Shikoyat va muammo">Shikoyat va muammo</option>
             </select>
             <textarea id="mText" rows="4" placeholder="Murojaatingiz matni..." required></textarea>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Murojaatni Yuborish</button>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">✈️ Telegram orqali yuborish</button>
           </form>
-          <div id="mSuccess" class="m-success-msg" hidden>
-            ✅ Murojaatingiz muvaffaqiyatli qabul qilindi! Tez orada siz bilan bog'lanamiz.
-          </div>
         </div>
       </div>
     </section>
@@ -332,3 +378,69 @@
     </div>
 
     <!-- Platformalar -->
+    <section class="section links-section">
+      <div class="container">
+        <div class="section-header" style="text-align: center; margin-bottom: 30px;">
+          <h2>Foydali ta'lim platformalari</h2>
+        </div>
+        <div class="links-grid">
+          <a href="https://kundalik.com" target="_blank" rel="noopener" class="link-card">
+            <div class="link-icon">📊</div>
+            <div class="link-info"><h3>Kundalik (e-Maktab)</h3><p>Elektron jurnal platformasi</p></div>
+          </a>
+          <a href="https://ziyonet.uz" target="_blank" rel="noopener" class="link-card">
+            <div class="link-icon">📚</div>
+            <div class="link-info"><h3>ZiyoNET</h3><p>Ta'lim tarmog'i</p></div>
+          </a>
+          <a href="https://uzedu.uz" target="_blank" rel="noopener" class="link-card">
+            <div class="link-icon">🏛️</div>
+            <div class="link-info"><h3>Vazirlik Sayti</h3><p>Maktab ta'limi rasmiy sahifasi</p></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Manzil va Xarita (Qaytarildi) -->
+    <section class="map-section" id="location">
+      <div class="container">
+        <h2 class="section-heading">Bizning manzil xaritada</h2>
+        <div class="map-container">
+          <iframe title="Maktab xaritada" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d414.44905323970227!2d67.88073867888669!3d38.27781104573401!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38b511a315411495%3A0x71ec8d676e87ba67!2sMaktab_No_84!5e1!3m2!1sen!2s!4v1791962036812!5m2!1sen!2s" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container footer-inner">
+      <div class="footer-col footer-about">
+        <a href="#home" class="logo footer-logo" aria-label="84-maktab"><span class="logo-badge">84</span><span class="logo-text">maktab</span></a>
+        <p>Denov 84-umumiy o'rta ta'lim maktabi — bilim va kelajak maskani.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Tezkor havolalar</h3>
+        <ul>
+          <li><a href="#about">Biz haqimizda</a></li>
+          <li><a href="#schedule">Dars jadvali</a></li>
+          <li><a href="#bells">Qo'ng'iroqlar</a></li>
+          <li><a href="#teachers">Ustozlar</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Bog'lanish</h3>
+        <ul class="contact-list">
+          <li><span>📍 Denov tumani, Surxondaryo viloyati</span></li>
+          <li><a href="tel:+998975503307">📞 +998 97 550-33-07</a></li>
+          <li><a href="https://t.me/MAK_RAHBARI84" target="_blank" rel="noopener">✈️ @MAK_RAHBARI84</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Denov 84-umumiy o'rta ta'lim maktabi. Barcha huquqlar himoyalangan.</p>
+        <p style="margin-top: 8px; font-size: 0.9rem; color: #cda059; font-weight: 700;">Sayt yaratuvchisi: Islom Xikmatullayev</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
