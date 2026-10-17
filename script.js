@@ -17,21 +17,38 @@
     });
   }
 
-  /* 2. Countdown Timer */
+  /* 2. O'quv yili yakunigacha Hisoblagich (Tuzatilgan va aniq ishlaydigan format) */
   function countdownTimer() {
     const daysEl = $('#cdDays'), hoursEl = $('#cdHours'), minsEl = $('#cdMins'), secsEl = $('#cdSecs');
     if (!daysEl) return;
-    const targetDate = new Date('May 25, 2027 08:00:00').getTime();
+    
+    // ISO format - barcha brauzerlar uchun xatosiz va aniq sana
+    const targetDate = new Date('2027-05-25T08:00:00').getTime();
 
     function update() {
-      const diff = targetDate - new Date().getTime();
-      if (diff <= 0) return;
-      daysEl.textContent = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
-      hoursEl.textContent = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-      minsEl.textContent = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-      secsEl.textContent = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minsEl.textContent = '00';
+        secsEl.textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+      daysEl.textContent = String(days).padStart(2, '0');
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minsEl.textContent = String(mins).padStart(2, '0');
+      secsEl.textContent = String(secs).padStart(2, '0');
     }
-    update(); setInterval(update, 1000);
+    update(); 
+    setInterval(update, 1000);
   }
 
   /* 3. Dynamic Class Schedule */
