@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ROOM_DATA = {
       it: {
         title: "IT va Kompyuter Xonasi Rasmlari",
-        images: ["images/it_1.jpg", "images/it_2.jpg", "images/it_3.jpg", "images/it_4.jpg"],
+        images: [it_1.jpg, "images/it_2.jpg", "images/it_3.jpg", "images/it_4.jpg"],
         fallback: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800"
       },
       sewing: {
