@@ -1,4 +1,4 @@
-/* DENOV 84-MAKTAB — script.js (Barcha xonalar rasmlari bilan) */
+/* DENOV 84-MAKTAB — script.js (To'liq va Yakuniy Versiya) */
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* 5. Barcha Xonalar Fotogalereyasi va 4 tadan Rasmlar Lightbox Funksiyasi */
+  /* 5. Xonalar Fotogalereyasi (Sizning .jpg.jpg fayl nomlaringizga moslandi) */
   function roomGalleryInit() {
     const modal = document.getElementById('roomGalleryModal');
     if (!modal) return;
@@ -166,31 +166,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevBtn = document.getElementById('prevImgBtn');
     const nextBtn = document.getElementById('nextImgBtn');
 
-    // Har bir xonaning 4 tadan rasmlari
     const ROOM_DATA = {
       it: {
         title: "IT va Kompyuter Xonasi Rasmlari",
-        images: [it_1.jpg, "images/it_2.jpg", "images/it_3.jpg", "images/it_4.jpg"],
+        images: ["images/it_1.jpg.jpg", "images/it_2.jpg.jpg", "images/it_3.jpg.jpg", "images/it_4.jpg.jpg"],
         fallback: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800"
       },
       sewing: {
         title: "Tikuvchilik va Mehnat Xonasi Rasmlari",
-        images: ["images/sewing_1.jpg", "images/sewing_2.jpg", "images/sewing_3.jpg", "images/sewing_4.jpg"],
+        images: ["images/sewing_1.jpg", "images/sewing_2.jpg", "images/sewing_3.jpg"],
         fallback: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800"
       },
       robotics: {
         title: "Robototexnika Laboratoriyasi Rasmlari",
-        images: ["images/robot_1.jpg", "images/robot_2.jpg", "images/robot_3.jpg", "images/robot_4.jpg"],
+        images: ["images/robot_1.jpg", "images/robot_2.jpg", "images/robot_3.jpg"],
         fallback: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800"
       },
       science: {
         title: "Kimyo va Biologiya Laboratoriyasi Rasmlari",
-        images: ["images/science_1.jpg", "images/science_2.jpg", "images/science_3.jpg", "images/science_4.jpg"],
+        images: ["images/science_1.jpg", "images/science_2.jpg", "images/science_3.jpg"],
         fallback: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800"
       },
       library: {
         title: "Zamonaviy Kutubxona Rasmlari",
-        images: ["images/lib_1.jpg", "images/lib_2.jpg", "images/lib_3.jpg", "images/lib_4.jpg"],
+        images: ["images/lib_1.jpg", "images/lib_2.jpg", "images/lib_3.jpg"],
         fallback: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800"
       }
     };
@@ -247,4 +246,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   roomGalleryInit();
 
-});
+});333333
