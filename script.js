@@ -1,4 +1,4 @@
-/* DENOV 84-MAKTAB — script.js (Barcha xonalar rasmlari bilan) */
+/* DENOV 84-MAKTAB — script.js (To'liq versiya) */
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -38,81 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCountdown();
 
 
-  /* 2. Sinflar bo'yicha Dars Jadvali Filtr va Ma'lumotlari */
-  const scheduleData = {
-    primary: {
-      title: "1 - 4 Sinflar (Boshlang'ich smena)",
-      headers: ["Hafta kuni", "1-soat", "2-soat", "3-soat", "4-soat"],
-      rows: [
-        ["Dushanba", "Ona tili", "Matematika", "O'qish", "Jismoniy tarbiya"],
-        ["Seshanba", "Matematika", "Ona tili", "Tabiatshunoslik", "Rasm"],
-        ["Chorshanba", "Ona tili", "Matematika", "O'qish", "Ingliz tili"],
-        ["Payshanba", "Matematika", "Ona tili", "Musiqa", "Texnologiya"],
-        ["Juma", "Oqish", "Matematika", "Jismoniy tarbiya", "Odobnoma"]
-      ]
-    },
-    middle: {
-      title: "5 - 9 Sinflar (O'rta bo'g'in)",
-      headers: ["Hafta kuni", "1-soat", "2-soat", "3-soat", "4-soat", "5-soat", "6-soat"],
-      rows: [
-        ["Dushanba", "Matematika", "Ona tili", "Fizika", "Ingliz tili", "Tarix", "Jismoniy tarbiya"],
-        ["Seshanba", "Adabiyot", "Matematika", "Biologiya", "Informatika", "Geografiya", "Rus tili"],
-        ["Chorshanba", "Fizika", "Kimyo", "Matematika", "Ingliz tili", "Ona tili", "Tarbiya"],
-        ["Payshanba", "Tarix", "Geografiya", "Matematika", "Adabiyot", "Informatika", "Biologiya"],
-        ["Juma", "Ingliz tili", "Kimyo", "Ona tili", "Fizika", "Jismoniy tarbiya", "Musiqa / Chizma"]
-      ]
-    },
-    senior: {
-      title: "10 - 11 Sinflar (Yuqori sinflar)",
-      headers: ["Hafta kuni", "1-soat", "2-soat", "3-soat", "4-soat", "5-soat", "6-soat"],
-      rows: [
-        ["Dushanba", "Algebra", "Fizika", "Ingliz tili", "Ona tili", "Kimyo", "Tarix"],
-        ["Seshanba", "Geometriya", "Kimyo", "Biologiya", "Informatika", "Adabiyot", "Huquq"],
-        ["Chorshanba", "Fizika", "Algebra", "Ingliz tili", "Tarix", "Geografiya", "Jismoniy tarbiya"],
-        ["Payshanba", "Ona tili", "Geometriya", "Biologiya", "Informatika", "Kimyo", "Iqtisod"],
-        ["Juma", "Ingliz tili", "Algebra", "Fizika", "Adabiyot", "ChQBT / Tarbiya", "Jismoniy tarbiya"]
-      ]
-    }
-  };
-
-  function renderSchedule(groupKey) {
-    const box = document.getElementById('schedContent');
-    if (!box) return;
-    const data = scheduleData[groupKey];
-    if (!data) return;
-
-    let html = `<h4 style="margin-bottom: 15px; color: var(--color-gold-300); font-weight: 700;">📌 ${data.title}</h4>`;
-    html += `<div style="overflow-x: auto;"><table class="sched-table"><thead><tr>`;
-    
-    data.headers.forEach(h => html += `<th>${h}</th>`);
-    html += `</tr></thead><tbody>`;
-
-    data.rows.forEach(row => {
-      html += `<tr>`;
-      row.forEach(cell => html += `<td>${cell}</td>`);
-      html += `</tr>`;
-    });
-
-    html += `</tbody></table></div>`;
-    box.innerHTML = html;
-  }
-
-  const schedBtns = document.querySelectorAll('.sched-btn');
-  schedBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      schedBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      
-      if (btn.textContent.includes('1 - 4')) renderSchedule('primary');
-      else if (btn.textContent.includes('5 - 9')) renderSchedule('middle');
-      else if (btn.textContent.includes('10 - 11')) renderSchedule('senior');
-    });
-  });
-
-  renderSchedule('primary');
-
-
-  /* 3. Ustozlar uchun Modal Oyna (Batafsil ma'lumot) */
+  /* 2. Ustozlar uchun Modal Oyna (Batafsil ma'lumot) */
   const teacherModal = document.getElementById('teacherModal');
   const closeModalBtn = document.getElementById('closeModal');
   const modalName = document.getElementById('modalName');
@@ -146,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* 4. Murojaat Formasidan Telegramga yuborish */
+  /* 3. Murojaat Formasidan Telegramga yuborish */
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -163,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* 5. Barcha Xonalar Fotogalereyasi va 4 tadan Rasmlar Lightbox Funksiyasi */
+  /* 4. Barcha Xonalar Fotogalereyasi va Lightbox Funksiyasi */
   function roomGalleryInit() {
     const modal = document.getElementById('roomGalleryModal');
     if (!modal) return;
@@ -175,8 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevBtn = document.getElementById('prevImgBtn');
     const nextBtn = document.getElementById('nextImgBtn');
 
-    // Har bir xonaning 4 tadan rasmlari
-   const ROOM_DATA = {
+    const ROOM_DATA = {
       it: {
         title: "IT va Kompyuter Xonasi Rasmlari",
         images: ["images/it_1.jpg.jpg", "images/it_2.jpg.jpg", "images/it_3.jpg.jpg", "images/it_4.jpg.jpg"],
