@@ -1,4 +1,4 @@
-/* DENOV 84-MAKTAB — script.js (To'liq versiya) */
+/* DENOV 84-MAKTAB — script.js (To'liq va yakuniy versiya) */
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* 3. Murojaat Formasidan Telegramga yuborish */
+  /* 3. Murojaat Formasidan Telegram (@ISLOMBEKPROGRAMMER) ga yuborish */
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -83,7 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const text = document.getElementById('mText').value;
 
       const message = `📨 Yangi murojaat (84-maktab sayti):\n\n👤 Ism: ${name}\n📞 Tel: ${phone}\n📌 Mavzu: ${subject}\n💬 Matn: ${text}`;
-      const telegramUrl = `https://t.me/MAK_RAHBARI84?text=${encodeURIComponent(message)}`;
+      
+      // Murojaatni to'g'ri Telegram akkauntingizga yo'naltirish
+      const telegramUrl = `https://t.me/ISLOMBEKPROGRAMMER?text=${encodeURIComponent(message)}`;
       window.open(telegramUrl, '_blank');
     });
   }
