@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* 3. Murojaat Formasidan Telegram (@ISLOMBEKPROGRAMMER) ga yuborish */
+  /* 3. Murojaat Formasidan @MAK_RAHBARI84 ga yuborish */
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -84,8 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const message = `📨 Yangi murojaat (84-maktab sayti):\n\n👤 Ism: ${name}\n📞 Tel: ${phone}\n📌 Mavzu: ${subject}\n💬 Matn: ${text}`;
       
-      // Murojaatni to'g'ri Telegram akkauntingizga yo'naltirish
-      const telegramUrl = `https://t.me/ISLOMBEKPROGRAMMER?text=${encodeURIComponent(message)}`;
+      // @MAK_RAHBARI84 ga yo'naltirish
+      const telegramUrl = `https://t.me/MAK_RAHBARI84?text=${encodeURIComponent(message)}`;
       window.open(telegramUrl, '_blank');
     });
   }
