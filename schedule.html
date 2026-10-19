@@ -9,65 +9,76 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .class-select-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+    .class-select {
+      background: #0d223f;
+      color: #fff;
+      border: 2px solid var(--color-gold-400);
+      padding: 12px 20px;
+      font-size: 1.05rem;
+      border-radius: 12px;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      outline: none;
+      box-shadow: var(--gold-glow);
+    }
+    .class-select option {
+      background: #06111e;
+      color: #fff;
+    }
+  </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const scheduleData = {
-        "1a": {
-          title: "1-'A' Sinfi Dars Jadvali (Boshlang'ich - 5 soat)",
-          headers: ["Hafta kuni", "1-soat", "2-soat", "3-soat", "4-soat", "5-soat"],
-          rows: [
-            ["Dushanba", "Ona tili", "Matematika", "O'qish", "Jismoniy tarbiya", "Odobnoma"],
-            ["Seshanba", "Matematika", "Ona tili", "Tabiatshunoslik", "Rasm", "Musiqa"],
-            ["Chorshanba", "Ona tili", "Matematika", "O'qish", "Ingliz tili", "Texnologiya"],
-            ["Payshanba", "Matematika", "Ona tili", "Musiqa", "Texnologiya", "O'qish"],
-            ["Juma", "O'qish", "Matematika", "Jismoniy tarbiya", "Odobnoma", "Ona tili"]
-          ]
-        },
-        "1b": {
-          title: "1-'B' Sinfi Dars Jadvali (Boshlang'ich - 5 soat)",
-          headers: ["Hafta kuni", "1-soat", "2-soat", "3-soat", "4-soat", "5-soat"],
-          rows: [
-            ["Dushanba", "Matematika", "Ona tili", "O'qish", "Odobnoma", "Jismoniy tarbiya"],
-            ["Seshanba", "Ona tili", "Matematika", "Rasm", "Tabiatshunoslik", "Musiqa"],
-            ["Chorshanba", "Matematika", "Ona tili", "Ingliz tili", "O'qish", "Texnologiya"],
-            ["Payshanba", "Ona tili", "Matematika", "Texnologiya", "Musiqa", "O'qish"],
-            ["Juma", "Matematika", "O'qish", "Jismoniy tarbiya", "Ona tili", "Odobnoma"]
-          ]
-        },
-        "5a": {
-          title: "5-'A' Sinfi Dars Jadvali (O'rta bo'g'in - 6 soat)",
-          headers: ["Hafta kuni", "1-soat", "2-soat", "3-soat", "4-soat", "5-soat", "6-soat"],
-          rows: [
-            ["Dushanba", "Matematika", "Ona tili", "Fizika", "Ingliz tili", "Tarix", "Jismoniy tarbiya"],
-            ["Seshanba", "Adabiyot", "Matematika", "Biologiya", "Informatika", "Geografiya", "Rus tili"],
-            ["Chorshanba", "Fizika", "Kimyo", "Matematika", "Ingliz tili", "Ona tili", "Tarbiya"],
-            ["Payshanba", "Tarix", "Geografiya", "Matematika", "Adabiyot", "Informatika", "Biologiya"],
-            ["Juma", "Ingliz tili", "Kimyo", "Ona tili", "Fizika", "Jismoniy tarbiya", "Musiqa"]
-          ]
-        },
-        "9a": {
-          title: "9-'A' Sinfi Dars Jadvali (O'rta bo'g'in - 6 soat)",
-          headers: ["Hafta kuni", "1-soat", "2-soat", "3-soat", "4-soat", "5-soat", "6-soat"],
-          rows: [
-            ["Dushanba", "Algebra", "Geometriya", "Ona tili", "Ingliz tili", "Kimyo", "Tarix"],
-            ["Seshanba", "Fizika", "Adabiyot", "Biologiya", "Informatika", "Geografiya", "Huquq"],
-            ["Chorshanba", "Ona tili", "Algebra", "Ingliz tili", "Fizika", "Tarix", "Jismoniy tarbiya"],
-            ["Payshanba", "Geometriya", "Kimyo", "Biologiya", "Informatika", "Adabiyot", "Tarbiya"],
-            ["Juma", "Ingliz tili", "Algebra", "Fizika", "Ona tili", "Jismoniy tarbiya", "Iqtisod"]
-          ]
-        },
-        "10a": {
-          title: "10-'A' Sinfi Dars Jadvali (Yuqori sinf - 6 soat)",
-          headers: ["Hafta kuni", "1-soat", "2-soat", "3-soat", "4-soat", "5-soat", "6-soat"],
-          rows: [
-            ["Dushanba", "Algebra", "Fizika", "Ingliz tili", "Ona tili", "Kimyo", "Tarix"],
-            ["Seshanba", "Geometriya", "Kimyo", "Biologiya", "Informatika", "Adabiyot", "Huquq"],
-            ["Chorshanba", "Fizika", "Algebra", "Ingliz tili", "Tarix", "Geografiya", "Jismoniy tarbiya"],
-            ["Payshanba", "Ona tili", "Geometriya", "Biologiya", "Informatika", "Kimyo", "Iqtisod"],
-            ["Juma", "Ingliz tili", "Algebra", "Fizika", "Adabiyot", "ChQBT", "Jismoniy tarbiya"]
-          ]
-        }
-      };
+      // Barcha sinflar ro'yxatini yaratish (1-A dan 11-V gacha)
+      const letters = ["A", "B", "V"];
+      const scheduleData = {};
+
+      for (let c = 1; c <= 11; c++) {
+        letters.forEach(letter => {
+          const key = `${c}${letter.toLowerCase()}`;
+          const isJunior = c <= 4;
+          const hoursCount = isJunior ? 5 : 6;
+          
+          const headers = ["Hafta kuni"];
+          for (let h = 1; h <= hoursCount; h++) {
+            headers.push(`${h}-soat`);
+          }
+
+          let rows = [];
+          if (isJunior) {
+            rows = [
+              ["Dushanba", "Ona tili", "Matematika", "O'qish", "Jismoniy tarbiya", "Odobnoma"],
+              ["Seshanba", "Matematika", "Ona tili", "Tabiatshunoslik", "Rasm", "Musiqa"],
+              ["Chorshanba", "Ona tili", "Matematika", "O'qish", "Ingliz tili", "Texnologiya"],
+              ["Payshanba", "Matematika", "Ona tili", "Musiqa", "Texnologiya", "O'qish"],
+              ["Juma", "O'qish", "Matematika", "Jismoniy tarbiya", "Odobnoma", "Ona tili"]
+            ];
+          } else {
+            rows = [
+              ["Dushanba", "Algebra", "Fizika", "Ona tili", "Ingliz tili", "Tarix", "Jismoniy tarbiya"],
+              ["Seshanba", "Geometriya", "Kimyo", "Biologiya", "Informatika", "Adabiyot", "Huquq"],
+              ["Chorshanba", "Fizika", "Algebra", "Ingliz tili", "Tarix", "Geografiya", "Tarbiya"],
+              ["Payshanba", "Ona tili", "Geometriya", "Biologiya", "Informatika", "Kimyo", "Iqtisod"],
+              ["Juma", "Ingliz tili", "Algebra", "Fizika", "Adabiyot", "ChQBT", "Jismoniy tarbiya"]
+            ];
+          }
+
+          scheduleData[key] = {
+            title: `${c}-'${letter}' Sinfi Dars Jadvali (${isJunior ? "Boshlang'ich - 5 soat" : "Yuqori/O'rta - 6 soat"})`,
+            headers: headers,
+            rows: rows
+          };
+        });
+      }
 
       function renderSchedule(groupKey) {
         const box = document.getElementById('schedContent');
@@ -75,7 +86,7 @@
         const data = scheduleData[groupKey];
         if (!data) return;
 
-        let html = `<h4 style="margin-bottom: 15px; color: var(--color-gold-300); font-weight: 700;">📌 ${data.title}</h4>`;
+        let html = `<h4 style="margin-bottom: 15px; color: var(--color-gold-300); font-weight: 700; font-size: 1.2rem;">📌 ${data.title}</h4>`;
         html += `<div style="overflow-x: auto;"><table class="sched-table"><thead><tr>`;
         
         data.headers.forEach(h => html += `<th>${h}</th>`);
@@ -91,15 +102,12 @@
         box.innerHTML = html;
       }
 
-      const schedBtns = document.querySelectorAll('.sched-btn');
-      schedBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          schedBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          const classKey = btn.getAttribute('data-class');
-          renderSchedule(classKey);
+      const classPicker = document.getElementById('classPicker');
+      if (classPicker) {
+        classPicker.addEventListener('change', (e) => {
+          renderSchedule(e.target.value);
         });
-      });
+      }
 
       renderSchedule('1a');
     });
@@ -126,13 +134,67 @@
     <div class="container">
       <h2 class="section-heading">Sinflar bo'yicha Dars Jadvali</h2>
       
-      <!-- Sinflar tugmalari -->
-      <div class="schedule-filter">
-        <button type="button" class="sched-btn active" data-class="1a">1-"A" Sinf</button>
-        <button type="button" class="sched-btn" data-class="1b">1-"B" Sinf</button>
-        <button type="button" class="sched-btn" data-class="5a">5-"A" Sinf</button>
-        <button type="button" class="sched-btn" data-class="9a">9-"A" Sinf</button>
-        <button type="button" class="sched-btn" data-class="10a">10-"A" Sinf</button>
+      <!-- Tanlash Menyusi (1-A dan 11-V gacha) -->
+      <div class="class-select-box">
+        <label for="classPicker" style="font-weight: 700; color: var(--color-gold-300); font-size: 1.1rem;">Sinfni tanlang:</label>
+        <select id="classPicker" class="class-select">
+          <optgroup label="1-Sinf">
+            <option value="1a">1-"A" Sinf</option>
+            <option value="1b">1-"B" Sinf</option>
+            <option value="1v">1-"V" Sinf</option>
+          </optgroup>
+          <optgroup label="2-Sinf">
+            <option value="2a">2-"A" Sinf</option>
+            <option value="2b">2-"B" Sinf</option>
+            <option value="2v">2-"V" Sinf</option>
+          </optgroup>
+          <optgroup label="3-Sinf">
+            <option value="3a">3-"A" Sinf</option>
+            <option value="3b">3-"B" Sinf</option>
+            <option value="3v">3-"V" Sinf</option>
+          </optgroup>
+          <optgroup label="4-Sinf">
+            <option value="4a">4-"A" Sinf</option>
+            <option value="4b">4-"B" Sinf</option>
+            <option value="4v">4-"V" Sinf</option>
+          </optgroup>
+          <optgroup label="5-Sinf">
+            <option value="5a">5-"A" Sinf</option>
+            <option value="5b">5-"B" Sinf</option>
+            <option value="5v">5-"V" Sinf</option>
+          </optgroup>
+          <optgroup label="6-Sinf">
+            <option value="6a">6-"A" Sinf</option>
+            <option value="6b">6-"B" Sinf</option>
+            <option value="6v">6-"V" Sinf</option>
+          </optgroup>
+          <optgroup label="7-Sinf">
+            <option value="7a">7-"A" Sinf</option>
+            <option value="7b">7-"B" Sinf</option>
+            <option value="7v">7-"V" Sinf</option>
+          </optgroup>
+          <optgroup label="8-Sinf">
+            <option value="8a">8-"A" Sinf</option>
+            <option value="8b">8-"B" Sinf</option>
+            <option value="8v">8-"V" Sinf</option>
+          </optgroup>
+          <optgroup label="9-Sinf">
+            <option value="9a">9-"A" Sinf</option>
+            <option value="9b">9-"B" Sinf</option>
+            <option value="9v">9-"V" Sinf</option>
+          </optgroup>
+          <optgroup label="10-Sinf">
+            <option value="10a">10-"A" Sinf</option>
+            <option value="10b">10-"B" Sinf</option>
+            <option value="10v">10-"V" Sinf</option>
+          </optgroup>
+          <optgroup label="11-Sinf">
+            <option value="11a">11-"A" Sinf</option>
+            <option value="11b">11-"B" Sinf</option>
+            <option value="11v">11-"V" Sinf</option>
+          </optgroup>
+        </select>
+
         <button type="button" onclick="window.print()" class="print-btn">🖨️ Chop etish / PDF</button>
       </div>
 
