@@ -38,78 +38,51 @@
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Barcha sinflar ro'yxatini yaratish (1-A dan 11-V gacha)
-      const letters = ["A", "B", "V"];
-      const scheduleData = {};
-
-      for (let c = 1; c <= 11; c++) {
-        letters.forEach(letter => {
-          const key = `${c}${letter.toLowerCase()}`;
-          const isJunior = c <= 4;
-          const hoursCount = isJunior ? 5 : 6;
-          
-          const headers = ["Hafta kuni"];
-          for (let h = 1; h <= hoursCount; h++) {
-            headers.push(`${h}-soat`);
-          }
-
-          let rows = [];
-          if (isJunior) {
-            rows = [
-              ["Dushanba", "Ona tili", "Matematika", "O'qish", "Jismoniy tarbiya", "Odobnoma"],
-              ["Seshanba", "Matematika", "Ona tili", "Tabiatshunoslik", "Rasm", "Musiqa"],
-              ["Chorshanba", "Ona tili", "Matematika", "O'qish", "Ingliz tili", "Texnologiya"],
-              ["Payshanba", "Matematika", "Ona tili", "Musiqa", "Texnologiya", "O'qish"],
-              ["Juma", "O'qish", "Matematika", "Jismoniy tarbiya", "Odobnoma", "Ona tili"]
-            ];
-          } else {
-            rows = [
-              ["Dushanba", "Algebra", "Fizika", "Ona tili", "Ingliz tili", "Tarix", "Jismoniy tarbiya"],
-              ["Seshanba", "Geometriya", "Kimyo", "Biologiya", "Informatika", "Adabiyot", "Huquq"],
-              ["Chorshanba", "Fizika", "Algebra", "Ingliz tili", "Tarix", "Geografiya", "Tarbiya"],
-              ["Payshanba", "Ona tili", "Geometriya", "Biologiya", "Informatika", "Kimyo", "Iqtisod"],
-              ["Juma", "Ingliz tili", "Algebra", "Fizika", "Adabiyot", "ChQBT", "Jismoniy tarbiya"]
-            ];
-          }
-
-          scheduleData[key] = {
-            title: `${c}-'${letter}' Sinfi Dars Jadvali (${isJunior ? "Boshlang'ich - 5 soat" : "Yuqori/O'rta - 6 soat"})`,
-            headers: headers,
-            rows: rows
-          };
-        });
-      }
-
-      function renderSchedule(groupKey) {
+      function renderSchedule(selectedClass) {
         const box = document.getElementById('schedContent');
         if (!box) return;
-        const data = scheduleData[groupKey];
-        if (!data) return;
 
-        let html = `<h4 style="margin-bottom: 15px; color: var(--color-gold-300); font-weight: 700; font-size: 1.2rem;">📌 ${data.title}</h4>`;
-        html += `<div style="overflow-x: auto;"><table class="sched-table"><thead><tr>`;
+        // Admin panel saqlaydigan xotiradan (localStorage) o'qish
+        const savedSchedules = localStorage.getItem('school_schedules_v3');
+        let schedules = [];
+
+        if (savedSchedules) {
+          schedules = JSON.parse(savedSchedules);
+        }
+
+        // Tanlangan sinf bo'yicha filtrlash (Masalan: "1-A sinf")
+        const classSchedules = schedules.filter(s => s.class_name.toLowerCase() === selectedClass.toLowerCase());
+
+        let html = `<h4 style="margin-bottom: 15px; color: var(--color-gold-300); font-weight: 700; font-size: 1.2rem;">📌 ${selectedClass} Dars Jadvali</h4>`;
         
-        data.headers.forEach(h => html += `<th>${h}</th>`);
-        html += `</tr></thead><tbody>`;
+        if (classSchedules.length === 0) {
+          html += `<p style="color: #cbd5e1; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; text-align: center;">Hozircha bu sinf uchun admin paneldan dars jadvali kiritilmagan.</p>`;
+        } else {
+          html += `<div style="overflow-x: auto;"><table class="sched-table"><thead><tr>`;
+          html += `<th>Hafta kuni</th><th>Darslar ro'yxati</th></tr></thead><tbody>`;
 
-        data.rows.forEach(row => {
-          html += `<tr>`;
-          row.forEach(cell => html += `<td>${cell}</td>`);
-          html += `</tr>`;
-        });
+          classSchedules.forEach(item => {
+            html += `<tr>`;
+            html += `<td><strong style="color:var(--color-gold-300);">${item.day}</strong></td>`;
+            html += `<td>${item.lessons}</td>`;
+            html += `</tr>`;
+          });
 
-        html += `</tbody></table></div>`;
+          html += `</tbody></table></div>`;
+        }
+
         box.innerHTML = html;
       }
 
       const classPicker = document.getElementById('classPicker');
       if (classPicker) {
+        // Boshlang'ich tanlangan sinfni chiqarish
+        renderSchedule(classPicker.value);
+
         classPicker.addEventListener('change', (e) => {
           renderSchedule(e.target.value);
         });
       }
-
-      renderSchedule('1a');
     });
   </script>
 </head>
@@ -134,64 +107,64 @@
     <div class="container">
       <h2 class="section-heading">Sinflar bo'yicha Dars Jadvali</h2>
       
-      <!-- Tanlash Menyusi (1-A dan 11-V gacha) -->
+      <!-- Tanlash Menyusi -->
       <div class="class-select-box">
         <label for="classPicker" style="font-weight: 700; color: var(--color-gold-300); font-size: 1.1rem;">Sinfni tanlang:</label>
         <select id="classPicker" class="class-select">
           <optgroup label="1-Sinf">
-            <option value="1a">1-"A" Sinf</option>
-            <option value="1b">1-"B" Sinf</option>
-            <option value="1v">1-"V" Sinf</option>
+            <option value="1-A sinf">1-"A" Sinf</option>
+            <option value="1-B sinf">1-"B" Sinf</option>
+            <option value="1-V sinf">1-"V" Sinf</option>
           </optgroup>
           <optgroup label="2-Sinf">
-            <option value="2a">2-"A" Sinf</option>
-            <option value="2b">2-"B" Sinf</option>
-            <option value="2v">2-"V" Sinf</option>
+            <option value="2-A sinf">2-"A" Sinf</option>
+            <option value="2-B sinf">2-"B" Sinf</option>
+            <option value="2-V sinf">2-"V" Sinf</option>
           </optgroup>
           <optgroup label="3-Sinf">
-            <option value="3a">3-"A" Sinf</option>
-            <option value="3b">3-"B" Sinf</option>
-            <option value="3v">3-"V" Sinf</option>
+            <option value="3-A sinf">3-"A" Sinf</option>
+            <option value="3-B sinf">3-"B" Sinf</option>
+            <option value="3-V sinf">3-"V" Sinf</option>
           </optgroup>
           <optgroup label="4-Sinf">
-            <option value="4a">4-"A" Sinf</option>
-            <option value="4b">4-"B" Sinf</option>
-            <option value="4v">4-"V" Sinf</option>
+            <option value="4-A sinf">4-"A" Sinf</option>
+            <option value="4-B sinf">4-"B" Sinf</option>
+            <option value="4-V sinf">4-"V" Sinf</option>
           </optgroup>
           <optgroup label="5-Sinf">
-            <option value="5a">5-"A" Sinf</option>
-            <option value="5b">5-"B" Sinf</option>
-            <option value="5v">5-"V" Sinf</option>
+            <option value="5-A sinf">5-"A" Sinf</option>
+            <option value="5-B sinf">5-"B" Sinf</option>
+            <option value="5-V sinf">5-"V" Sinf</option>
           </optgroup>
           <optgroup label="6-Sinf">
-            <option value="6a">6-"A" Sinf</option>
-            <option value="6b">6-"B" Sinf</option>
-            <option value="6v">6-"V" Sinf</option>
+            <option value="6-A sinf">6-"A" Sinf</option>
+            <option value="6-B sinf">6-"B" Sinf</option>
+            <option value="6-V sinf">6-"V" Sinf</option>
           </optgroup>
           <optgroup label="7-Sinf">
-            <option value="7a">7-"A" Sinf</option>
-            <option value="7b">7-"B" Sinf</option>
-            <option value="7v">7-"V" Sinf</option>
+            <option value="7-A sinf">7-"A" Sinf</option>
+            <option value="7-B sinf">7-"B" Sinf</option>
+            <option value="7-V sinf">7-"V" Sinf</option>
           </optgroup>
           <optgroup label="8-Sinf">
-            <option value="8a">8-"A" Sinf</option>
-            <option value="8b">8-"B" Sinf</option>
-            <option value="8v">8-"V" Sinf</option>
+            <option value="8-A sinf">8-"A" Sinf</option>
+            <option value="8-B sinf">8-"B" Sinf</option>
+            <option value="8-V sinf">8-"V" Sinf</option>
           </optgroup>
           <optgroup label="9-Sinf">
-            <option value="9a">9-"A" Sinf</option>
-            <option value="9b">9-"B" Sinf</option>
-            <option value="9v">9-"V" Sinf</option>
+            <option value="9-A sinf">9-"A" Sinf</option>
+            <option value="9-B sinf">9-"B" Sinf</option>
+            <option value="9-V sinf">9-"V" Sinf</option>
           </optgroup>
           <optgroup label="10-Sinf">
-            <option value="10a">10-"A" Sinf</option>
-            <option value="10b">10-"B" Sinf</option>
-            <option value="10v">10-"V" Sinf</option>
+            <option value="10-A sinf">10-"A" Sinf</option>
+            <option value="10-B sinf">10-"B" Sinf</option>
+            <option value="10-V sinf">10-"V" Sinf</option>
           </optgroup>
           <optgroup label="11-Sinf">
-            <option value="11a">11-"A" Sinf</option>
-            <option value="11b">11-"B" Sinf</option>
-            <option value="11v">11-"V" Sinf</option>
+            <option value="11-A sinf">11-"A" Sinf</option>
+            <option value="11-B sinf">11-"B" Sinf</option>
+            <option value="11-V sinf">11-"V" Sinf</option>
           </optgroup>
         </select>
 
