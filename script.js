@@ -1,12 +1,12 @@
 /* ==========================================================
-   DENOV 84-MAKTAB — User Side script.js
+   DENOV 84-MAKTAB — User Side script.js (To'liq Yangilangan)
    ========================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   // 1. SUPABASE ORQALI USTOZLarni BAZADAN OLIB KELISH
   const SUPABASE_URL = 'https://erurfkbqnwzpieantvm.supabase.co';
-  const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY'; // O'z anon keyingizni yozasiz
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVydXJma2Jxbnd6cGllYW50dm0iLCJyb2xlIjoiYW5vbiIsImlhdjYyNzQyMTE5LCJleHAiOjE5Nzk5OTcxMTl9.k8K62Q4p9a3C5s8xW7v1t0m6n2p4q5r8s9t0u1v2w3x';
   
   if (window.supabase) {
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -34,12 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="teacher-info">
             <h3>${t.full_name}</h3>
             <p class="teacher-role">${t.subject}</p>
-            <span class="teacher-badge">O'qituvchi</span>
+            <span class="teacher-badge">${t.badge || "O'qituvchi"}</span>
           </div>
         `;
-        // Modal oynani ulash
+        
+        // Modal oynani ochish hodisasi
         card.addEventListener('click', () => {
-          openTeacherModal(t.full_name, t.subject, "O'qituvchi", t.bio);
+          openTeacherModal(t.full_name, t.subject, t.badge || "O'qituvchi", t.bio);
         });
         listContainer.appendChild(card);
       });
