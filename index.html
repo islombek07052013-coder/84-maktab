@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Denov 84-umumiy o'rta ta'lim maktabi</title>
+  <title id="page-title">Denov 84-umumiy o'rta ta'lim maktabi</title>
   <meta name="description" content="Denov 84-umumiy o'rta ta'lim maktabi — zamonaviy ta'lim, tajribali ustozlar va ishonchli kelajak.">
   <meta name="theme-color" content="#06111e">
   <link rel="manifest" href="manifest.json">
@@ -29,7 +29,7 @@
     <div class="container header-inner">
       <a href="#home" class="logo" aria-label="84-maktab — bosh sahifaga o'tish">
         <span class="logo-badge">84</span>
-        <span class="logo-text">84-maktab<small>Denov tumani</small></span>
+        <span id="logo-text-name" class="logo-text">84-maktab<small>Denov tumani</small></span>
       </a>
 
       <input type="checkbox" id="nav-toggle" class="nav-toggle">
@@ -81,7 +81,7 @@
             <div class="card-glow"></div>
             <div class="about-card-body">
               <div class="about-card-badge">🎓 Rasmiy Ta'lim Maskani</div>
-              <h3>Denov 84-Maktab</h3>
+              <h3 id="about-card-title">Denov 84-Maktab</h3>
               <p>Kelajak bunyodkorlari va bilim maskani</p>
               <div class="about-mini-stats">
                 <div class="m-stat"><strong>1200+</strong><span>O'quvchi</span></div>
@@ -94,98 +94,29 @@
       </div>
     </section>
 
-    <!-- Maktab Xonalari Fotogalereyasi -->
+    <!-- Maktab Xonalari Fotogalereyasi (Admin Paneldan Boshqariladi) -->
     <section class="gallery-section" id="gallery">
       <div class="container">
         <h2 class="section-heading">Maktabimizning Zamonaviy Xonalari</h2>
         <p style="text-align: center; margin-bottom: 35px; color: #cbd5e1;">Xona rasmlarini ko'rish va barcha burchaklarini tomosha qilish uchun ustiga bosing.</p>
         
-        <div class="rooms-gallery-grid">
-          
-          <!-- 1. IT Xonasi -->
+        <div class="rooms-gallery-grid" id="rooms-container">
+          <!-- Asosiy Xonalar -->
           <div class="room-card" data-room="it">
-            <div class="room-img-wrap">
-              <img src="images/it_1.jpg.jpg" alt="IT va Kompyuter Xonasi" onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600'">
-              <span class="room-badge">💻 IT va Dasturlash</span>
-              <div class="room-overlay"><span>🔍 Rasmlarni ko'rish (+4)</span></div>
-            </div>
-            <div class="room-info">
-              <h3>IT va Kompyuter Xonasi</h3>
-              <p>Zamonaviy kompyuterlar va yuqori tezlikdagi internet bilan ta'minlangan IT xonasi.</p>
-            </div>
+            <div class="room-img-wrap"><img src="images/it_1.jpg.jpg" alt="IT Xonasi" onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600'"><span class="room-badge">💻 IT va Dasturlash</span></div>
+            <div class="room-info"><h3>IT va Kompyuter Xonasi</h3><p>Zamonaviy kompyuterlar va yuqori tezlikdagi internet bilan ta'minlangan IT xonasi.</p></div>
           </div>
-
-          <!-- 2. Tikuvchilik va Dizayn Xonasi -->
           <div class="room-card" data-room="sewing">
-            <div class="room-img-wrap">
-              <img src="images/sewing_1.jpg.jpg" alt="Tikuvchilik va Dizayn Xonasi" onerror="this.src='https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600'">
-              <span class="room-badge">🧵 Tikuvchilik va Dizayn</span>
-              <div class="room-overlay"><span>🔍 Rasmlarni ko'rish (+3)</span></div>
-            </div>
-            <div class="room-info">
-              <h3>Tikuvchilik va Dizayn Xonasi</h3>
-              <p>Qizlar uchun tikuv mashinalari va zamonaviy dizayn hunarmandchilik jihozlari ustaxonasi.</p>
-            </div>
+            <div class="room-img-wrap"><img src="images/sewing_1.jpg.jpg" alt="Tikuvchilik" onerror="this.src='https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600'"><span class="room-badge">🧵 Tikuvchilik va Dizayn</span></div>
+            <div class="room-info"><h3>Tikuvchilik va Dizayn Xonasi</h3><p>Qizlar uchun tikuv mashinalari va zamonaviy dizayn ustaxonasi.</p></div>
           </div>
-
-          <!-- 3. Musiqa Xonasi -->
           <div class="room-card" data-room="music">
-            <div class="room-img-wrap">
-              <img src="images/music_1.jpg.jpg" alt="Musiqa Xonasi" onerror="this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600'">
-              <span class="room-badge">🎵 Musiqa San'ati</span>
-              <div class="room-overlay"><span>🔍 Rasmlarni ko'rish (+3)</span></div>
-            </div>
-            <div class="room-info">
-              <h3>Musiqa Xonasi</h3>
-              <p>Milliy va zamonaviy musiqa asboblari bilan jihozlangan ijodiy fan xonasi.</p>
-            </div>
+            <div class="room-img-wrap"><img src="images/music_1.jpg.jpg" alt="Musiqa" onerror="this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600'"><span class="room-badge">🎵 Musiqa San'ati</span></div>
+            <div class="room-info"><h3>Musiqa Xonasi</h3><p>Milliy va zamonaviy musiqa asboblari xonasi.</p></div>
           </div>
-
-          <!-- 4. Tasviriy San'at Xonasi -->
-          <div class="room-card" data-room="art">
-            <div class="room-img-wrap">
-              <img src="images/art_1.jpg.jpg" alt="Tasviriy San'at Xonasi" onerror="this.src='https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600'">
-              <span class="room-badge">🎨 Tasviriy San'at</span>
-              <div class="room-overlay"><span>🔍 Rasmlarni ko'rish (+4)</span></div>
-            </div>
-            <div class="room-info">
-              <h3>Tasviriy San'at Xonasi</h3>
-              <p>Chizmachilik, rangtasvir va estetik ijodiy ishlar olib boriladigan maxsus xona.</p>
-            </div>
-          </div>
-
-          <!-- 5. Texnologiya Xonasi -->
-          <div class="room-card" data-room="tech">
-            <div class="room-img-wrap">
-              <img src="images/tech_1.jpg.jpg.jpg" alt="Texnologiya Xonasi" onerror="this.src='https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=600'">
-              <span class="room-badge">⚙️ Texnologiya</span>
-              <div class="room-overlay"><span>🔍 Rasmlarni ko'rish (+3)</span></div>
-            </div>
-            <div class="room-info">
-              <h3>Texnologiya Xonasi</h3>
-              <p>O'quvchilar amaliy ko'nikmalar, loyihalar va amaliy ustaxona mashg'ulotlarini o'taydigan joy.</p>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
-
-    <!-- Xona Rasmlari Uchun Modal Lightbox Oynasi -->
-    <div id="roomGalleryModal" class="room-modal" hidden>
-      <div class="room-modal-content">
-        <button type="button" id="closeRoomModal" class="room-modal-close">&times;</button>
-        <h3 id="roomModalTitle" class="room-modal-title">Xona nomi</h3>
-        
-        <div class="gallery-viewer">
-          <button type="button" id="prevImgBtn" class="nav-img-btn left-btn">❮</button>
-          <img id="activeRoomImg" src="" alt="Xona rasmi" class="active-slide-img">
-          <button type="button" id="nextImgBtn" class="nav-img-btn right-btn">❯</button>
-        </div>
-
-        <div id="thumbList" class="thumb-list"></div>
-      </div>
-    </div>
 
     <!-- O'quv yili yakunigacha Hisoblagich -->
     <section class="countdown-section">
@@ -205,11 +136,13 @@
       </div>
     </section>
 
-    <!-- Sinflar bo'yicha Dars Jadvali (2-sahifaga o'tuvchi tugma) -->
+    <!-- Sinflar bo'yicha Dars Jadvali -->
     <section class="class-schedule-section" id="schedule">
       <div class="container" style="text-align: center;">
         <h2 class="section-heading">Sinflar bo'yicha Dars Jadvali</h2>
-        <p style="color: #cbd5e1; margin-bottom: 25px; font-size: 1.05rem;">Maktabimizdagi barcha sinflarning batafsil dars jadvalini ko'rish uchun quyidagi tugmani bosing:</p>
+        <div id="dynamic-schedule-box" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; text-align: left; margin-bottom: 30px;">
+          <!-- Admin Paneldan Qo'shilgan Jadvallar Shu Yerga Chiqadi -->
+        </div>
         <a href="schedule.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 16px 40px; box-shadow: var(--gold-glow);">
           📋 Sinflar va Dars Jadvallarini Ko'rish (2-sahifa)
         </a>
@@ -222,7 +155,6 @@
         <h2 class="section-heading">Qo'ng'iroq jadvali</h2>
 
         <div class="shifts-wrapper">
-          <!-- 1-smena: 6 soat -->
           <div class="shift-block">
             <h3 class="shift-title">☀️ 1-smena (6 soatli darslar)</h3>
             <div class="bell-grid-container">
@@ -234,140 +166,17 @@
               <div class="bell-card-item"><div class="b-badge">6-soat dars</div><div class="b-time">⏰ 12:10 – 12:55</div><div class="b-dur">Davomiyligi: 45 daqiqa</div></div>
             </div>
           </div>
-
-          <!-- 2-smena: 6 soat (13:05 da kirish) -->
-          <div class="shift-block" style="margin-top: 40px;">
-            <h3 class="shift-title">🌙 2-smena (6 soatli darslar — 13:05 dan boshlanish)</h3>
-            <div class="bell-grid-container">
-              <div class="bell-card-item"><div class="b-badge">1-soat dars</div><div class="b-time">⏰ 13:05 – 13:50</div><div class="b-dur">Tanaffus: 5 daqiqa</div></div>
-              <div class="bell-card-item"><div class="b-badge">2-soat dars</div><div class="b-time">⏰ 13:55 – 14:40</div><div class="b-dur">Tanaffus: 5 daqiqa</div></div>
-              <div class="bell-card-item"><div class="b-badge">3-soat dars</div><div class="b-time">⏰ 14:45 – 15:30</div><div class="b-dur">Tanaffus: 5 daqiqa</div></div>
-              <div class="bell-card-item"><div class="b-badge">4-soat dars</div><div class="b-time">⏰ 15:35 – 16:20</div><div class="b-dur">Tanaffus: 5 daqiqa</div></div>
-              <div class="bell-card-item"><div class="b-badge">5-soat dars</div><div class="b-time">⏰ 16:25 – 17:10</div><div class="b-dur">Tanaffus: 5 daqiqa</div></div>
-              <div class="bell-card-item"><div class="b-badge">6-soat dars</div><div class="b-time">⏰ 17:15 – 18:00</div><div class="b-dur">Davomiyligi: 45 daqiqa</div></div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- Faxriy O'quvchilar va Yutuqlar -->
-    <section class="honors-section">
-      <div class="container">
-        <h2 class="section-heading">Maktabimiz Faxri va G'oliblarimiz</h2>
-        <div class="honors-grid">
-          <div class="honor-card">
-            <div class="honor-badge">🥇 Oltin Medal</div>
-            <h3>Olimpiada G'oliblari</h3>
-            <p>Matematika va Informatika fanlari bo'yicha tuman va viloyat bosqichi g'oliblari.</p>
-          </div>
-          <div class="honor-card">
-            <div class="honor-badge">⭐ 100% Natija</div>
-            <h3>A'lochi O'quvchilar</h3>
-            <p>Maktabimizning 150 dan ortiq o'quvchisi barcha fanlardan faqat "5" baholarga o'qishadi.</p>
-          </div>
-          <div class="honor-card">
-            <div class="honor-badge">🏆 Sport Zafarida</div>
-            <h3>Sport Musobaqalari</h3>
-            <p>Shaxmat, Futbol va Yengil atletika mezonlarida tuman chempionlari.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Ustozlar bo'limi -->
+    <!-- Ustozlar bo'limi (Admin Panel bilan To'liq Integratsiya) -->
     <section class="teachers" id="teachers">
       <div class="container">
         <h2 class="section-heading">Maktab rahbariyati va ustozlarimiz</h2>
 
-        <div class="leadership-section">
-          <h3 class="sub-section-title text-center">Maktab rahbariyati</h3>
-          <div class="leadership-modern-grid">
-            <div class="leader-premium-card director-glow" data-bio="Maktab direktori sifatida ta'lim sifatini oshirish va maktab infratuzilmasini rivojlantirishga mas'ul.">
-              <div class="l-badge">🏛️ Maktab Direktori</div>
-              <h3>Ismayilov Sherzod Chorievich</h3>
-              <p class="l-role">Oliy toifali pedagog</p>
-            </div>
-            <div class="deputies-modern-row">
-              <div class="leader-premium-card" data-bio="O'quv ishlar bo'yicha direktor o'rinbosari. Dars jadvali va ta'lim sifatini nazorat qiladi.">
-                <div class="l-badge-sub">O‘IBDO‘</div>
-                <h3>Soatov Faxriddin Abdurayimovich</h3>
-                <p class="l-role">Oliy toifa</p>
-              </div>
-              <div class="leader-premium-card" data-bio="Ma'naviyat va ma'rifat ishlari bo'yicha direktor o'rinbosari.">
-                <div class="l-badge-sub">MMIBDO‘</div>
-                <h3>Mitanov Sherzod Erkinovich</h3>
-                <p class="l-role">Oliy toifa</p>
-              </div>
-              <div class="leader-premium-card" data-bio="O'quv ishlar bo'yicha direktor o'rinbosari va Matematika fani o'qituvchisi.">
-                <div class="l-badge-sub">O‘IBDO‘ / Matematika</div>
-                <h3>Alimardonova Muyassar Yaxshibaevna</h3>
-                <p class="l-role">Oliy toifa</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="teachers-section-header" style="margin-top: 50px;">
-          <h3 class="sub-section-title">Bizning o'qituvchilarimiz (Batafsil ma'lumot uchun ustiga bosing)</h3>
-          
-          <div class="toifa-info-box">
-            <div class="toifa-info-title">💡 O'qituvchilar toifalari nima degani?</div>
-            <div class="toifa-info-grid">
-              <div class="toifa-item">
-                <span class="t-badge badge-oliy">Oliy toifa</span>
-                <p>Eng yuqori pedagogik mahorat, ko'p yillik tajriba va tuman/viloyat miqyosidagi natijaga ega ustozlar.</p>
-              </div>
-              <div class="toifa-item">
-                <span class="t-badge badge-1">1-toifa</span>
-                <p>Yuqori kasbiy va metodik tayyorgarlikka ega, o'quvchilari fan olimpiadalarida muvaffaqiyat qozongan ustozlar.</p>
-              </div>
-              <div class="toifa-item">
-                <span class="t-badge badge-2">2-toifa</span>
-                <p>O'z ustida muntazam ishlaydigan va zamonaviy ta'lim texnologiyalarini qo'llaydigan tajribali pedagoglar.</p>
-              </div>
-              <div class="toifa-item">
-                <span class="t-badge badge-mutaxassis">Mutaxassis</span>
-                <p>Oliy ma'lumotli, yosh va intiluvchan, innovatsion usullarni qo'llovchi istiqbolli o'qituvchilar.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="featured-teachers-list" style="margin-top: 25px;">
-          <div class="teacher-card mini-card" data-bio="Maktab psixologi, o'quvchilar bilan individual ishlash tajribasiga ega."><div class="teacher-info"><h3>Yo‘ldosheva Madina Hasanovna</h3><p class="teacher-role">Psixolog</p><span class="teacher-badge">Mutaxassis</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Kadrlar bo'yicha menejer va tashkiliy masalalar mas'uli."><div class="teacher-info"><h3>Jumaeva Dildora Baxtiyorovna</h3><p class="teacher-role">Kadrlar bo‘yicha menejer</p><span class="teacher-badge">Mutaxassis</span></div></div>
-          <div class="teacher-card mini-card" data-bio="ChQBT rahbari va harbiy-vatanparvarlik to'garagi mas'uli."><div class="teacher-info"><h3>Rustamov Akram Xolmuminovich</h3><p class="teacher-role">ChQBT rahbari</p><span class="teacher-badge">Mutaxassis</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Ona tili va adabiyoti fani o'qituvchisi."><div class="teacher-info"><h3>Ismailova Dildora Chorievna</h3><p class="teacher-role">Ona tili va adabiyoti o‘qituvchisi</p><span class="teacher-badge">1-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Ona tili va adabiyoti o'qituvchisi."><div class="teacher-info"><h3>Erdonova Feruza Xolbrevna</h3><p class="teacher-role">Ona tili va adabiyoti o‘qituvchisi</p><span class="teacher-badge">2-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Ona tili va adabiyoti o'qituvchisi."><div class="teacher-info"><h3>Avazova Xurshida Normurotovna</h3><p class="teacher-role">Ona tili va adabiyoti o‘qituvchisi</p><span class="teacher-badge">2-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Rus tili va adabiyoti o'qituvchisi."><div class="teacher-info"><h3>Eshonqulova Afifabonu Tulqin qizi</h3><p class="teacher-role">Rus tili va adabiyoti o‘qituvchisi</p><span class="teacher-badge">1-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Rus tili va adabiyoti o'qituvchisi."><div class="teacher-info"><h3>Mamajonova Nilufar Abdubannon qizi</h3><p class="teacher-role">Rus tili va adabiyoti o‘qituvchisi</p><span class="teacher-badge">2-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Ingliz tili o'qituvchisi, IELTS va xalqaro sertifikat egalari ustoz."><div class="teacher-info"><h3>Mardanova Zarnigor Alisher qizi</h3><p class="teacher-role">Ingliz tili o‘qituvchisi</p><span class="teacher-badge">1-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Ingliz tili fani o'qituvchisi."><div class="teacher-info"><h3>Karimov Abdulxofiz Abduvaxob o‘g‘li</h3><p class="teacher-role">Ingliz tili o‘qituvchisi</p><span class="teacher-badge">1-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Ingliz tili fani o'qituvchisi."><div class="teacher-info"><h3>Isroilova Jamila</h3><p class="teacher-role">Ingliz tili o‘qituvchisi</p><span class="teacher-badge">1-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Matematika fani o'qituvchisi, Olimpiada tayyorlov markazi rahbari."><div class="teacher-info"><h3>Sultonmurodov Erkin Abdug`aniyevich</h3><p class="teacher-role">Matematika o‘qituvchisi</p><span class="teacher-badge">Oliy toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Matematika fani o'qituvchisi."><div class="teacher-info"><h3>Chorieva Dildora Mamatmurotovna</h3><p class="teacher-role">Matematika o‘qituvchisi</p><span class="teacher-badge">1-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Matematika fani o'qituvchisi."><div class="teacher-info"><h3>Safarova Saboxat Muxammadievna</h3><p class="teacher-role">Matematika o‘qituvchisi</p><span class="teacher-badge">2-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Informatika va IT to'garagi rahbari, maktab veb-sayti va tarmoqlar mas'uli."><div class="teacher-info"><h3>Xujamkulov Shavkat Uralovich</h3><p class="teacher-role">Informatika o‘qituvchisi</p><span class="teacher-badge">1-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Informatika va kompyuter savodxonligi o'qituvchisi."><div class="teacher-info"><h3>Nosirjona Laylo Abdusalom qizi</h3><p class="teacher-role">Informatika o‘qituvchisi</p><span class="teacher-badge">Mutaxassis</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Fizika va Astronomiya fani o'qituvchisi."><div class="teacher-info"><h3>Ochilova Zulayxo Jahongir qizi</h3><p class="teacher-role">Fizika va Astronomiya o‘qituvchisi</p><span class="teacher-badge">Mutaxassis</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Tabiiy fanlar va Fizika o'qituvchisi."><div class="teacher-info"><h3>Omonov Umid O‘ral o‘g‘li</h3><p class="teacher-role">Tabiiy fan va Fizika o‘qituvchisi</p><span class="teacher-badge">Mutaxassis</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Tarbiya va huquqshunoslik fani o'qituvchisi."><div class="teacher-info"><h3>Nasrullaev Ravshan Yangibaevich</h3><p class="teacher-role">Tarbiya o‘qituvchisi</p><span class="teacher-badge">1-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Tarix va jamiyatshunoslik fani o'qituvchisi."><div class="teacher-info"><h3>Xasanov Xushnud Turg‘unovich</h3><p class="teacher-role">Tarix o‘qituvchisi</p><span class="teacher-badge">1-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Biologiya va ekologiya fani o'qituvchisi."><div class="teacher-info"><h3>Bakirov Sherali Ubaydullaevich</h3><p class="teacher-role">Biologiya o‘qituvchisi</p><span class="teacher-badge">2-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Kimyo fani o'qituvchisi va laboratoriya rahbari."><div class="teacher-info"><h3>Shinaev Abdiraim Eshpo‘latovich</h3><p class="teacher-role">Kimyo o‘qituvchisi</p><span class="teacher-badge">2-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Geografiya fani o'qituvchisi."><div class="teacher-info"><h3>Jo‘raeva Shaxlo Abdurayimovna</h3><p class="teacher-role">Geografiya o‘qituvchisi</p><span class="teacher-badge">Oliy toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Geografiya fani o'qituvchisi."><div class="teacher-info"><h3>Ergasheva Pokiza Anvar qizi</h3><p class="teacher-role">Geografiya o‘qituvchisi</p><span class="teacher-badge">2-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Musiqa va san'at to'garagi rahbari."><div class="teacher-info"><h3>Xaydarov Muhammad Zahriddinovich</h3><p class="teacher-role">Musiqa o‘qituvchisi</p><span class="teacher-badge">Oliy toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Tasviriy san'at va dizayn fani o'qituvchisi."><div class="teacher-info"><h3>Fayzullaeva Iqbol Boyburievna</h3><p class="teacher-role">Tasviriy san’at o‘qituvchisi</p><span class="teacher-badge">Oliy toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Tasviriy san'at va chizmachilik o'qituvchisi."><div class="teacher-info"><h3>Terkashov Sirojiddin Abdusamatovich</h3><p class="teacher-role">Tasviriy san’at va chizmachilik o‘qituvchisi</p><span class="teacher-badge">1-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Jismoniy tarbiya va sport to'garagi rahbari."><div class="teacher-info"><h3>Normuminov Ulugbek Tojimurotovich</h3><p class="teacher-role">Jismoniy tarbiya o‘qituvchisi</p><span class="teacher-badge">1-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Jismoniy tarbiya fani o'qituvchisi."><div class="teacher-info"><h3>Akramov Xumoiddin Akmal o‘g‘li</h3><p class="teacher-role">Jismoniy tarbiya o‘qituvchisi</p><span class="teacher-badge">1-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Boshlang'ich sinf o'qituvchisi."><div class="teacher-info"><h3>Davlatova Etibor Abdunazarovna</h3><p class="teacher-role">Boshlang‘ich sinf o‘qituvchisi</p><span class="teacher-badge">Oliy toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Boshlang'ich sinf o'qituvchisi."><div class="teacher-info"><h3>Normurodova Dilrabo Erkin qizi</h3><p class="teacher-role">Boshlang‘ich sinf o‘qituvchisi</p><span class="teacher-badge">1-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Boshlang'ich sinf o'qituvchisi."><div class="teacher-info"><h3>Irismatova Dilbar Chorievna</h3><p class="teacher-role">Boshlang‘ich sinf o‘qituvchisi</p><span class="teacher-badge">1-toifa</span></div></div>
-          <div class="teacher-card mini-card" data-bio="Boshlang'ich sinf o'qituvchisi."><div class="teacher-info"><h3>Jumaeva Sharifa Umarali qizi</h3><p class="teacher-role">Boshlang‘ich sinf o‘qituvchisi</p><span class="teacher-badge">2-toifa</span></div></div>
+        <div class="featured-teachers-list" id="dynamic-teachers-container" style="margin-top: 25px;">
+          <!-- Asosiy Ustozlar Ro'yxati (Admin Paneldan O'chirilsa Saytdan ham Avtomatik O'chadi) -->
         </div>
       </div>
     </section>
@@ -384,10 +193,6 @@
           <div class="faq-box">
             <h3>❓ Maktabda qanday to'garaklar faoliyat yuritadi?</h3>
             <p><strong>Javob:</strong> IT, Ingliz tili, Shaxmat va Futbol to'garaklari bepul yo'lga qo'yilgan.</p>
-          </div>
-          <div class="faq-box">
-            <h3>❓ Maktabda darslar necha smenada tashkil etilgan?</h3>
-            <p><strong>Javob:</strong> Maktabimizda o'quv jarayoni 2 smenada (1-smena va 2-smena) 6 soatdan etib qulay tartibda tashkil qilingan.</p>
           </div>
         </div>
       </div>
@@ -407,46 +212,10 @@
               <option value="">Murojaat mavzusini tanlang</option>
               <option value="1-sinfga qabul bo'yicha">1-sinfga qabul bo'yicha</option>
               <option value="Taklif va mulohaza">Taklif va mulohaza</option>
-              <option value="Shikoyat va muammo">Shikoyat va muammo</option>
             </select>
             <textarea id="mText" rows="4" placeholder="Murojaatingiz matni..." required></textarea>
             <button type="submit" class="btn btn-primary" style="width: 100%;">✈️ Telegram orqali yuborish</button>
           </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- Ustoz Modal Oynasi -->
-    <div id="teacherModal" class="teacher-modal" hidden>
-      <div class="t-modal-content">
-        <button type="button" id="closeModal" class="t-modal-close">&times;</button>
-        <h3 id="modalName">Ustoz Ismi</h3>
-        <p id="modalRole" class="teacher-role">Fani</p>
-        <span id="modalBadge" class="teacher-badge">Toifa</span>
-        <hr style="margin: 15px 0; border: 0; border-top: 1px solid rgba(255,255,255,0.1);">
-        <p id="modalBio">Batafsil ma'lumot...</p>
-      </div>
-    </div>
-
-    <!-- Platformalar -->
-    <section class="section links-section">
-      <div class="container">
-        <div class="section-header" style="text-align: center; margin-bottom: 30px;">
-          <h2>Foydali ta'lim platformalari</h2>
-        </div>
-        <div class="links-grid">
-          <a href="https://kundalik.com" target="_blank" rel="noopener" class="link-card">
-            <div class="link-icon">📊</div>
-            <div class="link-info"><h3>Kundalik (e-Maktab)</h3><p>Elektron jurnal</p></div>
-          </a>
-          <a href="https://ziyonet.uz" target="_blank" rel="noopener" class="link-card">
-            <div class="link-icon">📚</div>
-            <div class="link-info"><h3>ZiyoNET</h3><p>Ta'lim tarmog'i</p></div>
-          </a>
-          <a href="https://uzedu.uz" target="_blank" rel="noopener" class="link-card">
-            <div class="link-icon">🏛️</div>
-            <div class="link-info"><h3>Vazirlik Sayti</h3><p>Rasmiy sahifa</p></div>
-          </a>
         </div>
       </div>
     </section>
@@ -465,15 +234,86 @@
   <footer class="site-footer" id="contact">
     <div class="container footer-inner">
       <div class="footer-col footer-about">
-        <a href="#home" class="logo footer-logo" aria-label="84-maktab"><span class="logo-badge">84</span><span class="logo-text">84-maktab</span></a>
+        <a href="#home" class="logo footer-logo"><span class="logo-badge">84</span><span id="footer-school-name" class="logo-text">84-maktab</span></a>
         <p>Denov 84-umumiy o'rta ta'lim maktabi — bilim va kelajak maskani.</p>
-        <div style="margin-top: 15px;">
-          <a href="https://t.me/DENOV_ISMAYILOV_84" target="_blank" style="color: var(--color-gold-300, #f3e5ab); text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
-            ✈️ Telegram Kanalimiz (@DENOV_ISMAYILOV_84)</a>
-        </div>
       </div>
     </div>
   </footer>
 
+  <!-- DYNAMIC LOCALSTORAGE SYNCRONIZER -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 1. Maktab Nomini Yangilash
+        const customName = localStorage.getItem("m84_school_name");
+        if(customName) {
+            document.getElementById("logo-text-name").innerHTML = customName + "<small>Denov tumani</small>";
+            document.getElementById("about-card-title").innerText = customName;
+            document.getElementById("footer-school-name").innerText = customName;
+            document.getElementById("page-title").innerText = customName + " - Rasmiy Portali";
+        }
+
+        // 2. Ustozlarni Sync qilish (Admin paneldan o'chirilsa bu yerda ham darhol yo'qoladi)
+        const defaultTeachers = [
+            { id: 1, name: "Yo‘ldosheva Madina Hasanovna", subject: "Psixolog", badge: "Mutaxassis", bio: "Maktab psixologi" },
+            { id: 2, name: "Ismailova Dildora Chorievna", subject: "Ona tili va adabiyoti o‘qituvchisi", badge: "1-toifa", bio: "Ona tili ustozi" },
+            { id: 3, name: "Sultonmurodov Erkin Abdug`aniyevich", subject: "Matematika o‘qituvchisi", badge: "Oliy toifa", bio: "Matematika ustozi" },
+            { id: 4, name: "Xujamkulov Shavkat Uralovich", subject: "Informatika o‘qituvchisi", badge: "1-toifa", bio: "Informatika ustozi" }
+        ];
+
+        let savedTeachers = localStorage.getItem("m84_teachers");
+        if(!savedTeachers) {
+            localStorage.setItem("m84_teachers", JSON.stringify(defaultTeachers));
+            savedTeachers = JSON.stringify(defaultTeachers);
+        }
+
+        const teachersList = JSON.parse(savedTeachers);
+        const teachersContainer = document.getElementById("dynamic-teachers-container");
+        teachersContainer.innerHTML = "";
+
+        if(teachersList.length === 0) {
+            teachersContainer.innerHTML = "<p style='color: #94a3b8; text-align: center; width: 100%;'>Hozircha ustozlar kiritilmagan.</p>";
+        } else {
+            teachersList.forEach(t => {
+                teachersContainer.innerHTML += `
+                    <div class="teacher-card mini-card" data-bio="${t.bio || ''}">
+                        <div class="teacher-info">
+                            <h3>${t.name}</h3>
+                            <p class="teacher-role">${t.subject}</p>
+                            <span class="teacher-badge">${t.badge || 'Mutaxassis'}</span>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        // 3. Dars Jadvallarini Sync Qilish
+        const scheduleList = JSON.parse(localStorage.getItem("m84_schedule") || "[]");
+        const scheduleBox = document.getElementById("dynamic-schedule-box");
+        scheduleBox.innerHTML = "";
+        
+        if(scheduleList.length > 0) {
+            scheduleList.forEach(s => {
+                scheduleBox.innerHTML += `
+                    <div style="background: rgba(255,255,255,0.05); padding: 18px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.1);">
+                        <strong style="color: var(--color-gold-300, #f3e5ab); font-size: 1.15rem; display: block; margin-bottom: 4px;">${s.className}</strong>
+                        <div style="font-size: 0.85rem; color: #38bdf8; font-weight: 600; margin-bottom: 10px;">🗓️ ${s.day}</div>
+                        <pre style="font-family: inherit; font-size: 0.9rem; white-space: pre-wrap; color: #e2e8f0; line-height: 1.5;">${s.details}</pre>
+                    </div>`;
+            });
+        }
+
+        // 4. Xona Rasmlarini Sync Qilish
+        const roomList = JSON.parse(localStorage.getItem("m84_rooms") || "[]");
+        if(roomList.length > 0) {
+            const roomsContainer = document.getElementById("rooms-container");
+            roomList.forEach(r => {
+                roomsContainer.innerHTML += `
+                    <div class="room-card">
+                        <div class="room-img-wrap"><img src="${r.imgSrc}" alt="${r.title}"><span class="room-badge">📷 ${r.title}</span></div>
+                        <div class="room-info"><h3>${r.title}</h3><p>Maktabimizning zamonaviy xonasi.</p></div>
+                    </div>`;
+            });
+        }
+    });
+  </script>
 </body>
 </html>
