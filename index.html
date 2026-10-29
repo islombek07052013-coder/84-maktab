@@ -29,11 +29,16 @@
     <div class="container header-inner">
       <a href="#home" class="logo" aria-label="84-maktab — bosh sahifaga o'tish">
         <span class="logo-badge">84</span>
-        <span id="logo-text-name" class="logo-text">84-maktab<small>Denov tumani</small></span>
+        <span id="logo-school-name" class="logo-text">84-maktab<small>Denov tumani</small></span>
       </a>
 
-      <input type="checkbox" id="nav-toggle" class="nav-toggle">
-      <label for="nav-toggle" class="nav-toggle-label" aria-label="Menyuni ochish / yopish"><span></span></label>
+      <!-- Admin Panelga o'tish tugmasi qo'shildi -->
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <a href="admin.html" class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.9rem;">🔒 Admin Panel</a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label" aria-label="Menyuni ochish / yopish"><span></span></label>
+      </div>
+
       <nav class="main-nav" aria-label="Asosiy navigatsiya">
         <ul>
           <li><a href="#home">Bosh sahifa</a></li>
@@ -56,7 +61,7 @@
       <span class="hero-number" aria-hidden="true">84</span>
       <div class="container hero-inner">
         <div class="hero-content">
-          <h1>Zamonaviy ta'lim,<br>ishonchli kelajak</h1>
+          <h1 id="hero-title">Zamonaviy ta'lim,<br>ishonchli kelajak</h1>
           <p>Denov tumanidagi 84-maktab har bir o'quvchida bilim, mahorat va yangi g'oyalarni tarbiyalaydi.</p>
           <div class="hero-btns">
             <a href="#about" class="btn btn-primary">Batafsil ma'lumot</a>
@@ -81,7 +86,7 @@
             <div class="card-glow"></div>
             <div class="about-card-body">
               <div class="about-card-badge">🎓 Rasmiy Ta'lim Maskani</div>
-              <h3 id="about-card-title">Denov 84-Maktab</h3>
+              <h3 id="card-school-name">Denov 84-Maktab</h3>
               <p>Kelajak bunyodkorlari va bilim maskani</p>
               <div class="about-mini-stats">
                 <div class="m-stat"><strong>1200+</strong><span>O'quvchi</span></div>
@@ -94,25 +99,21 @@
       </div>
     </section>
 
-    <!-- Maktab Xonalari Fotogalereyasi (Admin Paneldan Boshqariladi) -->
+    <!-- Maktab Xonalari Fotogalereyasi (Admin paneldan qo'shilganlar ham qo'shiladi) -->
     <section class="gallery-section" id="gallery">
       <div class="container">
         <h2 class="section-heading">Maktabimizning Zamonaviy Xonalari</h2>
         <p style="text-align: center; margin-bottom: 35px; color: #cbd5e1;">Xona rasmlarini ko'rish va barcha burchaklarini tomosha qilish uchun ustiga bosing.</p>
         
-        <div class="rooms-gallery-grid" id="rooms-container">
-          <!-- Asosiy Xonalar -->
+        <div class="rooms-gallery-grid" id="dynamic-rooms-grid">
+          <!-- Asosiy xonalar -->
           <div class="room-card" data-room="it">
-            <div class="room-img-wrap"><img src="images/it_1.jpg.jpg" alt="IT Xonasi" onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600'"><span class="room-badge">💻 IT va Dasturlash</span></div>
-            <div class="room-info"><h3>IT va Kompyuter Xonasi</h3><p>Zamonaviy kompyuterlar va yuqori tezlikdagi internet bilan ta'minlangan IT xonasi.</p></div>
+            <div class="room-img-wrap"><img src="images/it_1.jpg.jpg" alt="IT Xonasi" onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600'"><span class="room-badge">💻 IT Xonasi</span></div>
+            <div class="room-info"><h3>IT va Kompyuter Xonasi</h3><p>Zamonaviy kompyuterlar bilan ta'minlangan.</p></div>
           </div>
           <div class="room-card" data-room="sewing">
-            <div class="room-img-wrap"><img src="images/sewing_1.jpg.jpg" alt="Tikuvchilik" onerror="this.src='https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600'"><span class="room-badge">🧵 Tikuvchilik va Dizayn</span></div>
-            <div class="room-info"><h3>Tikuvchilik va Dizayn Xonasi</h3><p>Qizlar uchun tikuv mashinalari va zamonaviy dizayn ustaxonasi.</p></div>
-          </div>
-          <div class="room-card" data-room="music">
-            <div class="room-img-wrap"><img src="images/music_1.jpg.jpg" alt="Musiqa" onerror="this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600'"><span class="room-badge">🎵 Musiqa San'ati</span></div>
-            <div class="room-info"><h3>Musiqa Xonasi</h3><p>Milliy va zamonaviy musiqa asboblari xonasi.</p></div>
+            <div class="room-img-wrap"><img src="images/sewing_1.jpg.jpg" alt="Tikuvchilik" onerror="this.src='https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600'"><span class="room-badge">🧵 Tikuvchilik</span></div>
+            <div class="room-info"><h3>Tikuvchilik va Dizayn Xonasi</h3><p>Qizlar uchun hunarmandchilik ustaxonasi.</p></div>
           </div>
         </div>
       </div>
@@ -140,11 +141,12 @@
     <section class="class-schedule-section" id="schedule">
       <div class="container" style="text-align: center;">
         <h2 class="section-heading">Sinflar bo'yicha Dars Jadvali</h2>
-        <div id="dynamic-schedule-box" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; text-align: left; margin-bottom: 30px;">
-          <!-- Admin Paneldan Qo'shilgan Jadvallar Shu Yerga Chiqadi -->
+        <p style="color: #cbd5e1; margin-bottom: 25px; font-size: 1.05rem;">Admin paneldan kiritilgan barcha 1-11 sinf jadvallari:</p>
+        <div id="public-schedule-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; text-align: left; margin-bottom: 30px;">
+          <!-- Admin paneldan kiritilgan jadvallar shu yerga chiqadi -->
         </div>
-        <a href="schedule.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 16px 40px; box-shadow: var(--gold-glow);">
-          📋 Sinflar va Dars Jadvallarini Ko'rish (2-sahifa)
+        <a href="schedule.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 16px 40px;">
+          📋 Batafsil Sinflar va Dars Jadvallari (2-sahifa)
         </a>
       </div>
     </section>
@@ -153,47 +155,31 @@
     <section class="bells" id="bells">
       <div class="container">
         <h2 class="section-heading">Qo'ng'iroq jadvali</h2>
-
         <div class="shifts-wrapper">
           <div class="shift-block">
             <h3 class="shift-title">☀️ 1-smena (6 soatli darslar)</h3>
             <div class="bell-grid-container">
-              <div class="bell-card-item"><div class="b-badge">1-soat dars</div><div class="b-time">⏰ 08:00 – 08:45</div><div class="b-dur">Tanaffus: 5 daqiqa</div></div>
-              <div class="bell-card-item"><div class="b-badge">2-soat dars</div><div class="b-time">⏰ 08:50 – 09:35</div><div class="b-dur">Tanaffus: 5 daqiqa</div></div>
-              <div class="bell-card-item"><div class="b-badge">3-soat dars</div><div class="b-time">⏰ 09:40 – 10:25</div><div class="b-dur">Tanaffus: 5 daqiqa</div></div>
-              <div class="bell-card-item"><div class="b-badge">4-soat dars</div><div class="b-time">⏰ 10:30 – 11:15</div><div class="b-dur">Tanaffus: 5 daqiqa</div></div>
-              <div class="bell-card-item"><div class="b-badge">5-soat dars</div><div class="b-time">⏰ 11:20 – 12:05</div><div class="b-dur">Tanaffus: 5 daqiqa</div></div>
-              <div class="bell-card-item"><div class="b-badge">6-soat dars</div><div class="b-time">⏰ 12:10 – 12:55</div><div class="b-dur">Davomiyligi: 45 daqiqa</div></div>
+              <div class="bell-card-item"><div class="b-badge">1-soat dars</div><div class="b-time">⏰ 08:00 – 08:45</div></div>
+              <div class="bell-card-item"><div class="b-badge">2-soat dars</div><div class="b-time">⏰ 08:50 – 09:35</div></div>
+              <div class="bell-card-item"><div class="b-badge">3-soat dars</div><div class="b-time">⏰ 09:40 – 10:25</div></div>
+              <div class="bell-card-item"><div class="b-badge">4-soat dars</div><div class="b-time">⏰ 10:30 – 11:15</div></div>
+              <div class="bell-card-item"><div class="b-badge">5-soat dars</div><div class="b-time">⏰ 11:20 – 12:05</div></div>
+              <div class="bell-card-item"><div class="b-badge">6-soat dars</div><div class="b-time">⏰ 12:10 – 12:55</div></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Ustozlar bo'limi (Admin Panel bilan To'liq Integratsiya) -->
+    <!-- Ustozlar bo'limi (Admin paneldan qo'shilganlar ham chiqadi) -->
     <section class="teachers" id="teachers">
       <div class="container">
         <h2 class="section-heading">Maktab rahbariyati va ustozlarimiz</h2>
 
-        <div class="featured-teachers-list" id="dynamic-teachers-container" style="margin-top: 25px;">
-          <!-- Asosiy Ustozlar Ro'yxati (Admin Paneldan O'chirilsa Saytdan ham Avtomatik O'chadi) -->
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="faq-section" id="faq">
-      <div class="container">
-        <h2 class="section-heading">Keng Beriladigan Savollar (FAQ)</h2>
-        <div class="faq-list">
-          <div class="faq-box">
-            <h3>❓ 1-sinfga qabul hujjatlari qanday topshiriladi?</h3>
-            <p><strong>Javob:</strong> 1-sinfga qabul jarayonlari my.uzedu.uz portali orqali onlayn amalga oshiriladi.</p>
-          </div>
-          <div class="faq-box">
-            <h3>❓ Maktabda qanday to'garaklar faoliyat yuritadi?</h3>
-            <p><strong>Javob:</strong> IT, Ingliz tili, Shaxmat va Futbol to'garaklari bepul yo'lga qo'yilgan.</p>
-          </div>
+        <div class="featured-teachers-list" id="dynamic-teachers-list" style="margin-top: 25px;">
+          <!-- Asosiy rahbariyat va admin paneldan qo'shilgan ustozlar -->
+          <div class="teacher-card mini-card"><div class="teacher-info"><h3>Ismayilov Sherzod Chorievich</h3><p class="teacher-role">Maktab Direktori</p><span class="teacher-badge">Oliy toifa</span></div></div>
+          <div class="teacher-card mini-card"><div class="teacher-info"><h3>Xujamkulov Shavkat Uralovich</h3><p class="teacher-role">Informatika o‘qituvchisi</p><span class="teacher-badge">1-toifa</span></div></div>
         </div>
       </div>
     </section>
@@ -240,77 +226,62 @@
     </div>
   </footer>
 
-  <!-- DYNAMIC LOCALSTORAGE SYNCRONIZER -->
+  <!-- Admin Panel ma'lumotlarini saytga chiqaruvchi skript -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // 1. Maktab Nomini Yangilash
-        const customName = localStorage.getItem("m84_school_name");
-        if(customName) {
-            document.getElementById("logo-text-name").innerHTML = customName + "<small>Denov tumani</small>";
-            document.getElementById("about-card-title").innerText = customName;
-            document.getElementById("footer-school-name").innerText = customName;
-            document.getElementById("page-title").innerText = customName + " - Rasmiy Portali";
+        // Maktab nomini yangilash
+        const sName = localStorage.getItem("m84_school_name");
+        if(sName) {
+            document.getElementById("logo-school-name").innerHTML = sName + "<small>Denov tumani</small>";
+            document.getElementById("card-school-name").innerText = sName;
+            document.getElementById("footer-school-name").innerText = sName;
+            document.getElementById("page-title").innerText = sName + " - Rasmiy Portali";
         }
 
-        // 2. Ustozlarni Sync qilish (Admin paneldan o'chirilsa bu yerda ham darhol yo'qoladi)
-        const defaultTeachers = [
-            { id: 1, name: "Yo‘ldosheva Madina Hasanovna", subject: "Psixolog", badge: "Mutaxassis", bio: "Maktab psixologi" },
-            { id: 2, name: "Ismailova Dildora Chorievna", subject: "Ona tili va adabiyoti o‘qituvchisi", badge: "1-toifa", bio: "Ona tili ustozi" },
-            { id: 3, name: "Sultonmurodov Erkin Abdug`aniyevich", subject: "Matematika o‘qituvchisi", badge: "Oliy toifa", bio: "Matematika ustozi" },
-            { id: 4, name: "Xujamkulov Shavkat Uralovich", subject: "Informatika o‘qituvchisi", badge: "1-toifa", bio: "Informatika ustozi" }
-        ];
-
-        let savedTeachers = localStorage.getItem("m84_teachers");
-        if(!savedTeachers) {
-            localStorage.setItem("m84_teachers", JSON.stringify(defaultTeachers));
-            savedTeachers = JSON.stringify(defaultTeachers);
-        }
-
-        const teachersList = JSON.parse(savedTeachers);
-        const teachersContainer = document.getElementById("dynamic-teachers-container");
-        teachersContainer.innerHTML = "";
-
-        if(teachersList.length === 0) {
-            teachersContainer.innerHTML = "<p style='color: #94a3b8; text-align: center; width: 100%;'>Hozircha ustozlar kiritilmagan.</p>";
-        } else {
-            teachersList.forEach(t => {
-                teachersContainer.innerHTML += `
-                    <div class="teacher-card mini-card" data-bio="${t.bio || ''}">
+        // Ustozlarni chiqarish
+        const teachers = JSON.parse(localStorage.getItem("m84_teachers") || "[]");
+        if(teachers.length > 0) {
+            const tBox = document.getElementById("dynamic-teachers-list");
+            teachers.forEach(t => {
+                tBox.innerHTML += `
+                    <div class="teacher-card mini-card">
                         <div class="teacher-info">
                             <h3>${t.name}</h3>
                             <p class="teacher-role">${t.subject}</p>
                             <span class="teacher-badge">${t.badge || 'Mutaxassis'}</span>
                         </div>
-                    </div>`;
+                    </div>
+                `;
             });
         }
 
-        // 3. Dars Jadvallarini Sync Qilish
-        const scheduleList = JSON.parse(localStorage.getItem("m84_schedule") || "[]");
-        const scheduleBox = document.getElementById("dynamic-schedule-box");
-        scheduleBox.innerHTML = "";
-        
-        if(scheduleList.length > 0) {
-            scheduleList.forEach(s => {
-                scheduleBox.innerHTML += `
-                    <div style="background: rgba(255,255,255,0.05); padding: 18px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.1);">
-                        <strong style="color: var(--color-gold-300, #f3e5ab); font-size: 1.15rem; display: block; margin-bottom: 4px;">${s.className}</strong>
-                        <div style="font-size: 0.85rem; color: #38bdf8; font-weight: 600; margin-bottom: 10px;">🗓️ ${s.day}</div>
-                        <pre style="font-family: inherit; font-size: 0.9rem; white-space: pre-wrap; color: #e2e8f0; line-height: 1.5;">${s.details}</pre>
-                    </div>`;
+        // Jadvallarni chiqarish
+        const schedule = JSON.parse(localStorage.getItem("m84_schedule") || "[]");
+        if(schedule.length > 0) {
+            const sBox = document.getElementById("public-schedule-list");
+            sBox.innerHTML = "";
+            schedule.forEach(s => {
+                sBox.innerHTML += `
+                    <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                        <strong style="color: var(--color-gold-300, #f3e5ab); font-size: 1.1rem;">${s.className}</strong>
+                        <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 8px;">Hafta kuni: ${s.day}</div>
+                        <pre style="font-family: inherit; font-size: 0.9rem; white-space: pre-wrap; color: #e2e8f0;">${s.details}</pre>
+                    </div>
+                `;
             });
         }
 
-        // 4. Xona Rasmlarini Sync Qilish
-        const roomList = JSON.parse(localStorage.getItem("m84_rooms") || "[]");
-        if(roomList.length > 0) {
-            const roomsContainer = document.getElementById("rooms-container");
-            roomList.forEach(r => {
-                roomsContainer.innerHTML += `
+        // Rasmlarni chiqarish
+        const rooms = JSON.parse(localStorage.getItem("m84_rooms") || "[]");
+        if(rooms.length > 0) {
+            const rBox = document.getElementById("dynamic-rooms-grid");
+            rooms.forEach(r => {
+                rBox.innerHTML += `
                     <div class="room-card">
                         <div class="room-img-wrap"><img src="${r.imgSrc}" alt="${r.title}"><span class="room-badge">📷 ${r.title}</span></div>
-                        <div class="room-info"><h3>${r.title}</h3><p>Maktabimizning zamonaviy xonasi.</p></div>
-                    </div>`;
+                        <div class="room-info"><h3>${r.title}</h3><p>Admin paneldan yuklangan maktab xonasi.</p></div>
+                    </div>
+                `;
             });
         }
     });
