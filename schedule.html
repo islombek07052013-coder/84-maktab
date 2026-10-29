@@ -59,18 +59,27 @@
         const box = document.getElementById('schedContent');
         if (!box) return;
 
-        // Admin paneldan kiritilgan vaqtlarni olish
-        let lessonTimes = JSON.parse(localStorage.getItem("m84_lesson_times") || "null");
-        if (!lessonTimes) {
-          lessonTimes = ["08:00 – 08:45", "08:50 – 09:35", "09:40 – 10:25", "10:30 – 11:15", "11:20 – 12:05", "12:10 – 12:55"];
-        }
+        // Admin paneldan kelgan 1 va 2-smena vaqtlari
+        let s1Times = JSON.parse(localStorage.getItem("m84_s1_times") || "null");
+        let s2Times = JSON.parse(localStorage.getItem("m84_s2_times") || "null");
+        
+        if(!s1Times) s1Times = ["08:00 – 08:45", "08:50 – 09:35", "09:40 – 10:25", "10:30 – 11:15", "11:20 – 12:05", "12:10 – 12:55"];
+        if(!s2Times) s2Times = ["13:05 – 13:50", "13:55 – 14:40", "14:45 – 15:30", "15:35 – 16:20", "16:25 – 17:10", "17:15 – 18:00"];
+
+        // Qaysi smenadaligini aniqlash (Masalan: 1-4 sinflar 1-smena, qolganlar 2-smena yoki o'zingiz xohlagancha)
+        let classNum = parseInt(selectedClass);
+        let activeTimes = (classNum >= 5 && classNum <= 11) ? s2Times : s1Times;
+        let shiftName = (classNum >= 5 && classNum <= 11) ? "🌙 2-Smena" : "☀️ 1-Smena";
 
         const savedSchedules = localStorage.getItem('school_schedules_v3');
         let schedules = savedSchedules ? JSON.parse(savedSchedules) : [];
 
         const classSchedules = schedules.filter(s => s.class_name.toLowerCase() === selectedClass.toLowerCase());
 
-        let html = `<h4 style="margin-bottom: 15px; color: var(--color-gold-300, #f3e5ab); font-weight: 700; font-size: 1.2rem;">📌 ${selectedClass} Dars Jadvali</h4>`;
+        let html = `<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">`;
+        html += `<h4 style="color: var(--color-gold-300, #f3e5ab); font-weight: 700; font-size: 1.2rem; margin:0;">📌 ${selectedClass} Dars Jadvali</h4>`;
+        html += `<span style="background:rgba(205,160,89,0.15); color:var(--color-gold-300, #f3e5ab); padding:5px 12px; border-radius:8px; font-size:0.9rem; font-weight:600;">${shiftName}</span>`;
+        html += `</div>`;
         
         if (classSchedules.length === 0) {
           html += `<p style="color: #cbd5e1; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; text-align: center;">Hozircha bu sinf uchun admin paneldan dars jadvali kiritilmagan.</p>`;
@@ -84,7 +93,7 @@
 
             lines.forEach((line, idx) => {
               let cleanName = line.replace(/^\d+[\.\)]\s*/, '');
-              let timeStr = lessonTimes[idx] ? lessonTimes[idx] : "—";
+              let timeStr = activeTimes[idx] ? activeTimes[idx] : "—";
 
               formattedLessons += `
                 <div class="lesson-row">
