@@ -55,26 +55,18 @@
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Maktab qo'ng'iroq vaqtlari
-      const lessonTimes = [
-        "08:00 – 08:45",
-        "08:50 – 09:35",
-        "09:40 – 10:25",
-        "10:30 – 11:15",
-        "11:20 – 12:05",
-        "12:10 – 12:55"
-      ];
-
       function renderSchedule(selectedClass) {
         const box = document.getElementById('schedContent');
         if (!box) return;
 
-        const savedSchedules = localStorage.getItem('school_schedules_v3');
-        let schedules = [];
-
-        if (savedSchedules) {
-          schedules = JSON.parse(savedSchedules);
+        // Admin paneldan kiritilgan vaqtlarni olish
+        let lessonTimes = JSON.parse(localStorage.getItem("m84_lesson_times") || "null");
+        if (!lessonTimes) {
+          lessonTimes = ["08:00 – 08:45", "08:50 – 09:35", "09:40 – 10:25", "10:30 – 11:15", "11:20 – 12:05", "12:10 – 12:55"];
         }
+
+        const savedSchedules = localStorage.getItem('school_schedules_v3');
+        let schedules = savedSchedules ? JSON.parse(savedSchedules) : [];
 
         const classSchedules = schedules.filter(s => s.class_name.toLowerCase() === selectedClass.toLowerCase());
 
@@ -87,12 +79,10 @@
           html += `<th style="width: 25%;">Hafta kuni</th><th>Darslar va Vaqtlari</th></tr></thead><tbody>`;
 
           classSchedules.forEach(item => {
-            // Darslarni qatorlarga ajratish
             let lines = item.lessons.split('\n').filter(l => l.trim() !== "");
             let formattedLessons = "";
 
             lines.forEach((line, idx) => {
-              // Raqamni olib tashlab, toza fan nomini olish (masalan: "1. Ona tili" -> "Ona tili")
               let cleanName = line.replace(/^\d+[\.\)]\s*/, '');
               let timeStr = lessonTimes[idx] ? lessonTimes[idx] : "—";
 
@@ -118,7 +108,6 @@
       const classPicker = document.getElementById('classPicker');
       if (classPicker) {
         renderSchedule(classPicker.value);
-
         classPicker.addEventListener('change', (e) => {
           renderSchedule(e.target.value);
         });
