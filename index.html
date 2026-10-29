@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Denov 84-umumiy o'rta ta'lim maktabi</title>
+  <title id="page-title">Denov 84-umumiy o'rta ta'lim maktabi</title>
   <meta name="description" content="Denov 84-umumiy o'rta ta'lim maktabi — zamonaviy ta'lim, tajribali ustozlar va ishonchli kelajak.">
   <meta name="theme-color" content="#06111e">
   <link rel="manifest" href="manifest.json">
@@ -29,7 +29,7 @@
     <div class="container header-inner">
       <a href="#home" class="logo" aria-label="84-maktab — bosh sahifaga o'tish">
         <span class="logo-badge">84</span>
-        <span class="logo-text">84-maktab<small>Denov tumani</small></span>
+        <span id="logo-text-name" class="logo-text">84-maktab<small>Denov tumani</small></span>
       </a>
 
       <input type="checkbox" id="nav-toggle" class="nav-toggle">
@@ -81,7 +81,7 @@
             <div class="card-glow"></div>
             <div class="about-card-body">
               <div class="about-card-badge">🎓 Rasmiy Ta'lim Maskani</div>
-              <h3>Denov 84-Maktab</h3>
+              <h3 id="about-card-title">Denov 84-Maktab</h3>
               <p>Kelajak bunyodkorlari va bilim maskani</p>
               <div class="about-mini-stats">
                 <div class="m-stat"><strong>1200+</strong><span>O'quvchi</span></div>
@@ -100,8 +100,7 @@
         <h2 class="section-heading">Maktabimizning Zamonaviy Xonalari</h2>
         <p style="text-align: center; margin-bottom: 35px; color: #cbd5e1;">Xona rasmlarini ko'rish va barcha burchaklarini tomosha qilish uchun ustiga bosing.</p>
         
-        <div class="rooms-gallery-grid">
-          
+        <div class="rooms-gallery-grid" id="rooms-container">
           <!-- 1. IT Xonasi -->
           <div class="room-card" data-room="it">
             <div class="room-img-wrap">
@@ -166,7 +165,6 @@
               <p>O'quvchilar amaliy ko'nikmalar, loyihalar va amaliy ustaxona mashg'ulotlarini o'taydigan joy.</p>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -205,10 +203,14 @@
       </div>
     </section>
 
-    <!-- Sinflar bo'yicha Dars Jadvali (2-sahifaga o'tuvchi tugma) -->
+    <!-- Sinflar bo'yicha Dars Jadvali (2-sahifaga o'tuvchi tugma) va Admin Paneldan keladiganlar -->
     <section class="class-schedule-section" id="schedule">
       <div class="container" style="text-align: center;">
         <h2 class="section-heading">Sinflar bo'yicha Dars Jadvali</h2>
+        
+        <!-- Admin paneldan kiritilgan jadvallar shu yerga chiqadi -->
+        <div id="dynamic-schedule-box" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; text-align: left; margin-bottom: 30px;"></div>
+
         <p style="color: #cbd5e1; margin-bottom: 25px; font-size: 1.05rem;">Maktabimizdagi barcha sinflarning batafsil dars jadvalini ko'rish uchun quyidagi tugmani bosing:</p>
         <a href="schedule.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 16px 40px; box-shadow: var(--gold-glow);">
           📋 Sinflar va Dars Jadvallarini Ko'rish (2-sahifa)
@@ -216,7 +218,7 @@
       </div>
     </section>
 
-    <!-- Qo'ng'iroq jadvali -->
+    <!-- Qo'ng'iroq jadvali (Ikkala smena to'liq joyida) -->
     <section class="bells" id="bells">
       <div class="container">
         <h2 class="section-heading">Qo'ng'iroq jadvali</h2>
@@ -275,7 +277,7 @@
       </div>
     </section>
 
-    <!-- Ustozlar bo'limi -->
+    <!-- Ustozlar bo'limi (Barcha ustozlar va rahbariyat o'z joyida) -->
     <section class="teachers" id="teachers">
       <div class="container">
         <h2 class="section-heading">Maktab rahbariyati va ustozlarimiz</h2>
@@ -465,7 +467,7 @@
   <footer class="site-footer" id="contact">
     <div class="container footer-inner">
       <div class="footer-col footer-about">
-        <a href="#home" class="logo footer-logo" aria-label="84-maktab"><span class="logo-badge">84</span><span class="logo-text">84-maktab</span></a>
+        <a href="#home" class="logo footer-logo" aria-label="84-maktab"><span class="logo-badge">84</span><span id="footer-school-name" class="logo-text">84-maktab</span></a>
         <p>Denov 84-umumiy o'rta ta'lim maktabi — bilim va kelajak maskani.</p>
         <div style="margin-top: 15px;">
           <a href="https://t.me/DENOV_ISMAYILOV_84" target="_blank" style="color: var(--color-gold-300, #f3e5ab); text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
