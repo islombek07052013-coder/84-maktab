@@ -121,3 +121,73 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+// --- XONALAR GALEREYASI MODAL OYNASI ---
+document.addEventListener('DOMContentLoaded', () => {
+  const roomModal = document.getElementById('roomGalleryModal');
+  const closeRoomModal = document.getElementById('closeRoomModal');
+  const activeRoomImg = document.getElementById('activeRoomImg');
+  const roomModalTitle = document.getElementById('roomModalTitle');
+  const thumbList = document.getElementById('thumbList');
+  const prevImgBtn = document.getElementById('prevImgBtn');
+  const nextImgBtn = document.getElementById('nextImgBtn');
+
+  let currentImages = [];
+  let currentIndex = 0;
+
+  document.querySelectorAll('.room-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const imagesAttr = card.getAttribute('data-images');
+      const roomTitle = card.querySelector('h3').textContent;
+      
+      if (imagesAttr) {
+        currentImages = JSON.parse(imagesAttr);
+        currentIndex = 0;
+        
+        if (roomModalTitle) roomModalTitle.textContent = roomTitle;
+        updateGalleryModal();
+        if (roomModal) roomModal.hidden = false;
+      }
+    });
+  });
+
+  function updateGalleryModal() {
+    if (currentImages.length > 0 && activeRoomImg) {
+      activeRoomImg.src = currentImages[currentIndex];
+      
+      if (thumbList) {
+        thumbList.innerHTML = '';
+        currentImages.forEach((imgSrc, idx) => {
+          const thumb = document.createElement('img');
+          thumb.src = imgSrc;
+          thumb.className = `thumb-img ${idx === currentIndex ? 'active-thumb' : ''}`;
+          thumb.addEventListener('click', () => {
+            currentIndex = idx;
+            updateGalleryModal();
+          });
+          thumbList.appendChild(thumb);
+        });
+      }
+    }
+  }
+
+  if (prevImgBtn) {
+    prevImgBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      updateGalleryModal();
+    });
+  }
+
+  if (nextImgBtn) {
+    nextImgBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % currentImages.length;
+      updateGalleryModal();
+    });
+  }
+
+  if (closeRoomModal && roomModal) {
+    closeRoomModal.addEventListener('click', () => roomModal.hidden = true);
+    roomModal.addEventListener('click', (e) => {
+      if (e.target === roomModal) roomModal.hidden = true;
+    });
+  }
+});
