@@ -446,7 +446,6 @@ p { color: #cbd5e1; }
 @media (max-width: 992px) {
   .toifa-info-grid { grid-template-columns: repeat(2, 1fr); }
 }
-
 @media (max-width: 768px) {
   .deputies-modern-row, .featured-teachers-list, .honors-grid, .form-grid, .bell-grid-container { grid-template-columns: 1fr; }
   .about-inner, .footer-inner { grid-template-columns: 1fr; }
@@ -455,4 +454,14 @@ p { color: #cbd5e1; }
   .nav-toggle:checked ~ .main-nav { max-height: 500px; }
   .main-nav ul { flex-direction: column; padding: 20px; }
   .toifa-info-grid { grid-template-columns: 1fr; }
+  
+  /* Mobil tugmalar orasidagi masofa */
+  .hero-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .btn-secondary {
+    margin-left: 0;
+  }
 }
