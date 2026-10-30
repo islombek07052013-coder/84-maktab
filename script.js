@@ -1,22 +1,26 @@
 /* ==========================================================
-   DENOV 84-MAKTAB — To'liq Ishchi JS (Galereya + Modal + Telegram)
+   DENOV 84-MAKTAB — To'liq Ishchi JS (Galereya + Modal + Telegram + Adminlar)
    ========================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // 1. SUPABASE ORQALI USTOZLARNI OLIB KELISH (Xatolikka chidamli)
+  // 1. SUPABASE ULANISHI
   const SUPABASE_URL = 'https://erurfkbqnwzpieantvm.supabase.co';
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVydXJma2Jxbnd6cGllYW50dm0iLCJyb2xlIjoiYW5vbiIsImlhdCI6MTYyNzQyMTE5LCJleHAiOjE5Nzk5OTcxMTl9.k8K62Q4p9a3C5s8xW7v1t0m6n2p4q5r8s9t0u1v2w3x';
   
+  let supabaseClient = null;
+
   if (window.supabase) {
     try {
-      const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
       fetchTeachers(supabaseClient);
+      loadAdminsList(supabaseClient); // Adminlar ro'yxatini yuklash
     } catch (err) {
-      console.log('Supabase ulana olmadi, HTML dagi ustozlar qoldi.');
+      console.log('Supabase ulana olmadi.');
     }
   }
 
+  // USTOZLARNI OLIB KELISH
   async function fetchTeachers(client) {
     try {
       let { data: teachers, error } = await client.from('teachers').select('*');
@@ -47,7 +51,74 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch(e) {}
   }
 
-  // 2. XONALAR GALEREYASI MODAL OYNASI (Chaqqon va Kafolatlangan)
+  // 2. ADMINLARNI BOSHQARISH (Qo'shish va O'chirish)
+  async function loadAdminsList(client) {
+    const tableBody = document.querySelector('table tbody'); 
+    if (!tableBody) return;
+
+    const { data: admins, error } = await client
+      .from('admins')
+      .select('*')
+      .order('created_at', { ascending: true });
+
+    if (error) return;
+
+    tableBody.innerHTML = '';
+    admins.forEach((admin, index) => {
+      const row = document.createElement('tr');
+      const isSuperAdmin = admin.email === 'islombek07052013@gmail.com';
+      
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${admin.email} ${isSuperAdmin ? '<span class="badge" style="background:#f3e5ab; color:#000; padding:2px 6px; border-radius:4px; font-size:11px;">Asosiy (Siz)</span>' : ''}</td>
+        <td>
+          ${isSuperAdmin ? '<span style="color:gray;">O\'chirib bo\'lmaydi</span>' : `<button class="delete-admin-btn" data-id="${admin.id}" style="color: #ff4d4d; background: none; border: none; cursor: pointer; font-weight:bold;">O'chirish</button>`}
+        </td>
+      `;
+      tableBody.appendChild(row);
+    });
+
+    // O'chirish tugmasi
+    document.querySelectorAll('.delete-admin-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const adminId = e.target.getAttribute('data-id');
+        if (confirm("Haqiqatan ham bu adminni o'chirmoqchimisiz?")) {
+          const { error } = await client.from('admins').delete().eq('id', adminId);
+          if (!error) loadAdminsList(client);
+        }
+      });
+    });
+  }
+
+  // Yangi admin qo'shish tugmasi va inputi
+  const addAdminBtn = document.getElementById('addAdminBtn'); // Admin qo'shish tugmasi ID si
+  const adminEmailInput = document.querySelector('input[type="email"]'); // Pochta yozish joyi
+
+  if (addAdminBtn && supabaseClient) {
+    addAdminBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const emailVal = adminEmailInput ? adminEmailInput.value.trim().toLowerCase() : '';
+
+      if (!emailVal) {
+        alert("Iltimos, Google pochtani kiriting!");
+        return;
+      }
+
+      const { error } = await supabaseClient
+        .from('admins')
+        .insert([{ email: emailVal }]);
+
+      if (error) {
+        alert("Xatolik: Bu pochta allaqachon mavjud yoki xato. (" + error.message + ")");
+      } else {
+        alert("Yangi admin muvaffaqiyatli qo'shildi!");
+        if (adminEmailInput) adminEmailInput.value = '';
+        loadAdminsList(supabaseClient);
+      }
+    });
+  }
+
+  // 3. XONALAR GALEREYASI MODAL OYNASI
   const roomModal = document.getElementById('roomGalleryModal');
   const closeRoomModal = document.getElementById('closeRoomModal');
   const activeRoomImg = document.getElementById('activeRoomImg');
@@ -72,9 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (roomModalTitle) roomModalTitle.textContent = roomTitle;
           updateGalleryModal();
           if (roomModal) roomModal.hidden = false;
-        } catch(e) {
-          console.error("Rasm yo'llarida xatolik:", e);
-        }
+        } catch(e) {}
       }
     });
   });
@@ -123,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. USTOZLAR MODAL OYNASI
+  // 4. USTOZLAR MODAL OYNASI
   const teacherModal = document.getElementById('teacherModal');
   const closeModalBtn = document.getElementById('closeModal');
 
@@ -153,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 4. O'QUV YILI YAKUNIGA HISOB-KITOB (COUNTDOWN)
+  // 5. O'QUV YILI YAKUNIGA HISOB-KITOB (COUNTDOWN)
   function updateCountdown() {
     const now = new Date();
     let currentYear = now.getFullYear();
@@ -179,10 +248,13 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  // 5. TELEGRAM FORMASI
+  // 6. TELEGRAM FORMASI
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
+      // Agar bu forma admin qo'shish formasi bo'lmasa, Telegramga yuboradi
+      if (document.getElementById('addAdminBtn')) return; 
+      
       e.preventDefault();
       const name = document.getElementById('mName').value;
       const phone = document.getElementById('mPhone').value;
