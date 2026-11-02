@@ -268,3 +268,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+function toggleAllTeachers() {
+    const hiddenTeachers = document.querySelectorAll('.hidden-teacher');
+    const btn = document.getElementById('toggle-teachers-btn');
+    
+    if (hiddenTeachers.length === 0) return;
+    
+    let isHidden = hiddenTeachers[0].classList.contains('hidden');
+    
+    hiddenTeachers.forEach(card => {
+        if (isHidden) {
+            card.classList.remove('hidden');
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+
+    if (isHidden) {
+        btn.innerText = "Yopish ⬆";
+    } else {
+        btn.innerText = "Barcha ustozlarni ko'rish ⬇";
+    }
+}
