@@ -447,6 +447,7 @@ p { color: #cbd5e1; }
 @media (max-width: 992px) {
   .toifa-info-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
 @media (max-width: 768px) {
   .deputies-modern-row, .featured-teachers-list, .honors-grid, .form-grid, .bell-grid-container { grid-template-columns: 1fr; }
   .about-inner, .footer-inner { grid-template-columns: 1fr; }
@@ -462,6 +463,7 @@ p { color: #cbd5e1; }
     flex-direction: column;
     gap: 12px;
   }
+  
   /* 84 Raqamining mobil ko'rinishi */
   .hero-number {
     right: 50%;
@@ -497,17 +499,7 @@ p { color: #cbd5e1; }
     margin-left: 0;
   }
 }
-.hero-number {
-    right: 50%;
-    transform: translateX(50%);
-    bottom: 2%;
-    font-size: 38vw;
-    opacity: 0.6;
-  }
-  .hero-content {
-    position: relative;
-    z-index: 2;
-  }
+
 @media (max-width: 480px) {
   .countdown-grid {
     grid-template-columns: repeat(2, 1fr);
