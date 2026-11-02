@@ -506,3 +506,6 @@ p { color: #cbd5e1; }
     gap: 10px;
   }
 }
+.hidden-teacher.hidden {
+    display: none !important;
+}
